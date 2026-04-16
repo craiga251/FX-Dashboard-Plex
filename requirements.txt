@@ -1,2 +1,4 @@
 requests>=2.31.0
+google-genai>=1.12.1
+tzdata>=2024.1
 zoneinfo; python_version < "3.9"

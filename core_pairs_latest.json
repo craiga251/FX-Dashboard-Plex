@@ -1,0 +1,387 @@
+{
+  "analysis_timestamp_bst": "2024-05-16T10:00:00Z",
+  "live_rates_timestamp_utc": "2024-05-16T09:55:00Z",
+  "market_regime": "Risk-On",
+  "usd_bias": "Neutral",
+  "top_risks": [
+    "Geopolitical tensions in Eastern Europe",
+    "Sticky inflation in major economies",
+    "Central bank policy divergence"
+  ],
+  "macro_themes": [
+    {
+      "title": "Inflation Persistence",
+      "severity": "High",
+      "summary": "Inflation remains stubbornly high in key economies, complicating central bank policy decisions and potentially leading to prolonged higher interest rates.",
+      "tag": "Inflation"
+    },
+    {
+      "title": "Geopolitical Uncertainty",
+      "severity": "Medium",
+      "summary": "Ongoing geopolitical conflicts continue to pose risks to global supply chains and energy prices, creating volatility in financial markets.",
+      "tag": "Geopolitics"
+    },
+    {
+      "title": "Central Bank Divergence",
+      "severity": "Medium",
+      "summary": "Diverging monetary policy paths between major central banks (e.g., Fed vs. ECB vs. BoJ) are creating cross-asset volatility and influencing currency pair movements.",
+      "tag": "Monetary Policy"
+    }
+  ],
+  "core_pairs": [
+    {
+      "pair": "EUR/USD",
+      "status": "Neutral",
+      "bias": "Neutral",
+      "live_spot": "1.0750",
+      "day_change_pct": "-0.05%",
+      "trigger": "Break above 1.0800",
+      "target": "1.0950",
+      "invalidation": "Close below 1.0700",
+      "catalyst": "ECB policy meeting, US CPI data",
+      "confidence_pct": 55,
+      "summary": "EUR/USD remains range-bound, awaiting clearer direction from upcoming central bank policy and inflation data. Bias is neutral with key levels to watch."
+    },
+    {
+      "pair": "GBP/USD",
+      "status": "Neutral",
+      "bias": "Neutral",
+      "live_spot": "1.2450",
+      "day_change_pct": "-0.08%",
+      "trigger": "Break above 1.2500",
+      "target": "1.2600",
+      "invalidation": "Close below 1.2400",
+      "catalyst": "BoE meeting minutes, UK inflation data",
+      "confidence_pct": 50,
+      "summary": "GBP/USD is consolidating. Key UK economic data and BoE commentary will be crucial for direction. Neutral bias pending a clear break of key levels."
+    },
+    {
+      "pair": "USD/JPY",
+      "status": "Bearish",
+      "bias": "Bearish",
+      "live_spot": "158.50",
+      "day_change_pct": "0.20%",
+      "trigger": "Break below 158.00",
+      "target": "155.00",
+      "invalidation": "Close above 160.00",
+      "catalyst": "BoJ intervention fears, US yield movements",
+      "confidence_pct": 60,
+      "summary": "USD/JPY shows signs of topping out as intervention fears linger and US yields stabilize. Bearish bias targeting a move lower, but volatility remains high."
+    },
+    {
+      "pair": "USD/CHF",
+      "status": "Neutral",
+      "bias": "Neutral",
+      "live_spot": "0.9050",
+      "day_change_pct": "0.02%",
+      "trigger": "Break above 0.9100",
+      "target": "0.9200",
+      "invalidation": "Close below 0.9000",
+      "catalyst": "SNB policy, global risk sentiment",
+      "confidence_pct": 55,
+      "summary": "USD/CHF is trading within a tight range. SNB policy and broader risk sentiment will dictate the next move. Neutral bias."
+    },
+    {
+      "pair": "AUD/USD",
+      "status": "Bullish",
+      "bias": "Bullish",
+      "live_spot": "0.6650",
+      "day_change_pct": "0.10%",
+      "trigger": "Break above 0.6700",
+      "target": "0.6800",
+      "invalidation": "Close below 0.6600",
+      "catalyst": "China PMI, RBA minutes",
+      "confidence_pct": 65,
+      "summary": "AUD/USD showing resilience, supported by improving risk sentiment and potential stabilization in China. Bullish bias targeting higher levels."
+    },
+    {
+      "pair": "USD/CAD",
+      "status": "Neutral",
+      "bias": "Neutral",
+      "live_spot": "1.3650",
+      "day_change_pct": "-0.03%",
+      "trigger": "Break below 1.3600",
+      "target": "1.3500",
+      "invalidation": "Close above 1.3700",
+      "catalyst": "Oil prices, BoC meeting minutes",
+      "confidence_pct": 50,
+      "summary": "USD/CAD is consolidating. Oil price action and BoC policy signals will be key drivers. Neutral bias pending a clear directional move."
+    },
+    {
+      "pair": "NZD/USD",
+      "status": "Bullish",
+      "bias": "Bullish",
+      "live_spot": "0.6100",
+      "day_change_pct": "0.09%",
+      "trigger": "Break above 0.6150",
+      "target": "0.6250",
+      "invalidation": "Close below 0.6050",
+      "catalyst": "Global risk sentiment, NZ inflation data",
+      "confidence_pct": 60,
+      "summary": "NZD/USD is finding support on improved risk appetite. Bullish bias targeting a move higher, contingent on sustained risk-on sentiment."
+    }
+  ],
+  "top5": [
+    {
+      "rank": 1,
+      "pair": "AUD/USD",
+      "setup": "Bullish Breakout",
+      "live_spot": "0.6650",
+      "entry_zone": "0.6660-0.6680",
+      "stop": "0.6600",
+      "target": "0.6800",
+      "rr": "1:2.5",
+      "confidence_pct": 65,
+      "catalyst": "China PMI, RBA minutes, Risk-On",
+      "invalidation_risk": "Close below 0.6600"
+    },
+    {
+      "rank": 2,
+      "pair": "USD/JPY",
+      "setup": "Bearish Reversal",
+      "live_spot": "158.50",
+      "entry_zone": "158.00-158.20",
+      "stop": "159.00",
+      "target": "155.00",
+      "rr": "1:3",
+      "confidence_pct": 60,
+      "catalyst": "Intervention fears, US Yields",
+      "invalidation_risk": "Close above 159.00"
+    },
+    {
+      "rank": 3,
+      "pair": "NZD/USD",
+      "setup": "Bullish Continuation",
+      "live_spot": "0.6100",
+      "entry_zone": "0.6110-0.6130",
+      "stop": "0.6050",
+      "target": "0.6250",
+      "rr": "1:2",
+      "confidence_pct": 60,
+      "catalyst": "Risk-On Sentiment",
+      "invalidation_risk": "Close below 0.6050"
+    },
+    {
+      "rank": 4,
+      "pair": "EUR/USD",
+      "setup": "Range Trading",
+      "live_spot": "1.0750",
+      "entry_zone": "1.0720-1.0770",
+      "stop": "1.0700",
+      "target": "1.0800",
+      "rr": "1:1.5",
+      "confidence_pct": 55,
+      "catalyst": "ECB, US CPI",
+      "invalidation_risk": "Close below 1.0700"
+    },
+    {
+      "rank": 5,
+      "pair": "GBP/USD",
+      "setup": "Range Trading",
+      "live_spot": "1.2450",
+      "entry_zone": "1.2420-1.2470",
+      "stop": "1.2400",
+      "target": "1.2500",
+      "rr": "1:1.5",
+      "confidence_pct": 50,
+      "catalyst": "BoE Minutes, UK CPI",
+      "invalidation_risk": "Close below 1.2400"
+    }
+  ],
+  "secondary": [
+    {
+      "pair": "USD/CHF",
+      "spot": "0.9050",
+      "bias": "Neutral",
+      "notes": "Watching for SNB policy shifts and broader risk sentiment. Range bound for now."
+    },
+    {
+      "pair": "USD/CAD",
+      "spot": "1.3650",
+      "bias": "Neutral",
+      "notes": "Influenced by oil prices and BoC outlook. Awaiting clearer direction."
+    }
+  ],
+  "avoid": [
+    {
+      "pair": "USD/MXN",
+      "reason": "High volatility due to upcoming Mexican elections, making technical analysis unreliable."
+    },
+    {
+      "pair": "EM FX crosses",
+      "reason": "Heightened global risk aversion and USD strength could lead to significant downside pressure."
+    }
+  ],
+  "risk_calendar": [
+    {
+      "date_bst": "2024-05-16",
+      "time_bst": "10:00",
+      "event": "ECB Monetary Policy Meeting Accounts",
+      "ccy": "EUR",
+      "impact": "Medium"
+    },
+    {
+      "date_bst": "2024-05-16",
+      "time_bst": "13:30",
+      "event": "US Initial Jobless Claims",
+      "ccy": "USD",
+      "impact": "Medium"
+    },
+    {
+      "date_bst": "2024-05-17",
+      "time_bst": "07:00",
+      "event": "UK Retail Sales",
+      "ccy": "GBP",
+      "impact": "Medium"
+    },
+    {
+      "date_bst": "2024-05-17",
+      "time_bst": "09:00",
+      "event": "China Industrial Production",
+      "ccy": "CNY",
+      "impact": "High"
+    }
+  ],
+  "what_changed": [
+    {
+      "development": "US inflation data came in slightly cooler than expected.",
+      "fx_impact": "USD weakened initially but has since recovered some ground as market digests the implications for Fed policy."
+    },
+    {
+      "development": "BoJ officials hinted at potential intervention if JPY depreciation continues.",
+      "fx_impact": "Caused a sharp, albeit temporary, pullback in USD/JPY, increasing volatility."
+    },
+    {
+      "development": "Improved risk sentiment globally.",
+      "fx_impact": "Supported commodity currencies like AUD and NZD, while weighing on safe-haven JPY."
+    }
+  ],
+  "bond_yields": [
+    {
+      "country": "US",
+      "yield": "4.65%",
+      "trend": "Slightly lower",
+      "cb_rate": "5.25-5.50%",
+      "cb_note": "Fed on hold, data dependent"
+    },
+    {
+      "country": "Germany",
+      "yield": "2.50%",
+      "trend": "Slightly lower",
+      "cb_rate": "4.50%",
+      "cb_note": "ECB likely to cut rates soon"
+    },
+    {
+      "country": "UK",
+      "yield": "4.20%",
+      "trend": "Stable",
+      "cb_rate": "5.25%",
+      "cb_note": "BoE on hold, watching inflation"
+    },
+    {
+      "country": "Japan",
+      "yield": "0.95%",
+      "trend": "Slightly higher",
+      "cb_rate": "-0.10% to 0.10%",
+      "cb_note": "BoJ tightening cycle, intervention risk"
+    }
+  ],
+  "commodities": [
+    {
+      "name": "Crude Oil (WTI)",
+      "ticker": "CL=F",
+      "value": "78.50",
+      "change": "+0.50%",
+      "context": "Geopolitical risks and demand outlook",
+      "context_class": "positive"
+    },
+    {
+      "name": "Gold",
+      "ticker": "GC=F",
+      "value": "2350.00",
+      "change": "-0.20%",
+      "context": "Central bank buying, inflation hedge",
+      "context_class": "neutral"
+    },
+    {
+      "name": "Copper",
+      "ticker": "HG=F",
+      "value": "4.80",
+      "change": "+1.00%",
+      "context": "China demand, green transition",
+      "context_class": "positive"
+    }
+  ],
+  "correlation_notes": [
+    {
+      "pair_a": "USD/JPY",
+      "pair_b": "US 10-Year Yields",
+      "correlation": "Positive",
+      "implication": "USD/JPY remains highly sensitive to US yield movements. Any sustained drop in yields could pressure USD/JPY lower."
+    },
+    {
+      "pair_a": "AUD/USD",
+      "pair_b": "USD/CNY",
+      "correlation": "Negative",
+      "implication": "A stronger CNY (weaker USD/CNY) tends to support AUD/USD, especially if driven by positive Chinese economic data."
+    },
+    {
+      "pair_a": "GBP/USD",
+      "pair_b": "UK 10-Year Gilt Yields",
+      "correlation": "Positive",
+      "implication": "GBP/USD often tracks UK bond yields. Higher yields can support GBP, but only if not driven by excessive inflation fears."
+    }
+  ],
+  "checklist": [
+    {
+      "item": "Monitor US CPI and Fed Speak",
+      "status": "Pending",
+      "notes": "Crucial for Fed rate cut expectations."
+    },
+    {
+      "item": "Watch for BoJ intervention signals",
+      "status": "Monitoring",
+      "notes": "Direct intervention or strong verbal cues could trigger sharp JPY moves."
+    },
+    {
+      "item": "Assess global risk sentiment shifts",
+      "status": "Ongoing",
+      "notes": "Key driver for commodity currencies and safe havens."
+    },
+    {
+      "item": "Track oil price movements",
+      "status": "Ongoing",
+      "notes": "Significant impact on CAD."
+    },
+    {
+      "item": "Review ECB and BoE meeting minutes",
+      "status": "Completed",
+      "notes": "Provided insights into future policy paths."
+    }
+  ],
+  "generated_utc": "2026-04-16T19:04:14.993618+00:00",
+  "generated_bst": "2026-04-16 20:04:14 BST",
+  "live_rates": {
+    "EUR/USD": 0.8488,
+    "GBP/USD": 0.7384,
+    "USD/JPY": 0.0063,
+    "USD/CHF": 1.2765,
+    "AUD/USD": 1.3941,
+    "USD/CAD": 0.7284,
+    "NZD/USD": 1.6963
+  },
+  "live_rates_raw": {
+    "amount": 1.0,
+    "base": "USD",
+    "date": "2026-04-16",
+    "rates": {
+      "AUD": 1.3941,
+      "CAD": 1.3728,
+      "CHF": 0.7834,
+      "EUR": 0.84875,
+      "GBP": 0.73836,
+      "JPY": 158.98,
+      "NZD": 1.6963
+    }
+  }
+}

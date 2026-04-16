@@ -6,20 +6,37 @@ REM  FX Intelligence Dashboard - Refresh Runner
 REM  Run this manually or via Task Scheduler
 REM ─────────────────────────────────────────────
 
-REM Set your project folder path here
-SET PROJECT_DIR=C:\fx-dashboard-automation
+REM Use the folder this batch file lives in
+SET "PROJECT_DIR=%~dp0"
+SET "PYTHON_EXE=%PROJECT_DIR%..\.venv\Scripts\python.exe"
 
-REM Set your Perplexity API key here (or set it as a system env variable)
-SET GEMINI_API_KEY=your_perplexity_api_key_here
+IF NOT EXIST "%PYTHON_EXE%" SET "PYTHON_EXE=python"
+
+REM Prefer a system/user environment variable. Fall back to PPLX_API_KEY for older setups.
+IF "%GEMINI_API_KEY%"=="" IF NOT "%PPLX_API_KEY%"=="" SET "GEMINI_API_KEY=%PPLX_API_KEY%"
+
+IF "%GEMINI_API_KEY%"=="" (
+    echo [%DATE% %TIME%] ERROR: GEMINI_API_KEY is not set.
+    echo Set it in your environment before running this script.
+    exit /b 1
+)
 
 REM ─────────────────────────────────────────────
 cd /d "%PROJECT_DIR%"
 
 echo [%DATE% %TIME%] Starting FX Dashboard refresh...
 
+REM Ensure dependencies are installed into the same interpreter used below
+echo [%DATE% %TIME%] Installing/updating Python dependencies...
+"%PYTHON_EXE%" -m pip install -r requirements.txt >nul
+IF ERRORLEVEL 1 (
+    echo [%DATE% %TIME%] ERROR: Failed to install requirements. Aborting.
+    exit /b 1
+)
+
 REM Step 1 — Pull fresh rates and regenerate analysis JSON
 echo [%DATE% %TIME%] Running refresh_core_pairs.py...
-python refresh_core_pairs.py
+"%PYTHON_EXE%" refresh_core_pairs.py
 IF ERRORLEVEL 1 (
     echo [%DATE% %TIME%] ERROR: refresh_core_pairs.py failed. Aborting.
     exit /b 1
@@ -27,7 +44,7 @@ IF ERRORLEVEL 1 (
 
 REM Step 2 — Inject new analysis into dashboard HTML
 echo [%DATE% %TIME%] Running update_dashboard_html.py...
-python update_dashboard_html.py
+"%PYTHON_EXE%" update_dashboard_html.py
 IF ERRORLEVEL 1 (
     echo [%DATE% %TIME%] ERROR: update_dashboard_html.py failed. Aborting.
     exit /b 1
