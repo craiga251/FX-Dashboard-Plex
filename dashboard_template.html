@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FX Intelligence Dashboard</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --surface: #1a1f26;
+      --surface2: #242a33;
+      --border: #3a4149;
+      --text: #e8eaed;
+      --muted: #9aa0a6;
+      --blue: #5b9ef5;
+      --green: #26a65b;
+      --red: #e03e3e;
+      --amber: #d49202;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:14px;}
+
+    /* Header */
+    .top-header{display:flex;align-items:center;justify-content:space-between;
+      padding:12px 20px;border-bottom:1px solid var(--border);background:var(--surface);}
+    .logo{font-size:18px;font-weight:800;letter-spacing:0.04em;}
+    .logo span{color:var(--blue);}
+    .rates-live{display:inline-flex;align-items:center;gap:6px;font-size:11px;
+      color:var(--muted);}
+    .rates-live::before{content:'●';color:var(--green);animation:pulse 2s infinite;}
+
+    @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.5;}}
+
+    /* Timestamp bar */
+    .timestamp-bar{font-size:11px;color:var(--muted);padding:6px 20px;
+      background:rgba(255,255,255,0.02);border-bottom:1px solid var(--border);}
+    .timestamp-bar strong{color:var(--amber);}
+
+    /* Rates strip */
+    .rates-strip{display:flex;flex-wrap:wrap;gap:0;border-bottom:1px solid var(--border);
+      background:var(--surface2);padding:6px 20px;}
+    .strip-item{display:flex;gap:8px;padding:4px 16px 4px 0;
+      border-right:1px solid var(--border);margin-right:16px;}
+    .strip-pair{font-size:11px;color:var(--muted);font-weight:600;}
+    .strip-spot{font-size:12px;font-weight:700;color:var(--text);}
+
+    /* Regime bar */
+    .regime-bar{display:flex;gap:24px;padding:8px 20px;background:var(--surface);
+      border-bottom:1px solid var(--border);font-size:12px;flex-wrap:wrap;}
+    .regime-item label{color:var(--muted);margin-right:6px;}
+    .regime-item span{font-weight:700;color:var(--blue);}
+
+    /* Risks bar */
+    .risks-bar{padding:6px 20px;background:rgba(224,62,62,0.06);
+      border-bottom:1px solid rgba(224,62,62,0.2);font-size:11px;color:#f87171;}
+    .risks-bar strong{margin-right:8px;color:var(--red);}
+
+    /* Nav tabs */
+    .nav-tabs{display:flex;gap:0;border-bottom:1px solid var(--border);
+      background:var(--surface);padding:0 20px;overflow-x:auto;}
+    .nav-tab{padding:10px 18px;font-size:12px;font-weight:600;cursor:pointer;
+      border-bottom:2px solid transparent;color:var(--muted);
+      transition:all 0.2s;user-select:none;}
+    .nav-tab.active,.nav-tab:hover{color:var(--text);border-bottom-color:var(--blue);}
+
+    /* Tab panels */
+    .tab-panel{display:none;padding:20px;}
+    .tab-panel.active{display:block;}
+
+    /* Section title */
+    .section-title{font-size:12px;font-weight:700;color:var(--muted);
+      text-transform:uppercase;letter-spacing:0.07em;margin-bottom:14px;}
+    .section-subtitle{font-size:11px;color:var(--muted);margin-bottom:14px;}
+
+    /* Macro themes */
+    .macro-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-bottom:24px;}
+    .macro-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px;}
+    .macro-theme-label{font-size:10px;color:var(--muted);letter-spacing:0.08em;margin-bottom:4px;}
+    .macro-card h3{font-size:13px;font-weight:700;margin-bottom:8px;line-height:1.3;}
+    .macro-card p{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:10px;}
+    .macro-sev{font-size:10px;font-weight:700;padding:2px 7px;border-radius:3px;display:inline-block;}
+    .sev-high{background:rgba(224,62,62,0.15);color:var(--red);}
+    .sev-med{background:rgba(212,146,26,0.15);color:var(--amber);}
+    .sev-low{background:rgba(136,146,164,0.15);color:var(--muted);}
+
+    /* Core pairs */
+    .pairs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px;}
+    .pair-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px;}
+    .pair-card.trade{border-left:3px solid var(--green);}
+    .pair-card.watch{border-left:3px solid var(--amber);}
+    .pair-card.neutral{border-left:3px solid var(--muted);}
+    .pair-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
+    .pair-head h3{font-size:15px;font-weight:700;letter-spacing:0.04em;}
+    .status{font-size:10px;font-weight:700;text-transform:uppercase;
+      letter-spacing:0.08em;padding:2px 7px;border-radius:3px;}
+    .trade .status{background:rgba(38,166,91,0.15);color:var(--green);}
+    .watch .status{background:rgba(212,146,26,0.15);color:var(--amber);}
+    .neutral .status{background:rgba(136,146,164,0.15);color:var(--muted);}
+    .bias{font-size:11px;font-weight:700;margin-bottom:4px;}
+    .bias.bullish{color:var(--green);}
+    .bias.bearish{color:var(--red);}
+    .bias.neutral{color:var(--muted);}
+    .spot{font-size:22px;font-weight:700;margin-bottom:10px;}
+    dl{display:grid;grid-template-columns:90px 1fr;gap:4px 8px;margin-bottom:10px;}
+    dt{font-size:10px;color:var(--muted);text-transform:uppercase;
+      letter-spacing:0.05em;align-self:start;padding-top:2px;}
+    dd{font-size:12px;color:var(--text);}
+    .pair-summary{font-size:11px;color:var(--muted);line-height:1.5;
+      margin-bottom:8px;}
+
+    /* Confidence bar */
+    .conf-bar{height:3px;background:var(--border);border-radius:2px;
+      margin-top:4px;overflow:hidden;width:100%;}
+    .conf-fill{height:100%;background:var(--blue);border-radius:2px;}
+
+    /* Top 5 table */
+    .table-wrap{overflow-x:auto;}
+    table{width:100%;border-collapse:collapse;font-size:12px;}
+    thead th{text-align:left;padding:8px 10px;font-size:10px;font-weight:700;
+      background:var(--surface2);border-bottom:1px solid var(--border);white-space:nowrap;}
+    tbody tr{border-bottom:1px solid var(--border);}
+    tbody tr:hover{background:rgba(255,255,255,0.03);}
+    tbody td{padding:10px;vertical-align:top;line-height:1.4;}
+    .rank{font-weight:700;color:var(--blue);font-size:13px;}
+    .pair-name{font-weight:700;white-space:nowrap;}
+
+    /* Secondary */
+    .secondary-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;}
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="top-header">
+    <div class="logo">FX <span>Dashboard</span></div>
+    <div class="rates-live">LIVE</div>
+  </div>
+
+  <!-- Timestamp bar -->
+  <div class="timestamp-bar">
+    Last refresh: <strong>__ANALYSIS_TIMESTAMP__</strong>
+  </div>
+
+  <!-- Live rates strip -->
+  <div class="rates-strip">
+    <!-- Populated dynamically -->
+  </div>
+
+  <!-- Regime + USD bias bar -->
+  <div class="regime-bar">
+    <div class="regime-item">
+      <label>Market Regime:</label>
+      <span>Neutral Consolidation</span>
+    </div>
+    <div class="regime-item">
+      <label>USD Bias:</label>
+      <span>Slightly Bullish</span>
+    </div>
+  </div>
+
+  <!-- Top risks bar -->
+  <div class="risks-bar">
+    <strong>⚠ Key Risks:</strong> Geopolitical escalation, central bank divergence
+  </div>
+
+  <!-- Nav tabs -->
+  <div class="nav-tabs">
+    <div class="nav-tab active" onclick="showTab('tab-macro')">📊 MACRO</div>
+    <div class="nav-tab" onclick="showTab('tab-core')">⚡ CORE PAIRS</div>
+    <div class="nav-tab" onclick="showTab('tab-top5')">🎯 TOP 5 SETUPS</div>
+    <div class="nav-tab" onclick="showTab('tab-secondary')">👀 SECONDARY</div>
+  </div>
+
+  <!-- ── MACRO TAB ── -->
+  <div id="tab-macro" class="tab-panel active">
+    <div class="section-title">Macro Themes</div>
+    <div class="macro-grid" id="macro-grid">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+
+  <!-- ── CORE PAIRS TAB ── -->
+  <div id="tab-core" class="tab-panel">
+    <div class="section-title">Core Pairs Analysis</div>
+    <div class="pairs-grid">
+      __CORE_PAIR_CARDS__
+    </div>
+  </div>
+
+  <!-- ── TOP 5 TAB ── -->
+  <div id="tab-top5" class="tab-panel">
+    <div class="section-title">Top 5 Trading Setups</div>
+    <div class="table-wrap">
+      <table id="top5-table">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Pair</th>
+            <th>Setup</th>
+            <th>Entry</th>
+            <th>Stop</th>
+            <th>Target</th>
+            <th>R:R</th>
+            <th>Conf.</th>
+          </tr>
+        </thead>
+        <tbody id="top5-tbody">
+          <!-- Populated by JS -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── SECONDARY TAB ── -->
+  <div id="tab-secondary" class="tab-panel">
+    <div class="section-title">Secondary Pairs</div>
+    <div class="secondary-grid" id="secondary-grid">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+
+  <script>
+    function showTab(tabId) {
+      document.querySelectorAll('.tab-panel').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.nav-tab').forEach(el => el.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      event.target.classList.add('active');
+    }
+  </script>
+</body>
+</html>

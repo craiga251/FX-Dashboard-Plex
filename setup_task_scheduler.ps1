@@ -1,0 +1,56 @@
+# ─────────────────────────────────────────────────────────────
+#  FX Intelligence Dashboard — Windows Task Scheduler Setup
+#  Run this script ONCE in PowerShell as Administrator
+#  It creates a scheduled task that runs run_refresh.bat
+#  every 4 hours on weekdays between 07:00 and 22:00 BST
+# ─────────────────────────────────────────────────────────────
+
+$TaskName    = "FX-Dashboard-Refresh"
+$ProjectDir  = "C:\fx-dashboard-automation"
+$BatchFile   = "$ProjectDir\run_refresh.bat"
+$LogFile     = "$ProjectDir\refresh.log"
+
+# ── Trigger: every 4 hours, Mon–Fri, starting 07:05 ──────────
+$trigger = New-ScheduledTaskTrigger `
+    -RepetitionInterval (New-TimeSpan -Hours 4) `
+    -RepetitionDuration (New-TimeSpan -Hours 15) `
+    -At "07:05" `
+    -Weekly `
+    -DaysOfWeek Monday,Tuesday,Wednesday,Thursday,Friday
+
+# ── Action: run the batch file and log output ─────────────────
+$action = New-ScheduledTaskAction `
+    -Execute "cmd.exe" `
+    -Argument "/c `"$BatchFile`" >> `"$LogFile`" 2>&1" `
+    -WorkingDirectory $ProjectDir
+
+# ── Settings ─────────────────────────────────────────────────
+$settings = New-ScheduledTaskSettingsSet `
+    -ExecutionTimeLimit (New-TimeSpan -Minutes 5) `
+    -StartWhenAvailable `
+    -RunOnlyIfNetworkAvailable `
+    -MultipleInstances IgnoreNew
+
+# ── Principal: run as current user ───────────────────────────
+$principal = New-ScheduledTaskPrincipal `
+    -UserId $env:USERNAME `
+    -LogonType Interactive `
+    -RunLevel Highest
+
+# ── Register the task ─────────────────────────────────────────
+Register-ScheduledTask `
+    -TaskName $TaskName `
+    -Trigger $trigger `
+    -Action $action `
+    -Settings $settings `
+    -Principal $principal `
+    -Description "Auto-refreshes FX Intelligence Core Pairs Dashboard every 4 hours on weekdays" `
+    -Force
+
+Write-Host ""
+Write-Host "Task '$TaskName' registered successfully." -ForegroundColor Green
+Write-Host "It will run every 4 hours Mon-Fri from 07:05, logging to:"
+Write-Host "  $LogFile" -ForegroundColor Cyan
+Write-Host ""
+Write-Host "To run it immediately: Start-ScheduledTask -TaskName '$TaskName'"
+Write-Host "To remove it:          Unregister-ScheduledTask -TaskName '$TaskName' -Confirm:`$false"

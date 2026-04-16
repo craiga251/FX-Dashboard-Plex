@@ -1,0 +1,50 @@
+name: FX Dashboard Refresh
+
+on:
+  schedule:
+    # Runs every 4 hours Mon–Fri during FX market hours (07:05, 11:05, 15:05, 19:05 UTC)
+    - cron: "5 7,11,15,19 * * 1-5"
+  workflow_dispatch:
+    # Also allows manual trigger from GitHub Actions tab
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run FX rate fetch and analysis refresh
+        env:
+          PPLX_API_KEY: ${{ secrets.PPLX_API_KEY }}
+          PPLX_MODEL: sonar
+          ANALYSIS_TIMEFRAME: "1H / 4H focus, daily context"
+          OUTPUT_JSON: core_pairs_latest.json
+          DASHBOARD_TEMPLATE: dashboard_template.html
+          DASHBOARD_OUTPUT: dashboard_generated.html
+        run: python refresh_core_pairs.py
+
+      - name: Build updated dashboard HTML
+        env:
+          CORE_JSON: core_pairs_latest.json
+          DASHBOARD_TEMPLATE: dashboard_template.html
+          DASHBOARD_OUTPUT: dashboard_generated.html
+        run: python update_dashboard_html.py
+
+      - name: Commit and push updated files
+        run: |
+          git config user.name "fx-dashboard-bot"
+          git config user.email "fx-dashboard-bot@users.noreply.github.com"
+          git add core_pairs_latest.json dashboard_generated.html
+          git diff --cached --quiet || git commit -m "Auto-refresh: FX Dashboard $(date -u +'%Y-%m-%d %H:%M UTC')"
+          git push
