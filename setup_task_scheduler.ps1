@@ -2,7 +2,7 @@
 #  FX Intelligence Dashboard — Windows Task Scheduler Setup
 #  Run this script ONCE in PowerShell as Administrator
 #  It creates a scheduled task that runs run_refresh.bat
-#  every 4 hours on weekdays between 07:00 and 22:00 BST
+#  once each weekday morning at 07:05
 # ─────────────────────────────────────────────────────────────
 
 $TaskName    = "FX-Dashboard-Refresh"
@@ -10,10 +10,8 @@ $ProjectDir  = "C:\fx-dashboard-automation"
 $BatchFile   = "$ProjectDir\run_refresh.bat"
 $LogFile     = "$ProjectDir\refresh.log"
 
-# ── Trigger: every 4 hours, Mon–Fri, starting 07:05 ──────────
+# ── Trigger: once daily, Mon–Fri, at 07:05 ───────────────────
 $trigger = New-ScheduledTaskTrigger `
-    -RepetitionInterval (New-TimeSpan -Hours 4) `
-    -RepetitionDuration (New-TimeSpan -Hours 15) `
     -At "07:05" `
     -Weekly `
     -DaysOfWeek Monday,Tuesday,Wednesday,Thursday,Friday
@@ -44,12 +42,12 @@ Register-ScheduledTask `
     -Action $action `
     -Settings $settings `
     -Principal $principal `
-    -Description "Auto-refreshes FX Intelligence Core Pairs Dashboard every 4 hours on weekdays" `
+    -Description "Auto-refreshes FX Intelligence Core Pairs Dashboard each weekday morning" `
     -Force
 
 Write-Host ""
 Write-Host "Task '$TaskName' registered successfully." -ForegroundColor Green
-Write-Host "It will run every 4 hours Mon-Fri from 07:05, logging to:"
+Write-Host "It will run each weekday at 07:05, logging to:"
 Write-Host "  $LogFile" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "To run it immediately: Start-ScheduledTask -TaskName '$TaskName'"

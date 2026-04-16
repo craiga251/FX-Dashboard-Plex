@@ -1,0 +1,152 @@
+{
+  "analysisDate": "2026-04-16",
+  "pairs": [
+    {
+      "pair": "EURUSD",
+      "dp": 4,
+      "direction": "bull",
+      "entryLow": 1.164,
+      "entryHigh": 1.1675,
+      "stop": 1.15,
+      "target1": 1.18,
+      "target2": 1.192,
+      "catalyst": "Double-bottom at 1.1412 completed. Neckline breakout at 1.1640. Thursday Eurozone CPI final expected 2.5% vs 1.9% prior.",
+      "invalidation": "Below 1.1640 neckline on 4H close. Below 1.1500 full invalidation.",
+      "notes": "Hormuz risk-off pulled EUR to 1.1684. Neckline at 1.1640 is key - holds bull intact.",
+      "scoring": {
+        "cbDivergence": 1,
+        "technicalConfirmed": 2,
+        "catalystWithin48hrs": 1,
+        "geopoliticalSupports": 0,
+        "competingTheme": -1,
+        "catalystBinary": -1
+      }
+    },
+    {
+      "pair": "GBPUSD",
+      "dp": 4,
+      "direction": "bear",
+      "entryLow": 1.33,
+      "entryHigh": 1.3409,
+      "stop": 1.3479,
+      "target1": 1.33,
+      "target2": 1.32,
+      "catalyst": "GBP weakest G10. BOE Apr 30 hold expected. UK CPI at 3.0% vs 2% target.",
+      "invalidation": "Above 1.3479 full invalidation.",
+      "notes": "No fundamental catalyst to drive sustained GBP rally. Range trade preferred.",
+      "scoring": {
+        "cbDivergence": 1,
+        "technicalConfirmed": 0,
+        "catalystWithin48hrs": 0,
+        "geopoliticalSupports": 1,
+        "competingTheme": 0,
+        "catalystBinary": 0
+      }
+    },
+    {
+      "pair": "USDJPY",
+      "dp": 2,
+      "direction": "bear",
+      "entryLow": 159.5,
+      "entryHigh": 160.2,
+      "stop": 160.85,
+      "target1": 157.0,
+      "target2": 157.25,
+      "catalyst": "BOJ Apr 28 hike to 1.00% confirmed by ex-BOJ officials. JGB 10Y at 29-year high 2.49%. 160 is historical intervention trigger.",
+      "invalidation": "BOJ surprise hold. Break and hold above 160.85.",
+      "notes": "Spot at 159.83 - already inside sell zone. Sell rallies into 160.00-160.20.",
+      "scoring": {
+        "cbDivergence": 2,
+        "technicalConfirmed": 2,
+        "catalystWithin48hrs": 2,
+        "geopoliticalSupports": 2,
+        "competingTheme": 0,
+        "catalystBinary": -1
+      }
+    },
+    {
+      "pair": "USDCHF",
+      "dp": 4,
+      "direction": "bear",
+      "entryLow": 0.7984,
+      "entryHigh": 0.8,
+      "stop": 0.802,
+      "target1": 0.78,
+      "target2": null,
+      "catalyst": "CHF safe-haven demand elevated on Hormuz shock. SNB at 0% with stated FX intervention willingness.",
+      "invalidation": "Above 0.8020. SNB surprise intervention.",
+      "notes": "SNB intervention risk complicates short. Prefer cleaner USD shorts via AUDUSD or EURUSD.",
+      "scoring": {
+        "cbDivergence": 0,
+        "technicalConfirmed": 0,
+        "catalystWithin48hrs": 0,
+        "geopoliticalSupports": 1,
+        "competingTheme": -2,
+        "catalystBinary": -1
+      }
+    },
+    {
+      "pair": "AUDUSD",
+      "dp": 4,
+      "direction": "bull",
+      "entryLow": 0.6925,
+      "entryHigh": 0.697,
+      "stop": 0.687,
+      "target1": 0.7105,
+      "target2": 0.7255,
+      "catalyst": "RBA at 4.10% - 2 consecutive hikes, next May 5. Clearest CB divergence vs Fed on hold. Bullish channel intact.",
+      "invalidation": "Risk-off escalation. Below 0.6870 invalidated.",
+      "notes": "Sold hard in Asian risk-off. Correction toward 0.6925 is expected buy zone.",
+      "scoring": {
+        "cbDivergence": 2,
+        "technicalConfirmed": 2,
+        "catalystWithin48hrs": 1,
+        "geopoliticalSupports": 0,
+        "competingTheme": -1,
+        "catalystBinary": 0
+      }
+    },
+    {
+      "pair": "USDCAD",
+      "dp": 4,
+      "direction": "bear",
+      "entryLow": 1.37,
+      "entryHigh": 1.3865,
+      "stop": 1.397,
+      "target1": 1.36,
+      "target2": 1.37,
+      "catalyst": "CAD oil exporter benefits from $100 crude. BOC Apr 29 hold. Competing forces.",
+      "invalidation": "Above 1.3970.",
+      "notes": "Crossfire pair - USD risk-off bid vs CAD oil-export boost. Neutral until cleaner direction.",
+      "scoring": {
+        "cbDivergence": 0,
+        "technicalConfirmed": 0,
+        "catalystWithin48hrs": 0,
+        "geopoliticalSupports": 0,
+        "competingTheme": -2,
+        "catalystBinary": -1
+      }
+    },
+    {
+      "pair": "NZDUSD",
+      "dp": 4,
+      "direction": "bull",
+      "entryLow": 0.5815,
+      "entryHigh": 0.584,
+      "stop": 0.574,
+      "target1": 0.59,
+      "target2": 0.595,
+      "catalyst": "RBNZ holding 2.25% with tightening bias. 12% hike probability May 27. Support at 0.5815 confirmed intraday.",
+      "invalidation": "Below 0.5740.",
+      "notes": "More volatile than AUDUSD in risk-off. Prefer AUDUSD as primary.",
+      "scoring": {
+        "cbDivergence": 1,
+        "technicalConfirmed": 1,
+        "catalystWithin48hrs": 0,
+        "geopoliticalSupports": 0,
+        "competingTheme": -1,
+        "catalystBinary": -1
+      }
+    }
+  ]
+}

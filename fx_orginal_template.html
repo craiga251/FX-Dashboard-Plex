@@ -353,7 +353,7 @@ section[id]{scroll-margin-top:130px}
   <div class="section-header">
     <h2 class="section-title">Macro Overview</h2>
     <span class="section-subtitle">Key themes, yields and commodities</span>
-    <span class="section-badge">Analysis: 13 Apr 2026</span>
+    <span class="section-badge">Analysis: __ANALYSIS_DATE_SHORT__</span>
   </div>
 
   <div class="macro-grid">
@@ -375,7 +375,7 @@ section[id]{scroll-margin-top:130px}
 <section id="core" class="section">
   <div class="section-header">
     <h2 class="section-title">Core Pairs Dashboard</h2>
-    <span class="section-subtitle">Rates live â€” Analysis: 13 Apr 2026</span>
+    <span class="section-subtitle">Rates live - Analysis: __ANALYSIS_DATE_SHORT__</span>
     <span class="section-badge">1H / 4H Focus</span>
   </div>
 
@@ -450,7 +450,7 @@ section[id]{scroll-margin-top:130px}
 <section id="avoid" class="section">
   <div class="section-header">
     <h2 class="section-title">Pairs to Avoid</h2>
-    <span class="section-subtitle">Low conviction, poor R/R, or excessive noise â€” Analysis: 13 Apr 2026</span>
+    <span class="section-subtitle">Low conviction, poor R/R, or excessive noise â€” Analysis: __ANALYSIS_DATE_SHORT__</span>
   </div>
   <div class="avoid-grid">
     __AVOID_CARDS__
@@ -547,7 +547,6 @@ function prevBusinessDay(dateStr) {
 function updateDOM(liveTs) {
   if (!todayRates) return;
 
-  const pairs = ['EURUSD','GBPUSD','USDJPY','USDCHF','AUDUSD','USDCAD','NZDUSD'];
   const dp = { EURUSD:4, GBPUSD:4, USDJPY:2, USDCHF:4, AUDUSD:4, USDCAD:4, NZDUSD:4, GBPCAD:4, AUDCHF:4, NZDCAD:4, EURCAD:4, AUDNZD:4 };
 
   // Spot prices in pair cards and top5
@@ -561,7 +560,6 @@ function updateDOM(liveTs) {
   // Day-over-day change badges
   document.querySelectorAll('[data-pair-chg]').forEach(el => {
     const pair = el.getAttribute('data-pair-chg');
-    const decimals = dp[pair] || 4;
     if (!prevRates || !todayRates) { el.textContent = ''; return; }
     const today = cross(todayRates, pair);
     const prev  = cross(prevRates, pair);
@@ -608,6 +606,8 @@ function updateDOM(liveTs) {
   const pillTxt = document.getElementById('livePillText');
   if (pill) pill.classList.remove('offline');
   if (pillTxt) pillTxt.textContent = 'Rates: Live';
+
+  scorePairs();
 }
 
 /* ===== PROXY-AWARE FETCH ===== */
@@ -625,7 +625,7 @@ async function proxyFetch(directUrl) {
   try {
     const ctrl = new AbortController();
     const tid = setTimeout(() => ctrl.abort(), 4000);
-    const r = await fetch(directUrl, { signal: ctrl.signal });
+    const r = await fetch(directUrl, { signal: ctrl.signal, cache: 'no-store' });
     clearTimeout(tid);
     if (r.ok) { transport = 'direct'; return r.json(); }
   } catch(e) { /* blocked or timed out â€” fall through */ }
@@ -652,7 +652,7 @@ async function loadRates(manual) {
   if (btn) { btn.disabled = true; btn.style.opacity = '0.5'; }
 
   try {
-    const data = await proxyFetch(LIVE_BASE);
+    const data = await proxyFetch(LIVE_BASE + '&_=' + Date.now());
     if (!data.success) throw new Error('fxratesapi error');
     todayRates = data.rates;
     ecbDate = data.date ? data.date.slice(0, 10) : new Date().toISOString().slice(0, 10);
@@ -681,6 +681,180 @@ async function loadRates(manual) {
     overlay.classList.remove('visible');
     if (btn) { btn.disabled = false; btn.style.opacity = '1'; }
   }
+}
+
+/* ===== PAIR SCORING ENGINE ===== */
+let pairsConfig = null;
+
+function asNum(v) {
+  const n = Number(v);
+  return Number.isFinite(n) ? n : null;
+}
+
+function fmtLevel(v, dp) {
+  const n = asNum(v);
+  return n == null ? '—' : n.toFixed(dp);
+}
+
+function fmtRange(low, high, dp) {
+  const a = fmtLevel(low, dp);
+  const b = fmtLevel(high, dp);
+  if (a === '—' && b === '—') return '—';
+  if (a === b) return a;
+  return a + ' - ' + b;
+}
+
+function calcRR(spot, stop, target, direction) {
+  if (spot == null || stop == null || target == null) return null;
+  const den = direction === 'bull' ? (spot - stop) : (stop - spot);
+  const num = direction === 'bull' ? (target - spot) : (spot - target);
+  if (!Number.isFinite(den) || !Number.isFinite(num) || den <= 0 || num <= 0) return null;
+  return num / den;
+}
+
+function clamp(v, min, max) {
+  return Math.max(min, Math.min(max, v));
+}
+
+function scoreValue(scoring, key) {
+  const n = Number((scoring || {})[key]);
+  return Number.isFinite(n) ? n : 0;
+}
+
+function assignBadge(badgeScore, rr, atZone, confidence) {
+  if (badgeScore >= 6 && rr != null && rr >= 2 && atZone && confidence >= 60) return 'TRADE';
+  if (badgeScore >= 2 && rr != null && rr >= 1.5 && confidence >= 40) return 'WATCH';
+  return 'NEUTRAL';
+}
+
+function assignBias(direction, badgeScore, competingTheme, catalystBinary) {
+  const isStrong = badgeScore >= 6 && competingTheme >= -1 && catalystBinary === 0;
+  const isLean = (badgeScore >= 2 && badgeScore < 6) || competingTheme <= -1 || catalystBinary === -1;
+
+  if (direction === 'bull') {
+    if (isStrong) return { label: 'Bullish', className: 'bias bias-bull' };
+    if (isLean) return { label: 'Bullish lean', className: 'bias bias-bull' };
+    return { label: 'Neutral', className: 'bias bias-neutral' };
+  }
+  if (isStrong) return { label: 'Bearish', className: 'bias bias-bear' };
+  if (isLean) return { label: 'Bearish lean', className: 'bias bias-bear' };
+  return { label: 'Neutral', className: 'bias bias-neutral' };
+}
+
+async function loadPairsConfig() {
+  try {
+    const res = await fetch('pairs-config.json', { cache: 'no-store' });
+    if (!res.ok) throw new Error('pairs-config ' + res.status);
+    pairsConfig = await res.json();
+    if (todayRates) scorePairs();
+  } catch (e) {
+    console.warn('pairs-config.json not available:', e);
+  }
+}
+
+function scorePairs() {
+  if (!pairsConfig || !Array.isArray(pairsConfig.pairs) || !todayRates) return;
+
+  const cfgByPair = new Map();
+  pairsConfig.pairs.forEach(p => {
+    if (!p || !p.pair) return;
+    cfgByPair.set(String(p.pair).toUpperCase(), p);
+  });
+
+  document.querySelectorAll('[data-pair-card]').forEach(card => {
+    const code = String(card.getAttribute('data-pair-card') || '').toUpperCase();
+    const cfg = cfgByPair.get(code);
+    if (!cfg) return;
+
+    const direction = String(cfg.direction || '').toLowerCase() === 'bear' ? 'bear' : 'bull';
+    const dp = Number.isFinite(Number(cfg.dp)) ? Number(cfg.dp) : (code.endsWith('JPY') ? 2 : 4);
+    const spot = cross(todayRates, code);
+    if (spot == null) return;
+
+    const entryLow = asNum(cfg.entryLow);
+    const entryHigh = asNum(cfg.entryHigh);
+    const stop = asNum(cfg.stop);
+    const target1 = asNum(cfg.target1);
+    const target2 = asNum(cfg.target2);
+
+    let atZone = false;
+    let nearZone = false;
+    if (entryLow != null && entryHigh != null) {
+      atZone = spot >= entryLow && spot <= entryHigh;
+      if (direction === 'bull') {
+        nearZone = spot > entryHigh && spot < entryHigh * 1.005;
+      } else {
+        nearZone = spot < entryLow && spot > entryLow * 0.995;
+      }
+    }
+
+    const zoneScore = atZone ? 2 : nearZone ? 1 : 0;
+    const cbDivergence = scoreValue(cfg.scoring, 'cbDivergence');
+    const technicalConfirmed = scoreValue(cfg.scoring, 'technicalConfirmed');
+    const catalystWithin48hrs = scoreValue(cfg.scoring, 'catalystWithin48hrs');
+    const geopoliticalSupports = scoreValue(cfg.scoring, 'geopoliticalSupports');
+    const competingTheme = scoreValue(cfg.scoring, 'competingTheme');
+    const catalystBinary = scoreValue(cfg.scoring, 'catalystBinary');
+
+    const badgeScore = zoneScore + cbDivergence + technicalConfirmed + catalystWithin48hrs + geopoliticalSupports + competingTheme + catalystBinary;
+    const confidence = clamp(Math.round(((badgeScore + 9) / 19) * 100), 0, 100);
+    const rr = calcRR(spot, stop, target1, direction);
+    const badge = assignBadge(badgeScore, rr, atZone, confidence);
+    const bias = assignBias(direction, badgeScore, competingTheme, catalystBinary);
+
+    const badgeEl = card.querySelector('[data-role="badge"]');
+    if (badgeEl) {
+      badgeEl.textContent = badge;
+      badgeEl.className = badge === 'TRADE' ? 'badge badge-trade' : badge === 'WATCH' ? 'badge badge-watch' : 'badge badge-neutral';
+    }
+
+    const biasEl = card.querySelector('[data-role="bias"]');
+    if (biasEl) {
+      biasEl.textContent = bias.label;
+      biasEl.className = bias.className;
+    }
+
+    const triggerEl = card.querySelector('[data-role="trigger"]');
+    if (triggerEl) {
+      triggerEl.textContent = fmtRange(entryLow, entryHigh, dp);
+    }
+    const targetEl = card.querySelector('[data-role="target"]');
+    if (targetEl) {
+      targetEl.textContent = target2 == null ? fmtLevel(target1, dp) : fmtRange(target1, target2, dp);
+    }
+    const invalidationEl = card.querySelector('[data-role="invalidation"]');
+    if (invalidationEl) {
+      const invText = String(cfg.invalidation || '').trim();
+      invalidationEl.textContent = invText || (stop == null ? '—' : (direction === 'bull' ? 'Below ' : 'Above ') + fmtLevel(stop, dp));
+    }
+    const catalystEl = card.querySelector('[data-role="catalyst"]');
+    if (catalystEl) {
+      catalystEl.textContent = String(cfg.catalyst || '').trim();
+    }
+    const notesEl = card.querySelector('[data-role="notes"]');
+    if (notesEl) {
+      notesEl.textContent = String(cfg.notes || '').trim();
+    }
+
+    const confFillEl = card.querySelector('[data-role="confidence-fill"]');
+    if (confFillEl) {
+      confFillEl.style.width = confidence + '%';
+      confFillEl.className = 'conf-fill ' + (confidence >= 67 ? 'high' : confidence >= 45 ? 'med' : 'low');
+    }
+    const confPctEl = card.querySelector('[data-role="confidence-pct"]');
+    if (confPctEl) {
+      confPctEl.textContent = confidence + '%';
+    }
+
+    card.classList.remove('bull', 'bear', 'watch-pair', 'neutral-pair');
+    if (badge === 'TRADE') {
+      card.classList.add(direction === 'bull' ? 'bull' : 'bear');
+    } else if (badge === 'WATCH') {
+      card.classList.add('watch-pair');
+    } else {
+      card.classList.add('neutral-pair');
+    }
+  });
 }
 
 /* ===== 14-DAY CORRELATION MATRIX ===== */
@@ -860,6 +1034,7 @@ function toggleCheck(el) {
 })();
 
 // Rates: fxratesapi (intraday, every 5 min) | Correlation: Frankfurter ECB history (every 30 min)
+loadPairsConfig();
 loadRates(false);
 loadCorrelation();
 setInterval(() => loadRates(false), 5 * 60 * 1000);

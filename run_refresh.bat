@@ -10,6 +10,12 @@ REM Use the folder this batch file lives in
 SET "PROJECT_DIR=%~dp0"
 SET "PYTHON_EXE=%PROJECT_DIR%..\.venv\Scripts\python.exe"
 
+REM Keep refresh behavior controlled from this launcher
+IF "%ANALYSIS_TIMEFRAME%"=="" SET "ANALYSIS_TIMEFRAME=1H / 4H focus, daily context"
+IF "%CORE_PAIRS_TARGET%"=="" SET "CORE_PAIRS_TARGET=7"
+IF "%GEMINI_MAX_OUTPUT_TOKENS%"=="" SET "GEMINI_MAX_OUTPUT_TOKENS=8192"
+IF "%GEMINI_MAX_RETRIES%"=="" SET "GEMINI_MAX_RETRIES=3"
+
 IF NOT EXIST "%PYTHON_EXE%" SET "PYTHON_EXE=python"
 
 REM Prefer a system/user environment variable. Fall back to PPLX_API_KEY for older setups.
@@ -25,6 +31,10 @@ REM ─────────────────────────�
 cd /d "%PROJECT_DIR%"
 
 echo [%DATE% %TIME%] Starting FX Dashboard refresh...
+echo [%DATE% %TIME%] Macro themes: rebuilding top 5 cards from Gemini prompt...
+echo [%DATE% %TIME%] Core pairs target: %CORE_PAIRS_TARGET%
+echo [%DATE% %TIME%] Model max output tokens: %GEMINI_MAX_OUTPUT_TOKENS%
+echo [%DATE% %TIME%] Model retries: %GEMINI_MAX_RETRIES%
 
 REM Ensure dependencies are installed into the same interpreter used below
 echo [%DATE% %TIME%] Installing/updating Python dependencies...
