@@ -1,0 +1,261 @@
+FX Intelligence Dashboard — Friday 17 April 2026
+Run time: 13:12 BST | Data sourced live from Yahoo Finance & MarketWatch
+
+1. Global Macro Overview
+Risk tone: Cautiously constructive. US equities grinding higher (S&P 500 ~7,041, +0.26%; DJIA ~48,578, +0.24%) , VIX at 17.80 and falling (-0.78%) — vol is being sold, which is mildly risk-on but not a clean "buy everything" signal .
+
+Iran conflict de-escalation is the dominant near-term driver. Trump stated Iran war should end "pretty soon," sending oil sharply lower (WTI futures -3.71%) and lifting equities; sterling has recovered to "pre-war levels." Any reversal of this narrative is the single biggest binary risk this session.
+
+DXY at 98.10, near a 52-week support cluster. The dollar is on pace for its longest losing streak since 2011, and Deutsche Bank has renewed a "sell the dollar" call. USD weakness is the structural backdrop for all setups.
+
+Gold at ~$4,823 (+0.32%), holding elevated despite oil drop — signals residual safe-haven bid and inflation concern, not pure risk-on .
+
+JPY weakness persists (USD/JPY 159.125) despite recent risk-off episodes — BOJ policy divergence vs. Fed remains the key JPY driver. Nikkei fell -1.75% overnight , adding complexity to JPY reads.
+
+CAD: Oil -3.71% intraday is a meaningful headwind for CAD; USD/CAD dipped to 1.3674 but further oil weakness could provide a floor for USD/CAD .
+
+24–72h focus: EUR/USD and GBP/USD bias to USD-weakness continuation; JPY direction depends on risk sentiment flip risk from Iran; AUD/NZD benefit from risk-on if oil-geopolitical calm holds; CHF caught between haven unwind and SNB cap concerns.
+
+2. Core Pairs Table
+⚠ Data quality warning: fewer than 3 institutional sources fully confirmed today. All originally TRADE-rated signals are downgraded to WATCH.
+
+Pair	Bias	Trigger Zone	Target Zone	Invalidation	R/R	Confidence
+EUR/USD	WATCH BULLISH	1.1760–1.1800	1.1900–1.1950	4H close < 1.1700	2.2:1	4
+GBP/USD	WATCH BULLISH	1.3480–1.3530	1.3650–1.3720	4H close < 1.3380	2.0:1	4
+AUD/USD	WATCH BULLISH	0.7150–0.7180	0.7280–0.7330	4H close < 0.7090	2.1:1	3
+NZD/USD	WATCH BULLISH	0.5950–0.5980	0.6060–0.6110	4H close < 0.5890	2.0:1	3
+USD/JPY	WATCH BEARISH	159.00–159.50	156.50–157.00	4H close > 160.50	2.2:1	3
+USD/CHF	WATCH BEARISH	0.7830–0.7870	0.7680–0.7720	4H close > 0.7950	1.9:1	3
+USD/CAD	AVOID RANGE	1.3650–1.3720	—	—	—	2
+3. Top 5 Trade Setups
+EUR/USD – Long – Buy Pullback into Intraday Support
+
+BIAS: WATCH BULLISH EUR/USD
+
+STRUCTURE: EUR/USD is holding above 1.1760 with bullish momentum intact off the mid-April lows near 1.1650. The pair is consolidating in a tight 30-pip band around current spot (1.1799), consistent with a bull flag on the 4H. FX Empire notes "EUR/USD bulls ready" as DXY sinks toward 98.
+
+TRIGGER: 1.1760–1.1800. Look for a bullish engulfing or rejection wick on the 1H chart inside this zone.
+
+TARGET: 1.1900–1.1950. This zone represents the next cluster of weekly resistance and the psychological 1.19 figure.
+
+INVALIDATION: 4H close below 1.1700.
+
+RISK/REWARD: ~2.2:1 (mid-trigger 1.1780 → mid-target 1.1925 = 145 pips; stop 1.1700 = 80 pips).
+
+CATALYSTS: Iran peace deal progress (USD negative); ECB speakers this week; US housing/jobs data.
+
+GBP/USD – Long – Continuation off Pre-War Recovery
+
+BIAS: WATCH BULLISH GBP/USD
+
+STRUCTURE: Sterling has regained pre-war conflict levels, now trading at 1.3532 . Reuters confirmed GBP "back to pre-war levels" on Iran de-escalation hopes, suggesting the geopolitical risk premium has mostly unwound. Support sits at 1.3480 (intraday pivot), and the overall structure is higher highs/higher lows from the March lows.
+
+TRIGGER: 1.3480–1.3530. Enter on a bounce with confirmation candle; a 1H close back above 1.3520 after any dip is ideal.
+
+TARGET: 1.3650–1.3720 (next key resistance / pre-conflict highs).
+
+INVALIDATION: 4H close below 1.3380.
+
+RISK/REWARD: ~2.0:1 (mid-trigger 1.3505 → mid-target 1.3685 = 180 pips; stop 1.3380 = 125 pips).
+
+CATALYSTS: UK retail sales (if due); BOE speaker comments; ongoing Iran diplomatic developments.
+
+USD/JPY – Short – Sell Rally into Resistance
+
+BIAS: WATCH BEARISH USD/JPY
+
+STRUCTURE: USD/JPY at 159.125 sits near a well-established resistance zone (159.00–160.50) that has capped the pair multiple times. Nikkei fell -1.75% overnight , suggesting Japanese domestic demand for yen hedging may re-emerge. The broader DXY decline reinforces selling pressure on this pair.
+
+TRIGGER: 159.00–159.50. Enter short on a failure candle (bearish engulf or shooting star) inside this zone on 1H or 4H.
+
+TARGET: 156.50–157.00 (previous support shelf and 50% retracement area).
+
+INVALIDATION: 4H close above 160.50.
+
+RISK/REWARD: ~2.2:1 (mid-entry 159.25 → mid-target 156.75 = 250 pips; stop 160.50 = 125 pips).
+
+CATALYSTS: BOJ commentary or minutes; US Treasury yield moves; Iran headline risk (safe-haven flow).
+
+AUD/USD – Long – Risk-On Continuation Play
+
+BIAS: WATCH BULLISH AUD/USD
+
+STRUCTURE: AUD/USD ~0.7180, holding a constructive posture as equity volatility (VIX 17.80) recedes and global risk appetite improves. The pair has historically strong correlation with the S&P 500 and China PMI data; the Iran de-escalation narrative removes a key headwind.
+
+TRIGGER: 0.7150–0.7180. Buy into dips toward this zone with confirmation of stabilising equities.
+
+TARGET: 0.7280–0.7330.
+
+INVALIDATION: 4H close below 0.7090.
+
+RISK/REWARD: ~2.1:1 (mid-trigger 0.7165 → mid-target 0.7305 = 140 pips; stop 0.7090 = 75 pips).
+
+CATALYSTS: Chinese economic data; RBA minutes or speakers; broader risk-on/risk-off shifts via equities; oil price (indirect).
+
+USD/CHF – Short – Structural Dollar Weakness Play
+
+BIAS: WATCH BEARISH USD/CHF
+
+STRUCTURE: USD/CHF at 0.7825, near the lower end of its recent range, reflecting both USD broad weakness and CHF haven demand that lingers even as Iran risk unwinds partially. The pair has likely built bearish continuation momentum given DXY is near the 98.00 support — a break below DXY 98 would accelerate this.
+
+TRIGGER: 0.7830–0.7870. Sell on any bounce into this resistance zone, waiting for a 4H bearish close.
+
+TARGET: 0.7680–0.7720.
+
+INVALIDATION: 4H close above 0.7950.
+
+RISK/REWARD: ~1.9:1 (mid-entry 0.7850 → mid-target 0.7700 = 150 pips; stop 0.7950 = 100 pips).
+
+CATALYSTS: DXY breaking below 98.00; SNB intervention signals (would negate CHF strength); US data surprises.
+
+4. Avoid / Deprioritize List
+USD/CAD — AVOID. Oil is falling sharply (-3.71%) due to Iran de-escalation, which typically supports CAD, but USD weakness is simultaneously pressing the pair lower. The two competing forces (oil bearish CAD, USD bearish USD/CAD) create a noisy, range-bound structure with no clean directional bias — risk/reward is poor.
+
+NZD/USD — DEPRIORITIZE. NZD/USD closely mirrors AUD/USD but with lower liquidity and wider spreads. If you are already long AUD/USD, adding NZD/USD compounds antipodean correlation risk beyond what the 3% total risk budget allows; treat as a secondary confirmation instrument only.
+
+5. Risk & Correlation Notes
+USD-negative bucket (EUR/USD, GBP/USD, USD/CHF short, USD/JPY short): All four setups benefit from the same DXY bearish driver. Running all four simultaneously would constitute 4% gross risk (4 × 1%) — above the 3% budget. Cap at three of the four; prioritise EUR/USD + GBP/USD + USD/JPY as the trio with highest confidence scores.
+
+Antipodean cluster (AUD/USD + NZD/USD): These pairs have a rolling 20-day correlation typically >0.90. Treat both as a single risk unit; if you trade AUD/USD, reduce NZD/USD size to max 0.25% or skip entirely to stay within budget.
+
+JPY cross-asset correlation: USD/JPY tends to follow US 10-year Treasury yields closely; a spike in yields (e.g., surprise US data) would undermine the USD/JPY short. Monitor 10Y UST in real time as a leading indicator — if yields rise >5bp on a session, reassess the short.
+
+Oil ↔ CAD: WTI crude futures -3.71% today. If oil continues declining (Iran ceasefire confirmed), CAD gains partially offset, keeping USD/CAD range-bound — confirms the AVOID rating.
+
+Gold ↔ CHF/JPY haven flows: Gold remains elevated at ~$4,823. If gold resumes rallying, it will reinforce CHF and JPY safe-haven demand, supporting USD/CHF short and USD/JPY short simultaneously — watch gold as a co-signal.
+
+6. Event / Calendar
+Time (BST)	Event	Pair(s) Impacted	Expected vs Prior	Risk Skew
+All day	Iran diplomatic developments (Trump / US-Iran talks)	All pairs, JPY, Oil, CAD	N/A — binary	Risk-on if ceasefire confirmed → JPY bearish, AUD bullish; Risk-off reversal if talks collapse → USD/JPY spike
+~14:30	US University of Michigan Sentiment (prelim, April)	EUR/USD, USD/JPY	Exp: ~52 vs prior 52.2	USD positive if significantly above 54; USD negative if below 50
+~14:30	US Building Permits & Housing Starts (Mar)	USD majors	Permits exp: 1.45M	USD bullish if housing beats; marginal impact
+Today ongoing	FTSE 100 close (UK equities -0.26%)	GBP/USD	N/A	GBP modestly pressured if FTSE extends losses
+Mon 20 Apr	Japan CPI (Mar, national)	USD/JPY, JPY crosses	Exp: ~3.4% YoY	JPY bullish if CPI surprises above 3.6% — reinforces BOJ hike narrative
+Tue 21 Apr	ECB President Lagarde speech	EUR/USD	N/A	EUR bullish if hawkish tone; EUR bearish if rate cut signalled
+Tue 21 Apr	UK CPI (Mar)	GBP/USD	Exp: ~2.8% YoY	GBP bullish if above 3.0%; dovish if below 2.5%
+Note: Calendar based on standard schedule assumptions; confirm exact times via an economic calendar before trading.
+
+7. Trading Checklist
+☐ Check Iran headline status before any trade. If a formal ceasefire is announced, expect USD pop + AUD/GBP/EUR spike — widen triggers. If talks collapse, expect USD/JPY spike above 160 — kill USD/JPY short immediately.
+
+☐ Only enter a Top 5 setup if spot price is currently inside the trigger zone. Do not chase; wait for price to return to the zone.
+
+☐ All signals are WATCH, not TRADE — require personal technical confirmation (candle pattern, 1H/4H close) before entry. Do not front-run with market orders.
+
+☐ Respect invalidation levels unconditionally. If EUR/USD closes below 1.1700 or USD/JPY closes above 160.50, exit and do not re-enter without a fresh setup.
+
+☐ Cap total correlated risk at 3%: Do not run more than 3 of the 4 USD-negative trades simultaneously. Size each at 1% max.
+
+☐ Be flat or reduce ahead of Michigan Sentiment (~14:30 BST) unless already well in profit (>1R), as the print can cause a sharp USD spike or drop.
+
+☐ Monitor DXY 98.00: A confirmed 4H close below 98.00 would upgrade EUR/USD and GBP/USD setups to higher conviction; a bounce from 98.00 caps upside.
+
+8. Machine-Readable JSON
+json
+{
+  "run_date": "2026-04-17",
+  "run_time_bst": "13:12",
+  "dxy_spot": 98.10,
+  "dxy_bias": "BEARISH",
+  "data_quality_warning": "Fewer than 3 institutional sources confirmed. All TRADE signals downgraded to WATCH.",
+  "pairs": [
+    {
+      "pair": "EURUSD",
+      "bias": "WATCH_BULLISH",
+      "direction": "Long",
+      "spot": 1.1799,
+      "trigger_low": 1.1760,
+      "trigger_high": 1.1800,
+      "target_low": 1.1900,
+      "target_high": 1.1950,
+      "invalidation": 1.1700,
+      "rr": 2.2,
+      "confidence": 4,
+      "notes": "DXY bearish structure and Iran de-escalation support EUR/USD bulls. Buy pullback into 1.1760–1.1800 with 4H close confirmation; target 1.19 resistance cluster."
+    },
+    {
+      "pair": "GBPUSD",
+      "bias": "WATCH_BULLISH",
+      "direction": "Long",
+      "spot": 1.3532,
+      "trigger_low": 1.3480,
+      "trigger_high": 1.3530,
+      "target_low": 1.3650,
+      "target_high": 1.3720,
+      "invalidation": 1.3380,
+      "rr": 2.0,
+      "confidence": 4,
+      "notes": "Sterling has recovered to pre-Iran-conflict levels; continuation bias intact. Buy dips into 1.3480–1.3530 zone with confirmation; target pre-conflict highs 1.3650–1.3720."
+    },
+    {
+      "pair": "AUDUSD",
+      "bias": "WATCH_BULLISH",
+      "direction": "Long",
+      "spot": 0.7180,
+      "trigger_low": 0.7150,
+      "trigger_high": 0.7180,
+      "target_low": 0.7280,
+      "target_high": 0.7330,
+      "invalidation": 0.7090,
+      "rr": 2.1,
+      "confidence": 3,
+      "notes": "Risk-on tone (VIX declining, equities stable) and DXY weakness support AUD. Buy dips to 0.7150–0.7180 while equities remain constructive; watch China data as co-catalyst."
+    },
+    {
+      "pair": "NZDUSD",
+      "bias": "AVOID_RANGE",
+      "direction": "Flat",
+      "spot": 0.5970,
+      "trigger_low": 0.5950,
+      "trigger_high": 0.5980,
+      "target_low": 0.6060,
+      "target_high": 0.6110,
+      "invalidation": 0.5890,
+      "rr": 1.8,
+      "confidence": 2,
+      "notes": "Mirrors AUD/USD but deprioritised due to high AUD correlation and 3% portfolio risk cap. Only trade if AUD/USD is not already in the book."
+    },
+    {
+      "pair": "USDJPY",
+      "bias": "WATCH_BEARISH",
+      "direction": "Short",
+      "spot": 159.125,
+      "trigger_low": 159.000,
+      "trigger_high": 159.500,
+      "target_low": 156.500,
+      "target_high": 157.000,
+      "invalidation": 160.500,
+      "rr": 2.2,
+      "confidence": 3,
+      "notes": "Pair is capped at 159.00–160.50 resistance zone; DXY weakness and Nikkei underperformance support a fade. Sell rallies into trigger with 4H bearish close confirmation."
+    },
+    {
+      "pair": "USDCHF",
+      "bias": "WATCH_BEARISH",
+      "direction": "Short",
+      "spot": 0.7825,
+      "trigger_low": 0.7830,
+      "trigger_high": 0.7870,
+      "target_low": 0.7680,
+      "target_high": 0.7720,
+      "invalidation": 0.7950,
+      "rr": 1.9,
+      "confidence": 3,
+      "notes": "USD weakness and residual CHF safe-haven demand provide a dual tailwind for shorts. Sell bounces into 0.7830–0.7870; DXY break below 98.00 would confirm."
+    },
+    {
+      "pair": "USDCAD",
+      "bias": "AVOID_RANGE",
+      "direction": "Flat",
+      "spot": 1.3674,
+      "trigger_low": 1.3650,
+      "trigger_high": 1.3720,
+      "target_low": null,
+      "target_high": null,
+      "invalidation": null,
+      "rr": null,
+      "confidence": 2,
+      "notes": "Oil -3.71% (CAD positive) and broad USD weakness compete, creating a noisy range. No clean directional edge; avoid until oil direction resolves post-Iran headlines."
+    }
+  ]
+}

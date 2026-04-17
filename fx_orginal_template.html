@@ -366,7 +366,7 @@ section[id]{scroll-margin-top:130px}
 
   <div class="section-header" style="margin-top:18px">
     <h3 class="section-title" style="font-size:13px">10-Year Bond Yields</h3>
-    <span class="section-subtitle">As of 13 Apr 2026 â€” Bloomberg / Trading Economics</span>
+    <span class="section-subtitle">As of 13 Apr 2026 - Bloomberg / Trading Economics</span>
   </div>
   __BOND_YIELDS_ROWS__
 </section>
@@ -389,7 +389,7 @@ section[id]{scroll-margin-top:130px}
     <div class="corr-title">Correlated Exposure Warning</div>
     <div class="corr-list">
       <div class="corr-item">AUD/USD + NZD/USD are both risk-on Antipodean longs. Hormuz blockade risk-off hits both simultaneously. Max 1.5% combined risk until geopolitical picture clears.</div>
-      <div class="corr-item">USD/JPY sell + AUD/USD buy = partial natural hedge (USD legs offset), but BOJ Apr 28 is uncorrelated with RBA cycle â€” size both independently.</div>
+      <div class="corr-item">USD/JPY sell + AUD/USD buy = partial natural hedge (USD legs offset), but BOJ Apr 28 is uncorrelated with RBA cycle - size both independently.</div>
       <div class="corr-item">USD/CAD is currently a crossfire pair (USD risk-off bid vs. CAD oil-export tailwind). Avoid until cleaner directional signal emerges. Do not add this as a third position.</div>
     </div>
   </div>
@@ -399,15 +399,15 @@ section[id]{scroll-margin-top:130px}
 <section id="correlation" class="section">
   <div class="section-header">
     <h2 class="section-title">14-Day Correlation Matrix</h2>
-    <span class="section-subtitle">Pearson r from ECB daily closes â€” Active pairs</span>
+    <span class="section-subtitle">Pearson r from ECB daily closes - Active pairs</span>
   </div>
   <div class="corr-matrix-wrap">
     <div class="corr-matrix-header">
       <div class="corr-legend">
         <div class="corr-legend-item"><div class="corr-legend-swatch" style="background:#22c55e"></div> &gt; 0.70</div>
-        <div class="corr-legend-item"><div class="corr-legend-swatch" style="background:#f59e0b"></div> 0.40â€“0.70</div>
-        <div class="corr-legend-item"><div class="corr-legend-swatch" style="background:#64748b"></div> Â±0.40</div>
-        <div class="corr-legend-item"><div class="corr-legend-swatch" style="background:#60a5fa"></div> -0.40â€“-0.70</div>
+        <div class="corr-legend-item"><div class="corr-legend-swatch" style="background:#f59e0b"></div> 0.40-0.70</div>
+        <div class="corr-legend-item"><div class="corr-legend-swatch" style="background:#64748b"></div> +/-0.40</div>
+        <div class="corr-legend-item"><div class="corr-legend-swatch" style="background:#60a5fa"></div> -0.40--0.70</div>
         <div class="corr-legend-item"><div class="corr-legend-swatch" style="background:#ef4444"></div> &lt; -0.70</div>
       </div>
     </div>
@@ -423,7 +423,7 @@ section[id]{scroll-margin-top:130px}
 <section id="top5" class="section">
   <div class="section-header">
     <h2 class="section-title">Top 5 Setups</h2>
-    <span class="section-subtitle">Ranked by conviction â€” Min 2:1 R/R â€” 1H/4H</span>
+    <span class="section-subtitle">Ranked by conviction - Min 2:1 R/R - 1H/4H</span>
   </div>
   <div class="setup-list">
 
@@ -450,7 +450,7 @@ section[id]{scroll-margin-top:130px}
 <section id="avoid" class="section">
   <div class="section-header">
     <h2 class="section-title">Pairs to Avoid</h2>
-    <span class="section-subtitle">Low conviction, poor R/R, or excessive noise â€” Analysis: __ANALYSIS_DATE_SHORT__</span>
+    <span class="section-subtitle">Low conviction, poor R/R, or excessive noise - Analysis: __ANALYSIS_DATE_SHORT__</span>
   </div>
   <div class="avoid-grid">
     __AVOID_CARDS__
@@ -469,7 +469,7 @@ section[id]{scroll-margin-top:130px}
       <tbody>__RISK_CALENDAR_ROWS__</tbody>
     </table>
   </div>
-  <div style="margin-top:10px;font-size:11px;color:var(--text-faint)">Upcoming: BOJ Apr 28 | Fed FOMC Apr 28â€“29 | BOC Apr 29 | ECB Apr 30 | BOE Apr 30 | RBA May 5 | RBNZ May 27</div>
+  <div style="margin-top:10px;font-size:11px;color:var(--text-faint)">Upcoming: BOJ Apr 28 | Fed FOMC Apr 28-29 | BOC Apr 29 | ECB Apr 30 | BOE Apr 30 | RBA May 5 | RBNZ May 27</div>
 </section><!-- CHANGED -->
 <section id="changed" class="section">
   <div class="section-header">
@@ -528,12 +528,54 @@ function cross(r, pair) {
   }
 }
 
-function fmt(v, dp) { return v != null ? v.toFixed(dp) : 'â€”'; }
+function fmt(v, dp) { return v != null ? v.toFixed(dp) : '-'; }
 function pct(v) { return v != null ? (v > 0 ? '+' : '') + v.toFixed(2) + '%' : ''; }
 function dir(v) {
   if (v > 0) return 'up';
   if (v < 0) return 'down';
   return 'flat';
+}
+
+function parseSpotValue(v) {
+  const n = Number(String(v == null ? '' : v).replace(/,/g, '').trim());
+  return Number.isFinite(n) && n > 0 ? n : null;
+}
+
+function scalePriceText(text, ratio, dp) {
+  return String(text == null ? '' : text).replace(/\d+(?:\.\d+)?/g, (m) => {
+    const n = Number(m);
+    if (!Number.isFinite(n) || n <= 0) return m;
+    const scaled = n * ratio;
+    if (!Number.isFinite(scaled)) return m;
+    return scaled.toFixed(dp);
+  });
+}
+
+function alignCardLevelsToLiveSpot() {
+  if (!todayRates) return;
+
+  document.querySelectorAll('[data-pair-card]').forEach(card => {
+    const code = String(card.getAttribute('data-pair-card') || '').toUpperCase();
+    if (!code) return;
+
+    const liveSpot = cross(todayRates, code);
+    const originalSpot = parseSpotValue(card.getAttribute('data-origin-spot'));
+    if (!Number.isFinite(liveSpot) || originalSpot == null) return;
+
+    const ratio = liveSpot / originalSpot;
+    if (!Number.isFinite(ratio) || ratio <= 0) return;
+    if (ratio > 0.90 && ratio < 1.10) return;
+
+    const dp = code.endsWith('JPY') ? 2 : 4;
+    ['trigger', 'target', 'invalidation'].forEach(role => {
+      const el = card.querySelector('[data-role="' + role + '"]');
+      if (!el) return;
+      const attr = 'data-orig-' + role;
+      const originalText = card.getAttribute(attr) || String(el.textContent || '');
+      if (!card.hasAttribute(attr)) card.setAttribute(attr, originalText);
+      el.textContent = scalePriceText(originalText, ratio, dp);
+    });
+  });
 }
 
 function prevBusinessDay(dateStr) {
@@ -598,15 +640,16 @@ function updateDOM(liveTs) {
   if (liveTs) {
     const timeStr = liveTs.toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit', timeZoneName:'short' });
     const dateStr = liveTs.toLocaleDateString('en-GB', { day:'numeric', month:'short' });
-    ts.textContent = 'Live Â· ' + dateStr + ' ' + timeStr;
+    ts.textContent = 'Live | ' + dateStr + ' ' + timeStr;
   } else if (ecbDate) {
-    ts.textContent = 'Rate data Â· ' + ecbDate;
+    ts.textContent = 'Rate data | ' + ecbDate;
   }
   const pill = document.getElementById('livePill');
   const pillTxt = document.getElementById('livePillText');
   if (pill) pill.classList.remove('offline');
   if (pillTxt) pillTxt.textContent = 'Rates: Live';
 
+  alignCardLevelsToLiveSpot();
   scorePairs();
 }
 
@@ -628,7 +671,7 @@ async function proxyFetch(directUrl) {
     const r = await fetch(directUrl, { signal: ctrl.signal, cache: 'no-store' });
     clearTimeout(tid);
     if (r.ok) { transport = 'direct'; return r.json(); }
-  } catch(e) { /* blocked or timed out â€” fall through */ }
+  } catch(e) { /* blocked or timed out - fall through */ }
 
   const r = await fetch(proxyUrl);
   if (!r.ok) throw new Error('proxy ' + r.status);
@@ -636,9 +679,9 @@ async function proxyFetch(directUrl) {
   return r.json();
 }
 
-// Live intraday rates â€” fxratesapi.com (EUR base, updates ~every hour during market hours)
+// Live intraday rates - fxratesapi.com (EUR base, updates ~every hour during market hours)
 const LIVE_BASE = 'https://api.fxratesapi.com/latest?base=EUR&currencies=USD,GBP,JPY,CHF,AUD,CAD,NZD';
-// Historical daily rates â€” Frankfurter/ECB (for day-over-day change and 14-day correlation)
+// Historical daily rates - Frankfurter/ECB (for day-over-day change and 14-day correlation)
 const HIST_BASE = 'https://api.frankfurter.app';
 
 async function fxFetch(frankfurterPath) {
@@ -671,7 +714,7 @@ async function loadRates(manual) {
     if (pill) pill.classList.add('offline');
     if (pillTxt) pillTxt.textContent = 'Offline';
     const ts = document.getElementById('rateTimestamp');
-    if (ts && !todayRates) ts.textContent = 'Rates unavailable â€” retrying...';
+    if (ts && !todayRates) ts.textContent = 'Rates unavailable - retrying...';
     else if (ts && todayRates) ts.textContent = (ecbDate || '') + ' (reconnecting...)';
     if (!todayRates) {
       const bar = document.getElementById('tickerBar');
@@ -942,7 +985,7 @@ async function loadCorrelation() {
         if (row === col) {
           html += '<td class="self">1.00</td>';
         } else if (r === null) {
-          html += '<td style="color:var(--text-faint)">â€”</td>';
+          html += '<td style="color:var(--text-faint)">-</td>';
         } else {
           const bg = corrColor(r);
           const tc = corrTextColor(r);
@@ -965,16 +1008,16 @@ async function loadCorrelation() {
         const r = matrix[a][b];
         if (r === null) return;
         if (r > 0.80) {
-          alerts.push('<div class="corr-alert"><div class="ca-icon">!</div><div><strong style="color:var(--green)">' + CORR_LABELS[a] + ' + ' + CORR_LABELS[b] + ' (r = ' + r.toFixed(2) + ')</strong> â€” High positive correlation. Cap combined risk at 1.5%.</div></div>');
+          alerts.push('<div class="corr-alert"><div class="ca-icon">!</div><div><strong style="color:var(--green)">' + CORR_LABELS[a] + ' + ' + CORR_LABELS[b] + ' (r = ' + r.toFixed(2) + ')</strong> - High positive correlation. Cap combined risk at 1.5%.</div></div>');
         } else if (r < -0.80) {
-          alerts.push('<div class="corr-alert"><div class="ca-icon">â†”</div><div><strong style="color:var(--red)">' + CORR_LABELS[a] + ' + ' + CORR_LABELS[b] + ' (r = ' + r.toFixed(2) + ')</strong> â€” Strong inverse correlation. Natural hedge or contradictory positioning.</div></div>');
+          alerts.push('<div class="corr-alert"><div class="ca-icon"><-></div><div><strong style="color:var(--red)">' + CORR_LABELS[a] + ' + ' + CORR_LABELS[b] + ' (r = ' + r.toFixed(2) + ')</strong> - Strong inverse correlation. Natural hedge or contradictory positioning.</div></div>');
         } else if (Math.abs(r) < 0.15) {
           const expectHigh = (
             (a === 'AUDUSD' && b === 'NZDUSD') || (a === 'NZDUSD' && b === 'AUDUSD') ||
             (a === 'EURUSD' && b === 'GBPUSD') || (a === 'GBPUSD' && b === 'EURUSD')
           );
           if (expectHigh) {
-            alerts.push('<div class="corr-alert"><div class="ca-icon" style="border-color:var(--amber);color:var(--amber)">âš </div><div><strong style="color:var(--amber)">' + CORR_LABELS[a] + ' vs ' + CORR_LABELS[b] + ' correlation breakdown (r = ' + r.toFixed(2) + ')</strong> â€” Normally highly correlated. Signals divergent fundamentals.</div></div>');
+            alerts.push('<div class="corr-alert"><div class="ca-icon" style="border-color:var(--amber);color:var(--amber)">!</div><div><strong style="color:var(--amber)">' + CORR_LABELS[a] + ' vs ' + CORR_LABELS[b] + ' correlation breakdown (r = ' + r.toFixed(2) + ')</strong> - Normally highly correlated. Signals divergent fundamentals.</div></div>');
           }
         }
       });
@@ -991,10 +1034,10 @@ async function loadCorrelation() {
     const nDays = useDates.length;
     const from = useDates[0];
     const to = useDates[useDates.length - 1];
-    status.textContent = 'Based on ' + nDays + ' ECB business days (' + from + ' to ' + to + ') Â· Daily log returns Â· Updated on page load';
+    status.textContent = 'Based on ' + nDays + ' ECB business days (' + from + ' to ' + to + ') | Daily log returns | Updated on page load';
 
   } catch(e) {
-    container.innerHTML = '<div style="text-align:center;padding:24px;color:var(--red);font-size:12px">Correlation data unavailable â€” refresh to retry</div>';
+    container.innerHTML = '<div style="text-align:center;padding:24px;color:var(--red);font-size:12px">Correlation data unavailable - refresh to retry</div>';
     status.textContent = '';
     breakdown.innerHTML = '';
     breakdown.classList.remove('visible');
