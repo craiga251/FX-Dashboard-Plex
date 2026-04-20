@@ -360,6 +360,125 @@ def parse_machine_pairs(machine_payload):
   return pairs
 
 
+def _bias_from_machine_item(item):
+  direction = clean_line(item.get("direction", "")).lower()
+  bias_text = clean_line(item.get("bias", "")).lower()
+  if "short" in direction:
+    return "Bearish"
+  if "long" in direction:
+    return "Bullish"
+  if "bear" in bias_text:
+    return "Bearish"
+  if "bull" in bias_text:
+    return "Bullish"
+  return "Neutral"
+
+
+def _status_from_machine_item(item):
+  bias_text = clean_line(item.get("bias", "")).lower()
+  if "trade" in bias_text:
+    return "Trade"
+  if "watch" in bias_text:
+    return "Watch"
+  return "Watch"
+
+
+def _to_float(value, default=0.0):
+  try:
+    return float(value)
+  except Exception:
+    return float(default)
+
+
+def build_machine_trade_overrides(machine_payload, raw_text):
+  pairs_raw = (machine_payload or {}).get("pairs", [])
+  if not isinstance(pairs_raw, list) or not pairs_raw:
+    return {}
+
+  core_pairs = []
+  ranked = []
+
+  for idx, item in enumerate(pairs_raw):
+    label = pair_label_from_code(item.get("pair", ""))
+    if not label:
+      continue
+    code = normalize_pair_code(item.get("pair", ""))
+    dp = pair_dp(code)
+    spot_raw = item.get("spot", "")
+    try:
+      spot_text = f"{float(spot_raw):.{dp}f}"
+    except Exception:
+      spot_text = str(spot_raw)
+    bias = _bias_from_machine_item(item)
+    status = _status_from_machine_item(item)
+    confidence_pct = confidence_to_pct(item.get("confidence", 3))
+    trigger = "" if item.get("trigger_low") is None or item.get("trigger_high") is None else f"{item.get('trigger_low')}-{item.get('trigger_high')}"
+    target = "" if item.get("target_low") is None or item.get("target_high") is None else f"{item.get('target_low')}-{item.get('target_high')}"
+    rr_raw = clean_line(item.get("rr", ""))
+    rr_text = rr_raw if (":" in rr_raw or "x" in rr_raw.lower()) else (rr_raw + ":1" if rr_raw else "")
+
+    row = {
+      "pair": label,
+      "status": status,
+      "bias": bias,
+      "live_spot": spot_text,
+      "day_change_pct": "",
+      "trigger": trigger,
+      "target": target,
+      "invalidation": str(item.get("invalidation", "")),
+      "catalyst": clean_line(item.get("notes", "")),
+      "confidence_pct": confidence_pct,
+      "summary": clean_line(item.get("notes", "")),
+      "setup": clean_line(item.get("direction", "")) or ("Long" if bias == "Bullish" else "Short" if bias == "Bearish" else "Setup"),
+      "entry_zone": trigger,
+      "stop": str(item.get("invalidation", "")),
+      "rr": rr_text,
+      "invalidation_risk": clean_line(item.get("notes", "")),
+      "_rank_index": idx,
+      "_rr_num": _to_float(item.get("rr", 0)),
+    }
+
+    core_pairs.append({k: row[k] for k in ["pair", "status", "bias", "live_spot", "day_change_pct", "trigger", "target", "invalidation", "catalyst", "confidence_pct", "summary"]})
+    ranked.append(row)
+
+  # Build Top 5 from strongest machine pairs when only machine JSON is present.
+  ranked.sort(key=lambda r: (-int(r.get("confidence_pct", 0) or 0), -float(r.get("_rr_num", 0) or 0), int(r.get("_rank_index", 0) or 0)))
+  top5 = []
+  for rank, row in enumerate(ranked[:5], 1):
+    top5.append({
+      "rank": rank,
+      "pair": row.get("pair", ""),
+      "setup": row.get("setup", "Setup"),
+      "live_spot": row.get("live_spot", ""),
+      "entry_zone": row.get("entry_zone", ""),
+      "stop": row.get("stop", ""),
+      "target": row.get("target", ""),
+      "rr": row.get("rr", ""),
+      "confidence_pct": row.get("confidence_pct", 0),
+      "catalyst": row.get("catalyst", ""),
+      "invalidation_risk": row.get("invalidation_risk", ""),
+    })
+
+  top5_pairs = {row.get("pair", "") for row in top5}
+  secondary = []
+  for row in core_pairs:
+    if row.get("pair", "") in top5_pairs:
+      continue
+    secondary.append({
+      "pair": row.get("pair", ""),
+      "spot": row.get("live_spot", ""),
+      "bias": row.get("bias", "Neutral"),
+      "notes": row.get("summary", ""),
+    })
+
+  return {
+    "analysis_timestamp_bst": parse_brief_timestamp(raw_text, machine_payload),
+    "core_pairs": core_pairs,
+    "top5": top5,
+    "secondary": secondary,
+  }
+
+
 def split_table_columns(line):
   return [part.strip() for part in re.split(r"\t+|\s{2,}", str(line or "").strip()) if part.strip()]
 
@@ -472,8 +591,7 @@ def parse_top5_setups(text, machine_pairs, confidence_by_pair, core_pairs):
     entry_zone = core_pair.get("trigger") or machine.get("trigger") or extract_first_range(fields.get("TRIGGER", ""))
     target_zone = core_pair.get("target") or machine.get("target") or extract_first_range(fields.get("TARGET", ""))
     stop_value = extract_invalidation_level(fields.get("INVALIDATION", "")) or extract_invalidation_level(core_pair.get("invalidation", ""))
-    rr_match = re.search(r"~?\s*1\s*:\s*\d+(?:\.\d+)?", fields.get("RISK/REWARD", ""))
-    rr_value = rr_match.group(0).replace(" ", "") if rr_match else clean_line(fields.get("RISK/REWARD", ""))
+    rr_value = clean_line(fields.get("RISK/REWARD", "")) or clean_line(machine.get("rr", ""))
     confidence_pct = confidence_by_pair.get(pair, confidence_to_pct(machine.get("confidence", 3)))
     if pair:
       setup_pairs.add(pair)
@@ -612,7 +730,7 @@ def parse_daily_brief(text):
 
   sections = split_numbered_sections(raw_text)
   if not sections:
-    return {}
+    return build_machine_trade_overrides(machine_payload, raw_text)
 
   machine_pairs = parse_machine_pairs(machine_payload)
   overview_data, _ = build_manual_macro_sections(sections.get(1, {}).get("body", ""))
@@ -666,10 +784,12 @@ def cleanup_generated_html(text):
   replacements = {
     "â€”": "-",
     "â€“": "-",
+    "â€¦": "...",
     "â†”": "<->",
     "âš ": "!",
     "Â±": "+/-",
     "Â·": " | ",
+    "…": "...",
     "—": "-",
     "–": "-",
     "→": "->",
@@ -722,6 +842,8 @@ def sev_class(severity):
 
 def impact_cls(impact):
   i = (impact or "").lower()
+  if "critical" in i:
+    return "badge badge-avoid"
   if "high" in i:
     return "badge badge-avoid"
   if "med" in i:
@@ -750,6 +872,94 @@ def pair_code(pair_label):
 
 def pair_dp(code):
   return 2 if code.endswith("JPY") else 4
+
+
+def _parse_range_midpoint(text):
+  raw = str(text or "")
+  # Prefer explicit range parsing first (e.g. 1.1760-1.1800).
+  range_match = re.search(r"(\d+(?:\.\d+)?)\s*-\s*(\d+(?:\.\d+)?)", raw)
+  if range_match:
+    low = float(range_match.group(1))
+    high = float(range_match.group(2))
+    return (low + high) / 2
+
+  level_match = re.search(r"\d+(?:\.\d+)?", raw)
+  if not level_match:
+    return None
+  return float(level_match.group(0))
+
+
+def _parse_level(text):
+  match = re.search(r"\d+(?:\.\d+)?", str(text or ""))
+  if not match:
+    return None
+  return float(match.group(0))
+
+
+def _pip_factor(code):
+  return 100 if str(code or "").endswith("JPY") else 10000
+
+
+def format_rr_for_top5(rr_text, pair, setup, entry_zone, target, stop):
+  raw = str(rr_text or "").strip()
+  if not raw:
+    return ""
+
+  # Keep detailed user-provided R/R text untouched.
+  if any(token in raw for token in ["(", "mid-", "pip"]):
+    return raw
+
+  # Expand compact values like "2.17x", "2.2", or "2.5:1" into midpoint + pip math text.
+  compact = re.match(r"^\s*~?\s*(\d+(?:\.\d+)?)\s*(?::\s*1(?:\.0+)?)?\s*(?:x)?\s*$", raw, flags=re.IGNORECASE)
+  if not compact:
+    return raw
+
+  ratio_from_input = float(compact.group(1))
+
+  code = pair_code(pair)
+  dp = pair_dp(code)
+  entry_mid = _parse_range_midpoint(entry_zone)
+  target_mid = _parse_range_midpoint(target)
+  stop_level = _parse_level(stop)
+  if entry_mid is None or target_mid is None or stop_level is None:
+    return raw
+
+  reward_pips = abs(target_mid - entry_mid) * _pip_factor(code)
+  risk_pips = abs(entry_mid - stop_level) * _pip_factor(code)
+  if risk_pips <= 0:
+    return raw
+
+  rr_prefix = "~" + f"{ratio_from_input:.1f}" + ":1"
+  mid_label = "mid-entry" if any(x in str(setup or "").upper() for x in ["SHORT", "SELL"]) else "mid-trigger"
+
+  return (
+    rr_prefix
+    + " ("
+    + mid_label
+    + " "
+    + f"{entry_mid:.{dp}f}"
+    + " -> mid-target "
+    + f"{target_mid:.{dp}f}"
+    + " = "
+    + str(int(round(reward_pips)))
+    + " pips; stop "
+    + f"{stop_level:.{dp}f}"
+    + " = "
+    + str(int(round(risk_pips)))
+    + " pips)."
+  )
+
+
+def rr_html_two_lines(rr_text):
+  raw = str(rr_text or "").strip()
+  if not raw:
+    return ""
+  split_at = raw.find(" (")
+  if split_at == -1:
+    return s(raw)
+  head = raw[:split_at].strip()
+  detail = raw[split_at + 1 :].strip()
+  return s(head) + '<br><span class="rr-detail">' + s(detail) + "</span>"
 
 
 def core_pair_from_top5(item):
@@ -982,6 +1192,15 @@ def top5_rows(top5):
     if code:
       live_spot_attrs = ' data-pair="' + s(code) + '" data-dp="' + s(pair_dp(code)) + '"'
     live_spot_text = '—' if code else s(t.get("live_spot", ""))
+    rr_text = format_rr_for_top5(
+      t.get("rr", ""),
+      t.get("pair", ""),
+      setup,
+      t.get("entry_zone", ""),
+      t.get("target", ""),
+      t.get("stop", ""),
+    )
+    rr_html = rr_html_two_lines(rr_text)
     out.append(
       '<div class="setup-card rank-'
       + s(rank or 1)
@@ -1013,8 +1232,8 @@ def top5_rows(top5):
       '<div class="setup-field"><span class="sf-label">Target</span><span class="sf-val" style="color:var(--green)">'
       + s(t.get("target", ""))
       + "</span></div>"
-      '<div class="setup-field"><span class="sf-label">R/R</span><span class="sf-val" style="color:var(--green)">'
-      + s(t.get("rr", ""))
+      '<div class="setup-field"><span class="sf-label">R/R</span><span class="sf-val rr-val" style="color:var(--green)">'
+      + rr_html
       + "</span></div>"
       "</div>"
       '<div class="conf-indicator"><span style="font-size:12px;color:var(--green);font-weight:700">'
@@ -1222,7 +1441,7 @@ def checklist_rows(checklist):
   out = []
   for item in checklist:
     status = (item.get("status") or "").lower()
-    icon = "✓" if status == "pass" else "✗" if status == "fail" else "-"
+    icon = "[x]" if status == "pass" else "[!]" if status == "fail" else "[ ]"
     cls = "pass" if status == "pass" else "fail" if status == "fail" else "neutral"
     out.append(
       "<tr>"
@@ -1272,9 +1491,14 @@ if brief_overrides:
 html_text = TEMPLATE_PATH.read_text(encoding="utf-8")
 
 live_rates = d.get("live_rates") or d.get("live_rates_snapshot") or {}
-top5 = d.get("top5") or d.get("top_5_setups") or []
-secondary = d.get("secondary") or d.get("secondary_pairs") or []
-core_pairs = ensure_core_pairs_count(d.get("core_pairs", []), top5, secondary, target=CORE_PAIRS_TARGET)
+
+# When a daily brief is present, trade ideas must come only from that brief.
+trade_source = brief_overrides if brief_overrides else d
+top5 = trade_source.get("top5") or trade_source.get("top_5_setups") or []
+secondary = trade_source.get("secondary") or trade_source.get("secondary_pairs") or []
+core_pairs = ensure_core_pairs_count(trade_source.get("core_pairs", []), top5, secondary, target=CORE_PAIRS_TARGET)
+avoid = trade_source.get("avoid", [])
+
 macro_themes = ensure_macro_theme_count(d.get("macro_themes", []), target=5)
 analysis_ts = d.get("analysis_timestamp_bst", d.get("generated_bst", ""))
 analysis_date_short = short_analysis_date(analysis_ts)
@@ -1289,7 +1513,7 @@ html_text = html_text.replace("__MACRO_THEMES__", build_macro_themes(macro_theme
 html_text = html_text.replace("__CORE_PAIR_CARDS__", build_core_pair_cards(core_pairs))
 html_text = html_text.replace("__TOP5_ROWS__", top5_rows(top5))
 html_text = html_text.replace("__SECONDARY_ROWS__", secondary_rows(secondary))
-html_text = html_text.replace("__AVOID_CARDS__", avoid_cards(d.get("avoid", [])))
+html_text = html_text.replace("__AVOID_CARDS__", avoid_cards(avoid))
 html_text = html_text.replace("__RISK_CALENDAR_ROWS__", risk_calendar_rows(d.get("risk_calendar", [])))
 html_text = html_text.replace("__WHAT_CHANGED__", what_changed_rows(d.get("what_changed", [])))
 html_text = html_text.replace("__BOND_YIELDS_ROWS__", bond_yields_rows(d.get("bond_yields", [])))
