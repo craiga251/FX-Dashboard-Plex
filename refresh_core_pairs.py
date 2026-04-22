@@ -588,7 +588,7 @@ def enrich_payload(payload, rates_raw):
 
 def main():
     if not API_KEY:
-        raise SystemExit("Missing GEMINI_API_KEY environment variable")
+        raise SystemExit("Missing GEMINI_API_KEY or PPLX_API_KEY environment variable")
     if CLIENT is None:
         raise SystemExit("Unable to initialize OpenAI-compatible Gemini client")
 

@@ -217,7 +217,7 @@ def clean_label(value):
 
 def parse_brief_date(text):
   match = re.search(
-    r"FX\s+INTELLIGENCE\s+DAILY\s+BRIEF\s*[—-]\s*(\d{1,2})\s+([A-Z]+)\s+(\d{4})",
+    r"FX\s+(?:INTELLIGENCE\s+(?:DAILY\s+BRIEF|DASHBOARD)|DAILY\s+DASHBOARD)\s*[—-]\s*(?:[A-Z]+\s+)?(\d{1,2})\s+([A-Z]+)\s+(\d{4})",
     str(text or ""),
     flags=re.IGNORECASE,
   )
@@ -250,11 +250,11 @@ def parse_brief_timestamp(text, machine_payload):
 
 
 def split_numbered_sections(text):
-  matches = list(re.finditer(r"(?m)^\s*(\d+)\.\s+(.+?)\s*$", str(text or "")))
+  matches = list(re.finditer(r"(?m)^\s*(?:#{1,6}\s*)?(\d+)\.\s+(.+?)\s*$", str(text or "")))
   sections = {}
   for index, match in enumerate(matches):
     section_number = int(match.group(1))
-    section_title = clean_line(match.group(2))
+    section_title = clean_line(re.sub(r"\s*#+\s*$", "", match.group(2)))
     body_start = match.end()
     body_end = matches[index + 1].start() if index + 1 < len(matches) else len(text)
     sections[section_number] = {
@@ -264,10 +264,58 @@ def split_numbered_sections(text):
   return sections
 
 
+def split_titled_sections(text):
+  heading_patterns = [
+    ("global macro overview", r"^\s*global\s+macro\s+overview\s*$"),
+    ("core pairs table", r"^\s*core\s+pairs\s+table\s*$"),
+    ("top 5 trade setups", r"^\s*top\s*5\s+trade\s+setups\s*$"),
+    ("avoid / deprioritize list", r"^\s*avoid\s*/\s*depriori(?:t|ti)ze\s+list\s*$"),
+    ("risk and correlation notes", r"^\s*risk\s+(?:and|&)\s+correlation\s+notes\s*$"),
+    ("event calendar", r"^\s*event\s*/?\s*calendar(?:\s*section)?(?:\s*\(.*\))?\s*$"),
+    ("trading checklist", r"^\s*trading\s+checklist\s*$"),
+    ("json summary", r"^\s*(?:machine-?readable\s+)?json\s+summary\s*$"),
+  ]
+
+  def normalize_heading_line(line):
+    value = clean_line(line)
+    value = re.sub(r"^#{1,6}\s*", "", value)
+    value = re.sub(r"^\d+\.\s*", "", value)
+    value = re.sub(r"\s*#+\s*$", "", value)
+    return value
+
+  lines = str(text or "").splitlines()
+  found = []
+  for idx, line in enumerate(lines):
+    normalized = normalize_heading_line(line)
+    for key, pattern in heading_patterns:
+      if re.match(pattern, normalized, flags=re.IGNORECASE):
+        found.append((idx, key))
+        break
+
+  if not found:
+    return {}
+
+  sections = {}
+  for i, (start_idx, key) in enumerate(found):
+    body_start = start_idx + 1
+    body_end = found[i + 1][0] if i + 1 < len(found) else len(lines)
+    body = "\n".join(lines[body_start:body_end]).strip()
+    sections[key] = body
+  return sections
+
+
 def split_paragraphs(text):
+  raw = str(text or "")
+  bullet_lines = [
+    clean_line(re.sub(r"^[-*•]\s+", "", line.strip()))
+    for line in raw.splitlines()
+    if re.match(r"^\s*[-*•]\s+", line)
+  ]
+  if bullet_lines:
+    return [line for line in bullet_lines if line]
   return [
     clean_line(chunk)
-    for chunk in re.split(r"\n\s*\n", str(text or ""))
+    for chunk in re.split(r"\n\s*\n", raw)
     if clean_line(chunk)
   ]
 
@@ -335,6 +383,65 @@ def build_manual_macro_sections(text):
     "macro_themes": macro_themes,
     "what_changed": what_changed,
   }, paragraphs
+
+
+def build_brief_commodities(overview_text):
+  text = str(overview_text or "")
+  items = []
+
+  dxy_match = re.search(r"\bDXY\b[^\d]*(\d{2,3}(?:\.\d+)?)", text, flags=re.IGNORECASE)
+  if dxy_match:
+    items.append({
+      "name": "US Dollar Index",
+      "ticker": "DXY",
+      "value": dxy_match.group(1),
+      "change": "Brief snapshot",
+      "context": "Derived from macro overview",
+      "context_class": "neutral",
+    })
+
+  oil_match = re.search(r"\b(?:WTI|Brent|oil)\b[^\d]{0,40}(\d{2,3}(?:\.\d+)?)", text, flags=re.IGNORECASE)
+  if oil_match:
+    items.append({
+      "name": "Crude Oil",
+      "ticker": "WTI",
+      "value": oil_match.group(1),
+      "change": "Brief snapshot",
+      "context": "Energy risk signal",
+      "context_class": "neutral",
+    })
+
+  return items
+
+
+def build_brief_bond_yields(overview_text):
+  text = str(overview_text or "")
+  rows = []
+
+  us_10y_match = re.search(r"US\s+10[- ]year\s+yield[^\d]*(\d+\.\d+)(?:\s*[–-]\s*(\d+\.\d+))?%", text, flags=re.IGNORECASE)
+  if us_10y_match:
+    low = us_10y_match.group(1)
+    high = us_10y_match.group(2)
+    yield_text = f"{low}-{high}%" if high else f"{low}%"
+    rows.append({
+      "country": "US",
+      "yield": yield_text,
+      "trend": "Brief",
+      "cb_rate": "",
+      "cb_note": "Fed on hold",
+    })
+
+  boj_match = re.search(r"BoJ[^\d]{0,80}(\d+\.\d+)%", text, flags=re.IGNORECASE)
+  if boj_match:
+    rows.append({
+      "country": "Japan",
+      "yield": "",
+      "trend": "Brief",
+      "cb_rate": boj_match.group(1) + "%",
+      "cb_note": "Policy rate",
+    })
+
+  return rows
 
 
 def parse_machine_pairs(machine_payload):
@@ -480,7 +587,15 @@ def build_machine_trade_overrides(machine_payload, raw_text):
 
 
 def split_table_columns(line):
-  return [part.strip() for part in re.split(r"\t+|\s{2,}", str(line or "").strip()) if part.strip()]
+  raw = str(line or "").strip()
+  if not raw:
+    return []
+  if "|" in raw:
+    trimmed = raw.strip().strip("|")
+    if not trimmed:
+      return []
+    return [part.strip() for part in trimmed.split("|") if part.strip()]
+  return [part.strip() for part in re.split(r"\t+|\s{2,}", raw) if part.strip()]
 
 
 def parse_bias_field(value):
@@ -497,10 +612,16 @@ def parse_core_pairs_table(text, machine_pairs):
   confidence_by_pair = {}
   for raw_line in str(text or "").splitlines():
     line = raw_line.strip()
-    if not line or line.lower().startswith("pair"):
+    if not line:
+      continue
+    if re.match(r"^\|?\s*-{2,}", line):
+      continue
+    if clean_line(line).lower().startswith("pair"):
       continue
     columns = split_table_columns(line)
     if len(columns) < 7:
+      continue
+    if clean_line(columns[0]).lower() == "pair":
       continue
     label = columns[0]
     if normalize_pair_code(label) == "DXY":
@@ -515,8 +636,8 @@ def parse_core_pairs_table(text, machine_pairs):
       "bias": bias,
       "live_spot": machine.get("spot", "") or "",
       "day_change_pct": "",
-      "trigger": columns[2],
-      "target": columns[3],
+      "trigger": extract_first_range(columns[2]) or columns[2],
+      "target": extract_first_range(columns[3]) or columns[3],
       "invalidation": columns[4],
       "catalyst": machine.get("notes", ""),
       "confidence_pct": confidence_pct,
@@ -532,7 +653,9 @@ def parse_labeled_block(text):
     line = raw_line.strip()
     if not line:
       continue
-    match = re.match(r"^([A-Z][A-Z/ ]+):\s*(.*)$", line)
+    # Allow optional parenthetical suffix e.g. "CATALYSTS (24-72h):"
+    plain_line = clean_line(re.sub(r"^[\-*]\s*", "", line))
+    match = re.match(r"^(?:\*\*)?([A-Z][A-Z/ ]+?)(?::(?:\*\*)?|(?:\*\*)?\s*:)(?:\s*\([^)]*\))?\s*(.*)$", plain_line)
     if match:
       current_key = match.group(1).strip()
       fields[current_key] = clean_line(match.group(2))
@@ -542,8 +665,31 @@ def parse_labeled_block(text):
   return fields
 
 
+def extract_rr_ratio(text):
+  """Extract a clean ratio like '2.3:1' from verbose R/R text."""
+  match = re.search(r"(\d+(?:\.\d+)?)\s*:\s*1", str(text or ""))
+  if match:
+    return match.group(0)
+  return clean_line(text)
+
+
 def find_top5_headers(text):
   raw_text = str(text or "")
+  md_headers = []
+  md_matches = list(re.finditer(r"(?m)^\s*(?:#{1,6}\s*)?\d+(?:\.\d+)?\s+([A-Z]{3}/[A-Z]{3}|DXY)\s+[–-]\s+(.+?)\s*$", raw_text))
+  for index, match in enumerate(md_matches, 1):
+    pair = clean_line(match.group(1))
+    remainder = clean_line(match.group(2))
+    md_headers.append({
+      "rank": index,
+      "pair": pair,
+      "header": pair + " - " + remainder,
+      "start": match.start(),
+      "body_start": match.end(),
+    })
+  if md_headers:
+    return md_headers
+
   setup_headers = []
   setup_matches = list(re.finditer(r"(?m)^\s*SETUP\s+(\d+)\s*:\s*(.+?)\s*$", raw_text))
   for match in setup_matches:
@@ -556,6 +702,22 @@ def find_top5_headers(text):
     })
   if setup_headers:
     return setup_headers
+
+  numbered_headers = []
+  numbered_matches = list(re.finditer(r"(?m)^\s*(\d+)\)\s*([A-Z]{3}/[A-Z]{3}|DXY)\s+[–-]\s+(.+?)\s*$", raw_text))
+  for match in numbered_matches:
+    rank = int(match.group(1))
+    pair = clean_line(match.group(2))
+    remainder = clean_line(match.group(3))
+    numbered_headers.append({
+      "rank": rank,
+      "pair": pair,
+      "header": pair + " - " + remainder,
+      "start": match.start(),
+      "body_start": match.end(),
+    })
+  if numbered_headers:
+    return numbered_headers
 
   plain_headers = []
   plain_matches = list(re.finditer(r"(?m)^\s*([A-Z]{3}/[A-Z]{3}|DXY)\s+[–-]\s+(.+?)\s*$", raw_text))
@@ -588,10 +750,10 @@ def parse_top5_setups(text, machine_pairs, confidence_by_pair, core_pairs):
     machine = machine_pairs.get(pair, {})
     core_pair = pair_lookup.get(pair, {})
     direction = " - ".join(header_parts[1:]) if len(header_parts) > 1 else clean_line(fields.get("BIAS", "Setup"))
-    entry_zone = core_pair.get("trigger") or machine.get("trigger") or extract_first_range(fields.get("TRIGGER", ""))
-    target_zone = core_pair.get("target") or machine.get("target") or extract_first_range(fields.get("TARGET", ""))
+    entry_zone = extract_first_range(fields.get("TRIGGER", "")) or core_pair.get("trigger") or machine.get("trigger")
+    target_zone = extract_first_range(fields.get("TARGET", "")) or core_pair.get("target") or machine.get("target")
     stop_value = extract_invalidation_level(fields.get("INVALIDATION", "")) or extract_invalidation_level(core_pair.get("invalidation", ""))
-    rr_value = clean_line(fields.get("RISK/REWARD", "")) or clean_line(machine.get("rr", ""))
+    rr_value = extract_rr_ratio(fields.get("RISK/REWARD", "")) or clean_line(machine.get("rr", ""))
     confidence_pct = confidence_by_pair.get(pair, confidence_to_pct(machine.get("confidence", 3)))
     if pair:
       setup_pairs.add(pair)
@@ -637,10 +799,18 @@ def parse_avoid_list(text):
       continue
     match = re.match(r"^([A-Z]{3}/[A-Z]{3}|DXY)\s*:\s*(.+)$", line)
     if not match:
+      # Accept headings like "DXY as a direct trade: ..."
+      match = re.match(r"^([A-Z]{3}/[A-Z]{3}|DXY)\b[^:]*:\s*(.+)$", line)
+    if not match:
+      # Accept markdown bullets: "- **GBP/USD:** ..."
+      match = re.match(r"^[-*]\s*\*\*([A-Z]{3}/[A-Z]{3}|DXY):?\*\*\s*(.+)$", line)
+    if not match:
       continue
+    reason = clean_line(match.group(2))
+    reason = re.sub(r"^:\s*", "", reason)
     avoid.append({
       "pair": match.group(1),
-      "reason": clean_line(match.group(2)),
+      "reason": reason,
     })
   return avoid
 
@@ -654,29 +824,124 @@ def infer_calendar_impact(event_name, risk_skew):
   return "Medium"
 
 
+def infer_calendar_ccy(assets_text):
+  assets = clean_line(assets_text).upper()
+  match = re.search(r"\b(EUR|GBP|USD|JPY|CHF|CAD|AUD|NZD|DXY)\b", assets)
+  return match.group(1) if match else "MKT"
+
+
+def parse_calendar_date_time(value):
+  cell = clean_line(value).replace("*", "")
+  if not cell:
+    return "", "TBC"
+
+  comma_match = re.match(r"^(.+?),\s*(\d{1,2}:\d{2}\s*[A-Za-z]+)$", cell)
+  if comma_match:
+    return clean_line(comma_match.group(1)), clean_line(comma_match.group(2)).upper()
+
+  # Supports rows like "Wed 22 Apr 07:00", "Thu 23 Apr ~13:30", "Today ~15:00"
+  time_match = re.search(r"(~?\d{1,2}:\d{2}(?:\s*[A-Za-z]+)?)", cell)
+  if time_match:
+    raw_time = clean_line(time_match.group(1)).replace("~", "")
+    date_part = clean_line(cell[:time_match.start()]).rstrip("- ,")
+    return (date_part or "TBC"), raw_time.upper()
+
+  date_match = re.match(r"^(.*?)(?:\s+[–-]\s+(.+))?$", cell)
+  date_bst = clean_line(date_match.group(1)) if date_match else cell
+  time_bst = clean_line(date_match.group(2)) if date_match and date_match.group(2) else "TBC"
+  return date_bst, time_bst
+
+
 def parse_calendar(text):
   rows = []
-  for raw_line in str(text or "").splitlines():
-    line = raw_line.strip()
-    if not line or line.lower().startswith("time"):
-      continue
-    columns = split_table_columns(line)
-    if len(columns) < 5:
-      continue
-    date_time = columns[0]
-    date_match = re.match(r"^(.*?)(?:\s+[–-]\s+(.+))?$", date_time)
-    date_bst = clean_line(date_match.group(1)) if date_match else date_time
-    time_bst = clean_line(date_match.group(2)) if date_match and date_match.group(2) else "TBC"
-    event = columns[1]
-    expected = columns[3]
-    risk_skew = columns[4]
+  pending = None
+
+  def push_pending():
+    nonlocal pending
+    if not pending:
+      return
+    event = clean_line(pending.get("event", ""))
+    expected = clean_line(pending.get("expected", ""))
+    risk_skew = clean_line(pending.get("risk_skew", ""))
+    assets = clean_line(pending.get("assets", ""))
     rows.append({
-      "date_bst": date_bst,
-      "time_bst": time_bst,
-      "event": f"{event} ({expected})",
-      "ccy": columns[2],
+      "date_bst": pending.get("date_bst", ""),
+      "time_bst": pending.get("time_bst", "TBC"),
+      "event": f"{event} ({expected})" if expected else event,
+      "ccy": pending.get("ccy", infer_calendar_ccy(assets)),
       "impact": infer_calendar_impact(event, risk_skew),
     })
+    pending = None
+
+  def append_pending(parts):
+    nonlocal pending
+    if not pending or not parts:
+      return
+    chunks = [clean_line(part) for part in parts if clean_line(part)]
+    if not chunks:
+      return
+    if not pending.get("assets"):
+      pending["assets"] = chunks[0]
+      pending["ccy"] = infer_calendar_ccy(chunks[0])
+      if len(chunks) > 1 and not pending.get("expected"):
+        pending["expected"] = chunks[1]
+      if len(chunks) > 2:
+        pending["risk_skew"] = clean_line((pending.get("risk_skew", "") + " " + " ".join(chunks[2:])).strip())
+      return
+    if not pending.get("expected"):
+      pending["expected"] = chunks[0]
+      if len(chunks) > 1:
+        pending["risk_skew"] = clean_line((pending.get("risk_skew", "") + " " + " ".join(chunks[1:])).strip())
+      return
+    pending["risk_skew"] = clean_line((pending.get("risk_skew", "") + " " + " ".join(chunks)).strip())
+
+  for raw_line in str(text or "").splitlines():
+    line = raw_line.strip()
+    if not line:
+      continue
+    if line.lower().startswith("time"):
+      continue
+    if re.match(r"^\*+", line) or line.lower().startswith("times based on standard release"):
+      continue
+
+    columns = split_table_columns(line)
+
+    has_date = bool(columns) and bool(re.match(r"^\d{1,2}\s+[A-Za-z]{3}\s+\d{4}", clean_line(columns[0])))
+    has_time_like = bool(columns) and bool(re.search(r"~?\d{1,2}:\d{2}", clean_line(columns[0])))
+    is_new_event = bool(columns) and len(columns) >= 4 and (has_date or has_time_like)
+
+    # Some briefs split a row across multiple lines; capture trailing columns progressively.
+    is_new_event_header = bool(columns) and (has_date or has_time_like)
+    if pending and not is_new_event_header:
+      append_pending(columns if columns else [line])
+      continue
+
+    if not is_new_event_header:
+      continue
+
+    if pending:
+      push_pending()
+
+    date_bst, time_bst = parse_calendar_date_time(columns[0])
+    event = clean_line(columns[1]) if len(columns) > 1 else ""
+    assets = clean_line(columns[2]) if len(columns) > 2 else ""
+    expected = clean_line(columns[3]) if len(columns) > 3 else ""
+    risk_skew = clean_line(columns[4]) if len(columns) > 4 else ""
+    ccy = infer_calendar_ccy(assets)
+
+    pending = {
+      "date_bst": date_bst,
+      "time_bst": time_bst,
+      "event": event,
+      "expected": expected,
+      "risk_skew": risk_skew,
+      "assets": assets,
+      "ccy": ccy,
+    }
+
+  if pending:
+    push_pending()
+
   return rows
 
 
@@ -686,13 +951,23 @@ def parse_correlation_notes(text):
     line = raw_line.strip()
     if not line:
       continue
+    line = clean_line(re.sub(r"^[-*]\s*", "", line))
     match = re.match(r"^([^:]+):\s*(.+)$", line)
-    if not match:
-      continue
-    heading = clean_line(match.group(1))
-    implication = clean_line(match.group(2))
+    if match:
+      heading = clean_line(match.group(1))
+      implication = clean_line(match.group(2))
+    else:
+      heading = "Correlation"
+      implication = line
     parts_match = re.search(r"\(([^)]+)\)", heading)
     pair_b = clean_line(parts_match.group(1)) if parts_match else ""
+    if not pair_b:
+      pairs = re.findall(r"\b[A-Z]{3}/[A-Z]{3}\b", implication)
+      if len(pairs) >= 2:
+        heading = pairs[0]
+        pair_b = pairs[1]
+      elif len(pairs) == 1:
+        heading = pairs[0]
     correlation_match = re.search(r"(>\s*0\.\d+|0\.\d+\+?|inverse)", implication, flags=re.IGNORECASE)
     correlation = correlation_match.group(1) if correlation_match else "Linked"
     notes.append({
@@ -710,12 +985,26 @@ def parse_checklist(text):
     line = clean_line(raw_line)
     if not line:
       continue
+    # Stop checklist parsing if the JSON payload begins.
+    if re.match(r"^(json|\{|\[|\"pairs\"\s*:)", line, flags=re.IGNORECASE):
+      break
+    line = re.sub(r"^(?:[-*•]\s+|\d+[.)]\s+)", "", line)
+    if not line:
+      continue
     items.append({
       "item": line,
       "status": "neutral",
       "notes": "",
     })
   return items
+
+
+def strip_preamble(text):
+  """Strip Perplexity prompt preamble, keeping only the actual content after 'Completed N steps'."""
+  match = re.search(r"(?m)^Completed\s+\d+\s+steps\s*$", text)
+  if match:
+    return text[match.end():].lstrip()
+  return text
 
 
 def parse_daily_brief(text):
@@ -728,14 +1017,81 @@ def parse_daily_brief(text):
     except json.JSONDecodeError:
       machine_payload = {}
 
-  sections = split_numbered_sections(raw_text)
+  content_text = strip_preamble(raw_text)
+  sections = split_numbered_sections(content_text)
   if not sections:
-    return build_machine_trade_overrides(machine_payload, raw_text)
+    titled_sections = split_titled_sections(content_text)
+    if not titled_sections:
+      return build_machine_trade_overrides(machine_payload, raw_text)
+
+    machine_pairs = parse_machine_pairs(machine_payload)
+    base_overrides = build_machine_trade_overrides(machine_payload, raw_text)
+
+    macro_text = titled_sections.get("global macro overview", "")
+    overview_data, _ = build_manual_macro_sections(macro_text)
+    core_pairs, confidence_by_pair = parse_core_pairs_table(titled_sections.get("core pairs table", ""), machine_pairs)
+    top5, setup_pairs = parse_top5_setups(
+      titled_sections.get("top 5 trade setups", ""),
+      machine_pairs,
+      confidence_by_pair,
+      core_pairs,
+    )
+
+    for row in core_pairs:
+      machine = machine_pairs.get(row.get("pair", ""), {})
+      matching_setup = next((item for item in top5 if item.get("pair") == row.get("pair")), None)
+      if matching_setup and matching_setup.get("catalyst"):
+        row["catalyst"] = matching_setup.get("catalyst")
+      elif machine.get("notes"):
+        row["catalyst"] = machine.get("notes")
+      if machine.get("notes"):
+        row["summary"] = machine.get("notes")
+
+    if core_pairs:
+      base_overrides["core_pairs"] = core_pairs
+    if top5:
+      base_overrides["top5"] = top5
+    if core_pairs:
+      base_overrides["secondary"] = build_secondary_from_manual(core_pairs, setup_pairs, machine_pairs)
+
+    avoid_rows = parse_avoid_list(titled_sections.get("avoid / deprioritize list", ""))
+    if avoid_rows:
+      base_overrides["avoid"] = avoid_rows
+
+    corr_rows = parse_correlation_notes(titled_sections.get("risk and correlation notes", ""))
+    if corr_rows:
+      base_overrides["correlation_notes"] = corr_rows
+
+    cal_rows = parse_calendar(titled_sections.get("event calendar", ""))
+    if cal_rows:
+      base_overrides["risk_calendar"] = cal_rows
+
+    checklist_rows_data = parse_checklist(titled_sections.get("trading checklist", ""))
+    if checklist_rows_data:
+      base_overrides["checklist"] = checklist_rows_data
+
+    brief_commodities = build_brief_commodities(macro_text)
+    brief_bond_yields = build_brief_bond_yields(macro_text)
+    if brief_commodities:
+      base_overrides["commodities"] = brief_commodities
+    if brief_bond_yields:
+      base_overrides["bond_yields"] = brief_bond_yields
+    base_overrides["bond_yields_subtitle"] = "From daily brief (latest run)"
+
+    base_overrides.update(overview_data)
+    return {key: value for key, value in base_overrides.items() if value}
 
   machine_pairs = parse_machine_pairs(machine_payload)
-  overview_data, _ = build_manual_macro_sections(sections.get(1, {}).get("body", ""))
+  machine_overrides = build_machine_trade_overrides(machine_payload, raw_text)
+  section_one = sections.get(1, {}).get("body", "")
+  overview_data, _ = build_manual_macro_sections(section_one)
   core_pairs, confidence_by_pair = parse_core_pairs_table(sections.get(2, {}).get("body", ""), machine_pairs)
+  if not core_pairs:
+    core_pairs = machine_overrides.get("core_pairs", [])
   top5, setup_pairs = parse_top5_setups(sections.get(3, {}).get("body", ""), machine_pairs, confidence_by_pair, core_pairs)
+  if not top5:
+    top5 = machine_overrides.get("top5", [])
+    setup_pairs = {row.get("pair", "") for row in top5 if row.get("pair")}
 
   for row in core_pairs:
     machine = machine_pairs.get(row.get("pair", ""), {})
@@ -756,6 +1112,9 @@ def parse_daily_brief(text):
     "correlation_notes": parse_correlation_notes(sections.get(5, {}).get("body", "")),
     "risk_calendar": parse_calendar(sections.get(6, {}).get("body", "")),
     "checklist": parse_checklist(sections.get(7, {}).get("body", "")),
+    "commodities": build_brief_commodities(section_one),
+    "bond_yields": build_brief_bond_yields(section_one),
+    "bond_yields_subtitle": "From daily brief (latest run)",
   }
   overrides.update(overview_data)
   return {key: value for key, value in overrides.items() if value}
@@ -959,7 +1318,7 @@ def rr_html_two_lines(rr_text):
     return s(raw)
   head = raw[:split_at].strip()
   detail = raw[split_at + 1 :].strip()
-  return s(head) + '<br><span class="rr-detail">' + s(detail) + "</span>"
+  return s(head) + ' <span class="rr-detail">' + s(detail) + "</span>"
 
 
 def core_pair_from_top5(item):
@@ -1201,9 +1560,12 @@ def top5_rows(top5):
       t.get("stop", ""),
     )
     rr_html = rr_html_two_lines(rr_text)
+    entry_zone_text = s(t.get("entry_zone", ""))
     out.append(
       '<div class="setup-card rank-'
       + s(rank or 1)
+      + '" data-entry-zone="'
+      + entry_zone_text
       + '">'
       '<div class="setup-row">'
       '<span class="setup-rank">'
@@ -1224,7 +1586,7 @@ def top5_rows(top5):
       + live_spot_text
       + "</span></div>"
       '<div class="setup-field"><span class="sf-label">Entry Zone</span><span class="sf-val">'
-      + s(t.get("entry_zone", ""))
+      + entry_zone_text
       + "</span></div>"
       '<div class="setup-field"><span class="sf-label">Stop</span><span class="sf-val" style="color:var(--red)">'
       + s(t.get("stop", ""))
@@ -1236,7 +1598,7 @@ def top5_rows(top5):
       + rr_html
       + "</span></div>"
       "</div>"
-      '<div class="conf-indicator"><span style="font-size:12px;color:var(--green);font-weight:700">'
+      '<div class="conf-indicator"><span class="trade-alert-badge" data-role="trade-alert">WAITING</span><span style="font-size:12px;color:var(--green);font-weight:700">'
       + s(conf)
       + "%</span></div>"
       "</div>"
@@ -1332,8 +1694,13 @@ def what_changed_rows(changes):
 
 
 def bond_yields_rows(yields):
-  if not yields or len(yields) < 8:
-    yields = SOURCE_BOND_YIELDS
+  if not yields:
+    return (
+      '<div class="data-table-wrap"><table class="data-table">'
+      '<thead><tr><th>Country</th><th>Yield</th><th>Trend</th><th>CB Rate</th></tr></thead>'
+      '<tbody><tr><td colspan="4">No bond-yield snapshot provided in this brief.</td></tr></tbody>'
+      '</table></div>'
+    )
 
   rows = []
   for y in yields:
@@ -1391,6 +1758,13 @@ def bond_yields_rows(yields):
 
 
 def commodities_strip(commodities):
+  if not commodities:
+    return (
+      '<div class="commodity-tile"><div><div class="commodity-name">Commodities</div>'
+      '<div class="commodity-price">-</div></div><div style="text-align:right">'
+      '<div class="commodity-change neutral">Brief-driven</div>'
+      '<div class="commodity-note">No explicit commodity snapshot in this brief</div></div></div>'
+    )
   out = []
   for c in commodities:
     out.append(
@@ -1435,6 +1809,24 @@ def correlation_rows(corr):
       "</tr>"
     )
   return "\n".join(out)
+
+
+def corr_warning_items(corr):
+  if not corr:
+    return '<div class="corr-item">No explicit correlation-warning bullets in this brief.</div>'
+  out = []
+  for item in corr[:3]:
+    pair_a = clean_line(item.get("pair_a", ""))
+    pair_b = clean_line(item.get("pair_b", ""))
+    implication = clean_line(item.get("implication", ""))
+    prefix = pair_a
+    if pair_b:
+      prefix = f"{pair_a} + {pair_b}"
+    text = f"{prefix}: {implication}" if prefix and implication else (implication or prefix)
+    if not text:
+      continue
+    out.append('<div class="corr-item">' + s(text) + '</div>')
+  return "\n".join(out) if out else '<div class="corr-item">No explicit correlation-warning bullets in this brief.</div>'
 
 
 def checklist_rows(checklist):
@@ -1503,6 +1895,17 @@ macro_themes = ensure_macro_theme_count(d.get("macro_themes", []), target=5)
 analysis_ts = d.get("analysis_timestamp_bst", d.get("generated_bst", ""))
 analysis_date_short = short_analysis_date(analysis_ts)
 
+commodities_data = d.get("commodities", [])
+bond_yields_data = d.get("bond_yields", [])
+corr_warning_data = d.get("correlation_notes", [])
+bond_yields_subtitle = d.get("bond_yields_subtitle", "From dashboard data")
+if brief_overrides:
+  # Prefer values explicitly derived from the current brief; avoid carrying stale base JSON.
+  commodities_data = brief_overrides.get("commodities", [])
+  bond_yields_data = brief_overrides.get("bond_yields", [])
+  corr_warning_data = brief_overrides.get("correlation_notes", [])
+  bond_yields_subtitle = brief_overrides.get("bond_yields_subtitle", "From daily brief (latest run)")
+
 html_text = html_text.replace("__ANALYSIS_TIMESTAMP__", s(analysis_ts))
 html_text = html_text.replace("__ANALYSIS_DATE_SHORT__", s(analysis_date_short))
 html_text = html_text.replace("__MARKET_REGIME__", s(d.get("market_regime", "")))
@@ -1516,8 +1919,10 @@ html_text = html_text.replace("__SECONDARY_ROWS__", secondary_rows(secondary))
 html_text = html_text.replace("__AVOID_CARDS__", avoid_cards(avoid))
 html_text = html_text.replace("__RISK_CALENDAR_ROWS__", risk_calendar_rows(d.get("risk_calendar", [])))
 html_text = html_text.replace("__WHAT_CHANGED__", what_changed_rows(d.get("what_changed", [])))
-html_text = html_text.replace("__BOND_YIELDS_ROWS__", bond_yields_rows(d.get("bond_yields", [])))
-html_text = html_text.replace("__COMMODITIES_STRIP__", commodities_strip(d.get("commodities", [])))
+html_text = html_text.replace("__BOND_YIELDS_SUBTITLE__", s(bond_yields_subtitle))
+html_text = html_text.replace("__BOND_YIELDS_ROWS__", bond_yields_rows(bond_yields_data))
+html_text = html_text.replace("__COMMODITIES_STRIP__", commodities_strip(commodities_data))
+html_text = html_text.replace("__CORR_WARNING_ITEMS__", corr_warning_items(corr_warning_data))
 html_text = html_text.replace("__CORRELATION_ROWS__", correlation_rows(d.get("correlation_notes", [])))
 html_text = html_text.replace("__CHECKLIST_ROWS__", checklist_rows(d.get("checklist", [])))
 html_text = cleanup_generated_html(html_text)

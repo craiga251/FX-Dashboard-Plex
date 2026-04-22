@@ -1,364 +1,287 @@
-FX Intelligence Dashboard — Monday 20 April 2026
-Run time: 08:00 BST | Data sourced live from Yahoo Finance & MarketWatch
+FX Daily Dashboard – 22 April 2026 (BST)
+1. Global macro overview
+Risk tone: Equities in the US and Europe slipped on renewed Middle East worries and higher oil, while Asia held up better with Japan leading gains, leaving overall sentiment in a cautious, slightly risk‑on mode rather than full risk‑off. Volatility is contained with the VIX below 20, and S&P futures are modestly higher as markets price an extended US–Iran ceasefire and reduced immediate escalation risk.
 
-Global macro overview
-Risk tone: cautiously risk‑on, Middle East still the swing factor. Optimism that the US–Iran conflict will de‑escalate and that the Strait of Hormuz will remain open has driven a sharp rally in global equities and a powerful rebound in risk assets, with the S&P 500 making fresh record highs in recent weeks. Volatility is off the highs but remains headline‑sensitive around ceasefire negotiations.
+USD & yields: The US Dollar Index (DXY) is hovering around 98.4 after a modest rally earlier in April, with the broader trend still sideways‑to‑firm as markets balance sticky inflation against growing expectations of 2–3 Fed cuts by year‑end. US Treasury yields spiked recently on higher oil and Fed‑watch headlines but have since eased back, and recent jobless‑claims data showing a jump to around 219k versus a 210k forecast has introduced mild concern about labour‑market momentum.
 
-USD: correction within a medium‑term downtrend. The Dollar Index has retreated from late‑March highs near 100.6 and is consolidating around the 98–99 area, with price below its 5/10/20‑day moving averages and the 20‑day average near 99.2, signalling a corrective phase inside a broader medium‑term downtrend. The fundamental backdrop is softer yields and fading safe‑haven demand as oil pulls back on Hormuz reopening headlines.
+Europe & UK: The euro area is seeing manufacturing PMIs holding in expansion territory near the low‑50s, supporting the idea of a fragile but improving growth backdrop that helps EUR on dips. In the UK, February CPI was 3.0% y/y with core at 3.2%, and today’s CPI release is expected around 3.3%, making it the key driver for GBP and Bank of England expectations into the 30 April meeting.
 
-Energy: oil lower, inflation premium fading; helps EUR, GBP, AUD, CAD. WTI has dropped over 7% in the last week to below 79 as markets price a reduced risk of long‑lasting supply disruption after signals that Hormuz shipping can resume during the ceasefire. Lower energy prices temper headline inflation risks, particularly supportive for Europe and the UK, and reduce the “energy shock” bid for USD while still leaving CAD somewhat constrained by weaker crude.
+Antipodeans & commodities: AUD and NZD remain high‑beta risk proxies: AUD/USD is trading in the low‑0.71s after grinding higher within a bullish channel, supported by a relatively hawkish RBA tone and better local data. NZD/USD is near 0.59, underpinned by Q1 inflation at 3.1% y/y versus 2.9% expected, which has markets leaning toward a more hawkish RBNZ path. Oil remains elevated after renewed tensions around the Strait of Hormuz, supporting CAD but also periodically boosting USD via safe‑haven demand.
 
-Rates and central banks: Fed on hold, others relatively hawkish. Markets expect the Fed to keep rates unchanged in the near term with softer PPI data and easing energy prices trimming the case for further hikes, while ING and Scotiabank base‑case forecasts still embed Fed easing later in 2026. In contrast, the RBA remains hawkish given resilient Australian data and firmer China growth, while the BoE is seen hiking modestly more, keeping real‑rate support under AUD and GBP versus USD.
+JPY & CHF: USD/JPY is near cycle highs around 159–160, with the next BoJ meeting on 27–28 April and recent communication pointing to very gradual normalisation, keeping carry trades attractive but raising medium‑term downside risk if US–Japan rate differentials narrow. CHF remains a defensive play; USD/CHF is trading just below 0.78, with medium‑term forecasts tilted slightly softer for the pair as investors continue to value CHF’s safe‑haven status while the dollar consolidates below 100 on DXY.
 
-Regional FX themes (next 24–72h):
+What matters in 24–72h (by currency):
 
-USD: Direction dominated by data (US retail sales Tuesday, PMIs Thursday) and how far DXY can extend below its 20‑day MA before profit‑taking kicks in.[page:usd21]
+USD: Labour‑market tone via Thursday’s jobless claims, global flash PMIs on Thursday, and how equities digest Middle East headlines into the late‑April FOMC meeting.
 
-EUR: Supported by softer USD and lower energy but technically stretched near 1.18 resistance, with multiple houses flagging risk of a pullback toward 1.17–1.16 if momentum stalls.
+EUR: Lagarde’s speech today and Thursday’s Eurozone flash PMIs, which will shape expectations for additional ECB tightening after recent upside surprises in manufacturing surveys.
 
-GBP: Still in an uptrend but consolidating below 1.36; UK CPI on Wednesday is critical for BoE expectations and near‑term sterling direction.[page:gbp]
+GBP: Today’s CPI, Thursday’s UK PMIs, and Friday’s retail sales are the dominant drivers for BoE pricing and GBP volatility.
 
-JPY: Structural yield differentials and BoJ caution keep JPY weak, but intervention risk and range‑trading around 158–160 cap USD/JPY topside for now.
+JPY: Sensitivity to US front‑end yields and risk‑off spikes, plus positioning into next week’s BoJ meeting.
 
-AUD/NZD: Top G10 performers in April as risk sentiment and China data improve; both are in bullish trends with room for tactical pullbacks to be bought.
+AUD/NZD: China‑linked sentiment, broader risk appetite, and follow‑through after strong NZ inflation and resilient Australian data.
 
-CAD: Benefited from earlier oil spike and narrower rate differentials; USDCAD now trades in a 1.35–1.40 range with a mild downside bias as CAD stabilizes around 1.37–1.38 per USD.
+CAD: Oil price swings and any fresh headlines around the Strait of Hormuz, alongside CAD data and BoC expectations.
 
-CHF: USD/CHF is in a structural downtrend, with weekly forecasts pointing to rallies toward 0.80 as selling opportunities while 0.78 acts as a pivotal level.
+CHF: Shifts in risk aversion and DXY direction, with Swiss data secondary.
 
-DXY bias and confluence
-DXY BIAS: BEARISH.
+2. Core pairs table
+(Approximate spot levels; trigger/target zones framed around current price action and recent technical levels.)
 
-BCR’s April 20 daily analysis sees DXY stabilising around 98.2 after a slide from 100.6, still below its 5/10/20‑day moving averages and in a medium‑term downtrend, and explicitly recommends selling the index near 98.3 with stops above 98.45.
+Pair	Bias (Watch / Trade)	Trigger zone	Target zone	Invalidation	R/R	Conf. (1–5)
+EUR/USD	TRADE – Bullish	1.1740–1.1780 (buy dips near 1.1730 support) 
+1.1860–1.1940 (toward recent highs and wedge objective) 
+4H close below 1.1700 (break of near‑term trend support) 
+~2.3	4
+GBP/USD	WATCH – Bullish	1.3435–1.3505 (buy only after CPI volatility settles) 
+1.3660–1.3760 (channel top and prior resistance) 
+Daily close below 1.3365 (channel break and forecast invalidation) 
+~2.1	3
+AUD/USD	TRADE – Light Bullish	0.7130–0.7170 (buy dips within bullish channel) 
+0.7240–0.7300 (recent swing highs/upper channel) 
+4H close below 0.7090 (loss of short‑term trendline) 
+~2.0	3
+NZD/USD	TRADE – Bullish	0.5860–0.5900 (buy into post‑CPI support) 
+0.5960–0.6020 (toward 0.5965–0.6030 resistance band) 
+Daily close below 0.5835 (break of channel base) 
+~2.4	4
+USD/JPY	TRADE – Bearish (fade strength)	159.30–160.00 (sell spikes toward cycle highs) 
+156.50–157.30 (prior swing supports and projected pullback) 
+Daily close above 160.50 (fresh breakout beyond recent peak) 
+~2.8	3
+USD/CHF	WATCH – Range / Mild Bearish	0.7750–0.7820 (fade into upper part of short‑term range) 
+0.7620–0.7550 (move back toward recent lows) 
+Close above 0.7850 (suggests squeeze toward 0.80+) 
+~1.5	2
+USD/CAD	TRADE – Bearish	1.3680–1.3740 (sell rallies within 1.35–1.39 range) 
+1.3560–1.3500 (range floor and recent hammer lows) 
+4H close above 1.3800 (opens path back to 1.39–1.40 highs) 
+~2.0	3
+3. Top 5 trade setups
+3.1 NZD/USD – Long – Buy Dip into Post‑CPI Support
+BIAS: TRADE BULLISH NZD/USD.
 
-Barchart’s technical summary puts the 20‑day moving average around 99.2 versus spot just under 98.5, confirming that DXY trades below its short‑term trend benchmark.
+STRUCTURE: NZD/USD is trading just below 0.59 within a short‑term bullish channel after Q1 CPI printed 3.1% y/y versus 2.9% expected, reinforcing a hawkish RBNZ bias. Price action has respected the 0.5840–0.5860 support zone multiple times, with topside levels around 0.5965–0.6030 highlighted by recent technical work.
 
-Given this, pair‑level “macro bias” should lean USD‑bearish unless clear idiosyncratic factors (e.g. BoJ, SNB, oil) dominate; any aggressive USD‑bullish stance is lower‑conviction and should be sized accordingly.
+TRIGGER: Look to buy in the 0.5860–0.5900 zone on a shallow intraday pullback, ideally accompanied by rejection wicks or a bullish 1H/4H close back above 0.5900.
 
-Multi‑source confluence table (ING, FX Empire focus)
-Institutional confluence is thin today: no timely public daily notes from Scotiabank FX Snapshot or DailyFX, and MUFG’s latest freely available FX outlook is a month‑end piece from March (too old for our 7‑day window). ING provides a April 16 G10 FX “Talking” piece with 1‑month forecasts, and FX Empire offers an April 13 USD‑centric technical review for EUR/USD, GBP/USD, USD/CHF.
+TARGET: Aim for 0.5960–0.6020, aligning with the 0.5965/0.6030 resistance band flagged by recent analyses as the next upside area.
 
-Directional biases (near‑term):
+INVALIDATION: Daily close below 0.5835, which corresponds to the level that would break the bullish channel and invalidate the immediate upside scenario.
 
-Pair	ING (Apr 16, 1M)	FX Empire (Apr 13)	Score*	Confluence Signal
-EUR/USD	Mild BEARISH (1M target 1.17 below recent 1.18)
-Mild BULLISH (recovery toward 1.1833+, but stretched)
-0 (split)	AVOID
-GBP/USD	BEARISH (1M 1.34 vs ~1.355, arrow down)
-BULLISH (break above 1.35, scope toward 1.375)
-0 (split)	AVOID
-AUD/USD	Not explicit; theme supports hawkish central banks (AUD‑positive), but forecast table not visible
-–	0 (n/a)	AVOID
-NZD/USD	–	–	0	AVOID
-USD/JPY	NEUTRAL (1M 159 with flat arrow)
-–	0	AVOID
-USD/CHF	–	BULLISH USDCHF (buy near 0.78 range bottom)
-1	AVOID
-USD/CAD	BEARISH USDCAD (1M 1.36 vs ~1.38, arrow down)
-–	1	AVOID
-*Score = number of sources with the same clear directional view (Bullish/Bearish). With only 2 usable sources total and several splits, all confluence signals are “AVOID” by construction, and Step‑4 rules require us to downgrade any would‑be TRADE signals to WATCH. This drives a conservative stance: our Top 5 ideas are mainly technical + macro rather than consensus “Street trades.”
+RISK/REWARD: From a 0.5880 mid‑trigger, risk to 0.5835 is ~45 pips versus ~110 pips to a 0.5990 mid‑target, implying R/R around 2.4:1.
 
-Core Pairs Table (actionability view)
-This table reflects my tactical view (not the institutional confluence signal), built to be consistent with a BEARISH DXY backdrop unless explicitly justified. Levels are approximate zones for the next 24–72 hours, derived from current price action and recent institutional technicals.
+CATALYSTS: Follow‑through on the NZ CPI surprise, global risk tone (equities/commodities), and USD leg driven by US data and yields over the next two days.
 
-Pair	Bias (our view)	Trigger zone	Target zone	Invalidation	R/R	Conf. (1–5)
-EUR/USD	WATCH – Bearish (sell rallies)	1.1820–1.1860 (prior highs/overbought band)
-1.1680–1.1600 (range mid / 50‑day area)
-4H close above 1.1920	2.5	3
-GBP/USD	WATCH – Bullish (buy dips)	1.3480–1.3520 (support just below 1.35)
-1.3640–1.3740 (recent highs / 1.37 handle)
-4H close below 1.3440	3.0	4
-AUD/USD	WATCH – Bullish (buy dips)	0.7100–0.7140 (short‑term support above 0.71)
-0.7240–0.7300 (recent high / 0.73 psych)
-Daily close below 0.7050	2.0	4
-NZD/USD	WATCH – Bullish (buy dips)	0.5800–0.5850 (pullback towards 0.5745 support zone)
-0.6000–0.6100 (first leg toward 0.6275 weekly target)
-4H close below 0.5740	2.5	3
-USD/JPY	WATCH – Bearish (sell rallies)	159.50–160.00 (top of 158–160 range / key resistance)
-157.20–156.50 (support near 157.25 and 50‑day SMA)
-Daily close above 160.50	3.0	3
-USD/CHF	WATCH – Bearish (sell rallies)	0.7940–0.8000 (corrective bounce toward resistance)
-0.7650–0.7550 (toward 0.7375 weekly extension zone)
-4H close above 0.8050 or daily close above 0.8175	3.0	3
-USD/CAD	WATCH – Bearish (sell rallies)	1.3850–1.3950 (top of 1.37–1.40 range / resistance)
-1.3600–1.3500 (range floor and Wolfe‑wave target)
-Daily close above 1.4025	2.5	3
-Notes:
-
-All “Bullish” labels above mean bullish the base currency (e.g. “Bullish GBP/USD” = bullish GBP vs USD).
-
-Because DXY is below its 20‑day MA and in a corrective phase, all USD‑short setups (long EUR, GBP, AUD, NZD; short USD/CHF, USD/CAD, USD/JPY) are structurally favoured, but EUR/USD is downgraded to WATCH due to crowded long positioning and heavy resistance near 1.18–1.1850 flagged by several technical houses.
-
-Top 5 Trade Setups
-These are the cleanest 5 ideas on risk/reward and macro alignment. All are framed as tactical swing trades over 1–3 days; position sizing and clustering guidance follows in the Risk & Correlation section.
-
-1) GBP/USD – Long – Buy Dip into Support
-BIAS: TRADE BULLISH GBP/USD (within our framework; institutional confluence is split, so treat as moderate conviction).
-
-STRUCTURE: GBP/USD is in a medium‑term uptrend, consolidating after a seven‑week high just above 1.36, with 1.35 acting as a strong pivot and support reinforced by recent moving‑average clusters. US dollar softness and robust UK data keep the broader structure constructive, but the pair is no longer cheap.
-
-TRIGGER: Buy in the 1.3480–1.3520 zone (ideally on a shallow pullback intraday that holds above 1.3470), looking for rejection wicks or bullish 1H/4H candles off that band.
-
-TARGET: First target 1.3640–1.3700, capturing a retest of local highs and the 1.37 psychological round number highlighted by recent technicals.
-
-INVALIDATION: 4H close below 1.3440 (break of last swing low / short‑term trendline); below here, risk shifts to a deeper correction toward the 200‑day SMA near 1.3410.
-
-RISK/REWARD: From mid‑trigger (1.3500) to mid‑target (1.3670) vs 1.3440 stop ≈ 3.0:1.
-
-CATALYSTS (next 72h):
-
-UK labour market data (Tue): wages and unemployment – hotter wages reinforce GBP strength; weak data would undercut the trade.[page:gbp]
-
-UK CPI & core CPI (Wed 02:00 UK time) – a core print above the prior 3.2% y/y would be GBP‑positive; a downside surprise would likely knock GBP/USD back into deeper correction.[page:gbp]
-
-US Retail Sales & Pending Home Sales (Tue 13:30/15:00 BST) – weak US data reinforces USD selling and favours topside follow‑through.[page:usd21]
-
-2) AUD/USD – Long – Buy Trend Support
-BIAS: TRADE BULLISH AUD/USD.
-
-STRUCTURE: AUD/USD has rallied strongly, up over 5% from late‑March lows as risk sentiment improved and the RBA stayed hawkish, with price holding above 0.71 and probing the 0.72 area, its highest since mid‑2022. The pair is in a high‑level consolidation just below 0.72 resistance, with RSI in the 60s but not yet overbought.
-
-TRIGGER: Buy in the 0.7100–0.7140 zone on dips that respect the 9‑day SMA around 0.71 and show intraday basing (e.g. higher lows on 1H).
-
-TARGET: 0.7240–0.7300, aligning with recent swing highs near 0.7197–0.7200 and the next resistance cluster toward 0.7283/0.73.
-
-INVALIDATION: Daily close below 0.7050 (clean break of 0.71 support and short‑term moving‑average stack).
-
-RISK/REWARD: Mid‑trigger 0.7120 to mid‑target 0.7270 vs 0.7050 stop ≈ 2.0:1.
-
-CATALYSTS:
-
-China data / Middle East newsflow: continuation of ceasefire and solid Chinese activity data support the pro‑risk, AUD‑positive narrative.
-
-US Retail Sales / PMIs – softer US data and lower yields favour higher‑beta FX like AUD.[page:usd21][page:usd22]
-
-Local: any surprise in upcoming Q1 Australian CPI (date slightly beyond 72h) can gap AUD; until then, RBA expectations remain firm.
-
-3) USD/JPY – Short – Sell Rallies in 158–160 Range
-BIAS: TRADE BEARISH USD/JPY (USD‑short), but recognise structural USD/JPY uptrend and BoJ risk.
-
-STRUCTURE: USD/JPY is stuck in a broad 158–160 consolidation after a powerful run‑up, with multiple commentaries highlighting the 160–160.4 area as a crucial line where intervention fears and long liquidation are likely. Momentum has slowed, and BCR notes a high‑level consolidation with RSI in the mid‑50s and a cluster of moving‑average support below 158.
-
-TRIGGER: Look to sell in the 159.50–160.00 zone on spikes that fail to close above 160 intraday (e.g. 1H/4H reversal candles), echoing YouTube and forecast guidance that favours shorts near 159–160 for moves toward 157.6.
-
-TARGET: 157.20–156.50, capturing a move toward the 157.25 weekly support and 50‑day SMA near 157.6 and slightly below.
-
-INVALIDATION: Daily close above 160.50, or a convincing break and hold above 160.4 with strong US yield support (would signal the range has resolved higher).
-
-RISK/REWARD: From mid‑trigger 159.75 to mid‑target 156.85 vs 160.50 stop ≈ 3.0:1 (conservatively capped).
-
-CATALYSTS:
-
-US data and yields (Retail Sales, PMIs) – stronger US yields could push USD/JPY through 160; weak data supports the short.[page:usd21][page:usd22]
-
-Middle East / risk sentiment – a sharp risk‑off shock could strengthen JPY, accelerating downside; a strong further risk‑on melt‑up can temporarily support USD/JPY.
-
-BoJ rhetoric & intervention risk: any hint of earlier hikes or MoF intervention talk near 160 is highly JPY‑positive.
-
-4) USD/CHF – Short – Fade Corrective Bounces
-BIAS: TRADE BEARISH USD/CHF (short USD vs CHF).
-
-STRUCTURE: Weekly technicals show USD/CHF in a downtrend, ending last week near 0.7817 with forecasts looking for corrective bounces toward 0.7975 before a renewed decline toward and below 0.7375. FX Empire and DailyForex note this 0.78 area as a major former resistance now acting as support, but the broader narrative (weaker USD, resilient CHF safe‑haven demand) favours selling rallies rather than building fresh longs.
-
-TRIGGER: Sell bounces into 0.7940–0.8000, ideally on signs of exhaustion (e.g. rejection wicks or bearish divergence) after a short‑covering move off 0.78.
-
-TARGET: 0.7650–0.7550, the first leg within a broader weekly projection toward 0.7375.
-
-INVALIDATION: 4H close above 0.8050 or, more structurally, any daily close above 0.8175, which weekly analysis flags as the level that would cancel the near‑term downside scenario.
-
-RISK/REWARD: Mid‑trigger 0.7970 to mid‑target 0.7600 vs 0.8050 stop ≈ 3.0:1 (rounded down from a higher raw ratio).
-
-CATALYSTS:
-
-Broad DXY drift lower – continued dollar weakness on softer US data and easing inflation risks is CHF‑positive.
-
-Risk sentiment – any flare‑up in the Middle East or global risk‑off move would further boost CHF safe‑haven demand.
-
-SNB communications – while the SNB dislikes excessive CHF strength, there is no immediate signal of intervention at current levels.
-
-5) USD/CAD – Short – Sell Rallies Toward Range Highs
+3.2 USD/CAD – Short – Sell Rallies toward Range Highs
 BIAS: TRADE BEARISH USD/CAD.
 
-STRUCTURE: Multiple analyses describe USDCAD as range‑bound between roughly 1.35 and 1.40, with a short‑term bearish bias as CAD has recovered on improved risk sentiment and earlier oil strength, even as the pair remains choppy. Forecasts for the week of April 20–24 favour a corrective bounce toward 1.3995 within a larger descending channel before a continuation lower toward 1.3345.
+STRUCTURE: USD/CAD is holding just above 1.3650 after recent declines, with price capped below the 1.39–1.40 range highs and oscillating in a broad 1.35–1.39 consolidation. Recent commentary highlights the pair as caught between elevated oil prices (CAD‑positive) and safe‑haven demand for USD on Iran tensions, producing heavy price action on rallies.
 
-TRIGGER: Look to sell into 1.3850–1.3950, aligning with the upper part of the 1.37–1.40 range and resistance near the 100‑day EMA around 1.375–1.38 plus the Bollinger upper band around 1.38–1.39.
+TRIGGER: Prefer to sell in the 1.3680–1.3740 zone on intraday spikes, especially if price stalls with rejection candles or momentum divergence against prior minor highs.
 
-TARGET: 1.3600–1.3500, corresponding to the lower half of the broader 1.35–1.40 range and aligning with the bearish Wolfe Wave pattern’s initial target region.
+TARGET: First target 1.3560, then extension toward 1.3500 if oil stays firm and risk sentiment improves, in line with the lower end of the recent range and areas flagged as support in prior analysis.
 
-INVALIDATION: Daily close above 1.4025, which RoboForex and Forex24 cite as a key upside extension level that would invalidate the near‑term bearish structure.
+INVALIDATION: 4H close above 1.3800, which would put the 1.39–1.40 range highs back in play and negate the immediate short‑bias.
 
-RISK/REWARD: Mid‑trigger 1.3900 to mid‑target 1.3550 vs 1.4025 stop ≈ 2.5:1.
+RISK/REWARD: From a mid‑trigger 1.3710, risk to 1.3800 is ~90 pips against ~180 pips to a 1.3530 mid‑target, giving R/R around 2:1.
 
-CATALYSTS:
+CATALYSTS: Oil headlines linked to Middle East developments, Canadian data and BoC expectations, and US labour and PMI data that drive the USD leg.
 
-US data (Retail Sales, PMIs) – weak US prints are CAD‑supportive via softer USD and yields.[page:usd21][page:usd22]
+3.3 EUR/USD – Long – Buy Dip in Upward‑Sloping Range
+BIAS: TRADE BULLISH EUR/USD.
 
-Oil and inventory data – EIA crude inventory on Wednesday can move WTI and thus CAD; further normalisation in oil post‑Hormuz reopening keeps CAD supported but caps upside from energy.[page:usd22]
+STRUCTURE: EUR/USD is trading around the mid‑1.17s after a Q1 grind higher, with recent commentary pointing to a bullish channel supported near 1.1690–1.1730 and upside potential toward the 1.19–1.20 area if resistance near the low‑1.18s breaks. The euro has found some support from better‑than‑expected manufacturing PMIs and growing expectations of further ECB tightening.
 
-BoC vs Fed rhetoric – with the Fed expected to ease in 2026 and the BoC broadly neutral‑to‑slightly‑hawkish over the medium term, rate differentials lean toward mild CAD strength.
+TRIGGER: Buy pullbacks into 1.1740–1.1780, especially if 1H/4H charts show higher‑low structures and EUR holds up well after today’s Lagarde speech and Thursday’s flash PMIs.
 
-Avoid / Deprioritize list
-Pairs where I’d either stand aside or treat any ideas as low priority / small size:
+TARGET: Target 1.1860–1.1940, consistent with recent resistance and technical projections (wedge/channeled move) toward the 1.19 handle.
 
-EUR/USD: Strong rally has taken the pair into 1.18 resistance, with multiple analyses noting repeated failures near 1.18–1.1850 and signalling risk of a pullback toward 1.17 or lower. Institutional views are split (ING mildly bearish near‑term, FX Empire mildly bullish), so the directional edge is weak; prefer tactical, short‑term fades rather than core positions.
+INVALIDATION: 4H close below 1.1700, which would break short‑term trend support and suggest a deeper correction back toward mid‑1.16s.
 
-NZD/USD (for new risk, given AUD exposure): Structure is bullish, but it is highly correlated with AUD/USD and already near 0.588 after a strong run, with forecasts calling for a corrective dip toward 0.5745 before another leg up. If you already have AUD risk on, treat additional NZD longs as additive, not independent.
+RISK/REWARD: From an indicative 1.1760 entry, downside to 1.1700 is ~60 pips versus ~140 pips upside to a 1.1900 mid‑target, implying R/R around 2.3:1.
 
-Cross‑driven exposures (not in main list, but relevant): Crosses like EUR/GBP and AUD/JPY look interesting but are dominated by regional data (UK CPI, BoJ risk) and the Middle East narrative; adding them now would over‑concentrate risk in already crowded themes.
+CATALYSTS: ECB President Lagarde’s remarks later today, Eurozone flash PMIs on Thursday, and US data/yields shaping the USD leg.
 
-Risk & correlation notes
-Assume a generic FX portfolio with max 1% risk per trade, 3% total, and treat correlation explicitly:
+3.4 USD/JPY – Short – Fade High‑160s with Carry Caution
+BIAS: TRADE BEARISH USD/JPY (tactical fades), but respect strong carry and BoJ timing.
 
-USD‑major cluster (EUR/USD, GBP/USD, AUD/USD, NZD/USD, USD/CHF, USD/CAD, USD/JPY): All Top 5 trades are effectively short USD, so they are positively correlated; treat the whole USD‑short complex as one macro bet driven by DXY and US yields. Risk‑manage as if you had one large DXY short broken into legs, not as five separate, uncorrelated trades.
+STRUCTURE: USD/JPY is holding near cycle highs around 159–160, with short‑term analyses still highlighting an uptrend but also pointing to potential corrective dips toward 158.95 support before any renewed push above 160.65. With the BoJ meeting due 27–28 April and US yields off recent peaks, the risk‑reward increasingly favours tactical downside while acknowledging that the broader carry trend remains bullish.
 
-Antipodeans (AUD/USD, NZD/USD): These two are highly correlated, both sensitive to China, commodities and global risk sentiment. If you are long AUD/USD, size any NZD/USD long at most half‑risk or avoid it; do not allocate full 1% risk to both simultaneously.
+TRIGGER: Look to sell into 159.30–160.00 on intraday spikes that fail to hold above prior highs, with confirmation from 1H/4H reversal candles or momentum divergence.
 
-Commodity‑linked FX (AUD, NZD, CAD): AUD and NZD benefit from broader risk and China stories, while CAD adds a strong oil component, making it partially independent. Holding AUD/USD long and USD/CAD short is reasonable, but consider capping combined risk in this “commodity bucket” to ~1.5–2% of capital.
+TARGET: First target around 157.30, with scope to 156.50 if US yields soften further or a risk‑off episode briefly supports JPY and unwinds carry.
 
-Safe‑haven cluster (JPY, CHF vs USD): Both JPY and CHF benefit from risk‑off / lower‑yield environments, but CHF is more tightly linked to European risk while JPY is dominated by rate differentials and BoJ policy. If you run both USD/JPY shorts and USD/CHF shorts, treat them as moderately correlated; size each at ~0.5–0.7% to keep combined haven‑risk within limits.
+INVALIDATION: Daily close above 160.50, indicating a fresh breakout and raising the risk of a squeeze into new highs.
 
-Cross‑asset correlations:
+RISK/REWARD: From a notional 159.65 entry, risk to 160.50 is ~85 pips versus ~235 pips to a 157.30 mid‑target, implying R/R near 2.8:1.
 
-Oil ↔ CAD: Further declines in WTI as Hormuz normalises would normally weigh on CAD, but the current story mixes lower oil with softer USD, partially offsetting effects; monitor WTI and EIA inventories if you’re in USDCAD.[page:usd22]
+CATALYSTS: Moves in US front‑end yields, global risk sentiment (equities/credit), and positioning into next week’s BoJ policy decision.
 
-Equities ↔ JPY: High and rising risk appetite (S&P at records) tends to support USD/JPY; any abrupt equity sell‑off or ceasefire breakdown could quickly strengthen JPY and accelerate downside in USD/JPY.
+3.5 AUD/USD – Long – Buy Dip, Trade Data‑Driven Bounces
+BIAS: TRADE LIGHTLY BULLISH AUD/USD (smaller size given geopolitical beta).
 
-Practical sizing guidance:
+STRUCTURE: AUD/USD recently tested the 0.7150–0.7165 area after a persistent grind higher, with weekly analysis emphasising a bullish channel and scope for only a shallow correction before another leg up. The pair is sensitive to risk appetite and oil/geopolitics, with recent moves showing AUD weakness on escalations but quick rebounds when ceasefire headlines and equities stabilise.
 
-If you take GBP/USD long + AUD/USD long + USD/CAD short, treat that as ~3 legs of the same USD‑short theme; consider 0.7–0.8% risk each so total USD‑short risk is ~2–2.4%, leaving some room for a smaller USD/JPY or USD/CHF short.
+TRIGGER: Buy dips into 0.7130–0.7170 when risk tone is not aggressively risk‑off (equities stable, vol contained) and local data/China headlines are not deteriorating.
 
-Avoid being simultaneously long AUD, NZD and CAD all at 1% risk – pick 2 of the 3 or cut each to ~0.5% risk.
+TARGET: Target 0.7240–0.7300, corresponding to recent swing highs and the upper edge of the short‑term rising channel.
 
-Event / calendar section (today + next 2 days)
-Key macro events affecting the seven major pairs (times approx. in BST):
+INVALIDATION: 4H close below 0.7090, which would break the near‑term trendline and increase the odds of a deeper correction toward the high‑0.69s.
 
-Time (BST)	Event & Date	Assets most impacted	Expected vs prior (where available)	Risk skew / comment
-Mon 20, 02:35	Japan Tertiary Activity Index (Feb)
-USD/JPY	Prior −0.4% m/m; forecasts not highlighted	Weak services activity is JPY‑positive at the margin but secondary vs US yields and Middle East headlines.
-Mon 20, Asian session	NZ March Trade Data (already released)
-NZD/USD	NZD 698m surplus vs prior deficit; detailed forecasts vary	Surplus reinforces NZD resilience; downside risk to NZD if subsequent data disappoint or global risk turns.
-Tue 21, 07:00	UK Labour Market: Jobless Claims, Avg Earnings, ILO Unemployment (Feb)[page:gbp]	GBP/USD	Prior: earnings ~3.8–3.9% y/y, unemployment 5.2%	Strong wages, tight labour → GBP‑positive, supports BoE hikes; softening data would weigh on GBP.
-Tue 21, 13:30	US Retail Sales (Mar, headline & ex‑auto)[page:usd21]	All USD pairs	Prior: +0.6% m/m headline, +0.5% ex‑auto	Weak sales (below prior/consensus) are USD‑negative and support our USD‑short bias; strong data would temper DXY downside.
-Tue 21, 15:00	US Pending Home Sales (Mar)[page:usd21]	All USD pairs	Prior: +1.8% m/m	Upside surprise supports USD modestly via growth channel; weak housing adds to USD‑bearish narrative.
-Wed 22, 07:00	UK CPI, Core CPI, PPI (Mar)[page:gbp]	GBP/USD, EUR/GBP	Prior headline 3.0% y/y, core 3.2%	Higher‑than‑prior CPI (esp. core) is clearly GBP‑positive (hawkish BoE); soft CPI would hurt GBP and favour EUR/GBP upside.
-Wed 22, 15:30	US EIA Crude Oil Inventories (week to Apr 17)[page:usd22]	USD/CAD, CAD crosses, to lesser extent USD majors	Prior 463.8m barrels	Big builds (higher stocks) are oil‑bearish and CAD‑negative; draws support oil and CAD, favouring USDCAD downside.
-Thu 23, 13:30 (just beyond 72h but important)	US Weekly Jobless Claims, PMIs (Flash Apr)[page:usd22]	All USD pairs	Prior initial claims 207k; PMIs: manu 52.3, services 49.8	Higher claims / weaker PMIs → USD‑negative; strong data could spark short‑covering in USD.
-Trading checklist (for today’s ideas)
-Only trade Top 5 setups when price is inside the defined trigger zone (or very close with confirming price action); do not chase breakouts far from those levels.
+RISK/REWARD: From a 0.7150 mid‑trigger, risk to 0.7090 is ~60 pips versus ~115 pips to a 0.7265 mid‑target (R/R ~1.9:1).
 
-Respect invalidation levels absolutely – if a daily/4H close breaches the invalidation line, exit and do not re‑enter in the same direction until a fresh setup forms.
+CATALYSTS: Australian and China data, global risk sentiment, and USD moves around Thursday’s PMIs and jobless‑claims data.
 
-Scale risk across correlated USD‑short positions: treat GBP/USD, AUD/USD and USD/CAD as one macro USD trade; cap combined risk accordingly.
+4. Avoid / deprioritise list
+GBP/USD – Deprioritise until after CPI reaction: The pair trades near 1.35 within a bullish channel, but today’s UK CPI at 06:00, followed by PMIs and retail sales later this week, creates a cluster of binary data risk that can easily produce whipsaws around technical levels. Treat full‑size directional trades as lower priority until post‑CPI price action settles and the market has digested the BoE implications.
 
-Watch DXY vs its 20‑day MA (~99.2) and 98 support: as long as DXY stays below the 20‑day and above 97.8, the core USD‑bearish bias holds but is still a correction within range rather than a full‑blown trend.
+USD/CHF – Avoid aggressive positions: USD/CHF is stuck near 0.78 with medium‑term forecasts only mildly softer and weekly technicals pointing to overlapping corrective price action between roughly 0.775 and 0.80. With CHF mainly reacting to risk‑off episodes and the USD leg being driven by broader DXY dynamics, risk‑reward is less compelling than in cleaner trending pairs like USD/JPY, NZD/USD, or USD/CAD.
 
-Be cautious adding new risk immediately before key data prints (UK labour/CPI, US Retail Sales, PMIs); either wait for the release or reduce size ahead of time unless already well in profit.
+5. Risk and correlation notes
+Correlation clusters: AUD/USD and NZD/USD are highly correlated, both behaving as high‑beta, China‑ and risk‑sensitive G10 commodities currencies; taking both NZD long and AUD long is effectively a leveraged bet on the same macro theme. EUR/USD and GBP/USD are both heavily driven by European data and ECB/BoE expectations this week, so joint exposure behaves like one “Europe vs USD” trade around PMIs and UK CPI.
 
-Align intraday timing with the higher‑timeframe structure: favour entries that match both daily trend and 1H/4H confirmation (e.g. buy AUD/USD dips that hold above 0.71 and show higher lows).
+Bucketed risk caps: For a max 3% total portfolio risk, if you run both NZD/USD and AUD/USD longs, consider capping combined risk to 1.5–2.0% (e.g., 1.0% NZD, 0.5–1.0% AUD) rather than 1% each, to reflect their high correlation. For USD/JPY shorts plus EUR/USD longs (both partly “short USD” expressions), aim for a combined 2% risk cap unless their triggers are staggered and macro drivers diverge meaningfully.
 
-Avoid over‑trading EUR/USD today: institutional views are split and price is at major resistance; prioritise cleaner setups (GBP, AUD, CAD, CHF, JPY) unless you see very clear price action at your trigger.
+Cross‑asset linkages: CAD exposure via USD/CAD is tightly linked to oil and Middle East headlines; a large USD/CAD short combined with AUD/NZD longs produces a sizeable “pro‑risk and pro‑commodities” tilt that should be sized accordingly. JPY shorts (or lack of JPY longs) leave the portfolio more vulnerable to a sudden risk‑off shock, so pairing USD/JPY shorts with at least one risk‑on G10 long (e.g., NZD/USD) can help balance the overall macro profile.
 
-Machine‑readable JSON summary
+Event‑risk correlation: UK CPI, PMIs, and retail sales cluster GBP volatility, but they will also spill over into EUR/USD and DXY via broader European and global growth expectations. Similarly, Thursday’s PMIs and US jobless‑claims data can simultaneously affect EUR/USD, GBP/USD, and USD/JPY, so avoid having maximum size in all three around release times.
+
+6. Event / calendar section (today + next 2 days)
+(Times approximate BST; assumptions on timing follow standard release conventions where not explicitly stated.)
+
+Time (BST)	Event	Assets most impacted	Expected vs prior	Risk skew
+Wed 22 Apr – 06:00	UK CPI & Core CPI (Mar)	GBP/USD, EUR/GBP, GBP crosses	Headline ~3.3% vs 3.0% prior; core 3.2% vs 3.2% prior (market chatter/ONS last print) 
+GBP‑positive if headline and core beat; GBP‑negative if both undershoot and BoE hike odds fade.
+Wed 22 Apr – 17:30	ECB President Lagarde speech	EUR/USD, EUR crosses	No numeric forecast; follows strong recent PMIs 
+Hawkish tone (focus on inflation risks and possible further hikes) supports EUR; dovish emphasis on growth risks weighs on EUR.
+Thu 23 Apr – 09:00	Eurozone Flash Manufacturing PMI (Apr)	EUR/USD, EUR/JPY	Forecast 50.7 vs 51.6 prior, still in expansion 
+EUR‑negative if undershoots and drops toward/below 50; EUR‑positive if it holds above or beats 50.7.
+Thu 23 Apr – 08:30	UK Flash PMIs (Manufacturing, Services, Composite)	GBP/USD, EUR/GBP	Consensus not clearly published; prior composite ~50.3, manufacturing near low‑50s, services near low‑50s 
+GBP‑positive if all readings clear 50 and beat prior; GBP‑negative if composite slips further below 50.
+Thu 23 Apr – 13:30	US Initial Jobless Claims	DXY, EUR/USD, USD/JPY, USD majors	Prior ~219k vs 210k expected; latest consensus for this week not clearly stated 
+USD‑negative if claims surprise higher again, hinting at labour softening; USD‑supportive if they fall back toward earlier lows.
+Fri 24 Apr – 07:00	UK Retail Sales (Mar)	GBP/USD, UK‑sensitive crosses	Trading Economics expects around +0.2% m/m vs ‑0.4% prior 
+GBP‑positive if sales beat and confirm resilient consumption; GBP‑negative if another weak print fuels growth worries.
+Fri 24 Apr – 00:50	Japan Services Producer Price Index (Mar)	USD/JPY, JPY crosses	No clear consensus; follows steady prior prints 
+JPY‑positive if services inflation overshoots and reinforces BoJ normalisation narrative ahead of Apr 27–28 meeting; JPY‑negative if soft.
+7. Trading checklist for today
+Only engage with the Top 5 setups if price is trading inside or very near the defined trigger zones; avoid chasing moves that have already reached target areas.
+
+Respect invalidation levels strictly: if an invalidation price or daily/4H close condition is met, treat the idea as dead rather than re‑entering immediately in the same direction.
+
+Stay especially disciplined around UK CPI (06:00 BST) and Lagarde’s speech, flattening or materially reducing GBP‑ and EUR‑sensitive exposure ahead of the releases unless trades are already well in profit.
+
+For highly correlated positions (e.g., NZD/USD long plus AUD/USD long), size each trade so combined risk in that bucket does not exceed your intended single‑trade max (1% in this framework).
+
+Use smaller initial size in USD/JPY shorts given strong carry; consider scaling in only if price action confirms a reversal (failed high or clear 4H rejection).
+
+Check that total open risk across all trades does not exceed the 3% portfolio cap, especially when multiple USD‑legs are active around US data.
+
+Review cross‑asset tone (equities, oil, credit spreads) at the start of your session; if markets flip sharply risk‑off or risk‑on, reassess whether your directional biases in high‑beta FX (AUD, NZD, CAD) still make sense.
+
+8. JSON summary for dashboard integration
 json
 {
   "pairs": [
     {
       "pair": "EURUSD",
-      "bias": "WATCH_BEARISH",
-      "direction": "Short",
-      "spot": 1.1760,
-      "trigger_low": 1.1820,
-      "trigger_high": 1.1860,
-      "target_low": 1.1680,
-      "target_high": 1.1600,
-      "invalidation": 1.1920,
-      "rr": 2.5,
-      "confidence": 3,
-      "notes": "Sell rallies into 1.1820–1.1860 near multi-month resistance with stretched momentum, targeting a pullback toward 1.17–1.16 while DXY stays soft but EUR looks overbought."
+      "bias": "TRADE_BULLISH",
+      "direction": "Long",
+      "spot": 1.176,
+      "trigger_low": 1.174,
+      "trigger_high": 1.178,
+      "target_low": 1.186,
+      "target_high": 1.194,
+      "invalidation": 1.17,
+      "rr": 2.3,
+      "confidence": 4,
+      "notes": "Buy dips within the 1.1740–1.1780 support band in a still-upward-sloping channel, targeting a move toward the high-1.18s/low-1.19s while the 1.1700 trend support holds."
     },
     {
       "pair": "GBPUSD",
-      "bias": "TRADE_BULLISH",
+      "bias": "WATCH_BULLISH",
       "direction": "Long",
-      "spot": 1.3550,
-      "trigger_low": 1.3480,
-      "trigger_high": 1.3520,
-      "target_low": 1.3640,
-      "target_high": 1.3740,
-      "invalidation": 1.3440,
-      "rr": 3.0,
-      "confidence": 4,
-      "notes": "Buy dips toward 1.35 within a medium-term uptrend, looking for a move back toward 1.3640–1.3740 ahead of UK data as long as 1.3440 support holds."
+      "spot": 1.35,
+      "trigger_low": 1.3435,
+      "trigger_high": 1.3505,
+      "target_low": 1.366,
+      "target_high": 1.376,
+      "invalidation": 1.3365,
+      "rr": 2.1,
+      "confidence": 3,
+      "notes": "Bullish channel remains intact, but heavy UK data risk means better to wait for post-CPI stabilisation before buying 1.3435–1.3505 for a move toward the mid-1.36s–1.37s."
     },
     {
       "pair": "AUDUSD",
       "bias": "TRADE_BULLISH",
       "direction": "Long",
-      "spot": 0.7170,
-      "trigger_low": 0.7100,
-      "trigger_high": 0.7140,
-      "target_low": 0.7240,
-      "target_high": 0.7300,
-      "invalidation": 0.7050,
+      "spot": 0.716,
+      "trigger_low": 0.713,
+      "trigger_high": 0.717,
+      "target_low": 0.724,
+      "target_high": 0.73,
+      "invalidation": 0.709,
       "rr": 2.0,
-      "confidence": 4,
-      "notes": "Use pullbacks into 0.7100–0.7140 to join the pro-risk, RBA-supported uptrend, targeting a retest of 0.7240–0.7300 while global sentiment and China data stay supportive."
+      "confidence": 3,
+      "notes": "Use 0.7130–0.7170 as a dip-buy zone within a bullish channel, aiming for 0.7240–0.7300 while global risk stays constructive and 0.7090 support holds on a 4H basis."
     },
     {
       "pair": "NZDUSD",
-      "bias": "WATCH_BULLISH",
+      "bias": "TRADE_BULLISH",
       "direction": "Long",
-      "spot": 0.5880,
-      "trigger_low": 0.5800,
-      "trigger_high": 0.5850,
-      "target_low": 0.6000,
-      "target_high": 0.6100,
-      "invalidation": 0.5740,
-      "rr": 2.5,
-      "confidence": 3,
-      "notes": "Favour buying a corrective dip toward 0.5800–0.5850 within a broader bullish structure that targets 0.6000–0.6100, but size carefully given high correlation with AUDUSD."
+      "spot": 0.589,
+      "trigger_low": 0.586,
+      "trigger_high": 0.59,
+      "target_low": 0.596,
+      "target_high": 0.602,
+      "invalidation": 0.5835,
+      "rr": 2.4,
+      "confidence": 4,
+      "notes": "Strong NZ inflation and a supportive channel favour buying 0.5860–0.5900 for a push into 0.5960–0.6020, with the bullish structure negated only below 0.5835."
     },
     {
       "pair": "USDJPY",
       "bias": "TRADE_BEARISH",
       "direction": "Short",
-      "spot": 158.60,
-      "trigger_low": 159.50,
-      "trigger_high": 160.00,
-      "target_low": 157.20,
-      "target_high": 156.50,
-      "invalidation": 160.50,
-      "rr": 3.0,
+      "spot": 159.4,
+      "trigger_low": 159.3,
+      "trigger_high": 160.0,
+      "target_low": 156.5,
+      "target_high": 157.3,
+      "invalidation": 160.5,
+      "rr": 2.8,
       "confidence": 3,
-      "notes": "Look to sell rallies into 159.50–160.00 near key resistance and intervention risk, targeting a move back toward 157.20–156.50 as US yields soften and momentum fades."
+      "notes": "Fade spikes into 159.30–160.00 near cycle highs, targeting a corrective drop into 156.50–157.30 ahead of the BoJ meeting, but abandon shorts on a daily close above 160.50."
     },
     {
       "pair": "USDCHF",
-      "bias": "TRADE_BEARISH",
-      "direction": "Short",
-      "spot": 0.7817,
-      "trigger_low": 0.7940,
-      "trigger_high": 0.8000,
-      "target_low": 0.7650,
-      "target_high": 0.7550,
-      "invalidation": 0.8050,
-      "rr": 3.0,
-      "confidence": 3,
-      "notes": "Sell corrective bounces toward 0.7940–0.8000 within a weekly downtrend, aiming for 0.7650–0.7550 while DXY drifts lower and CHF retains safe-haven support."
+      "bias": "WATCH_RANGE",
+      "direction": "Range",
+      "spot": 0.778,
+      "trigger_low": 0.775,
+      "trigger_high": 0.782,
+      "target_low": 0.762,
+      "target_high": 0.755,
+      "invalidation": 0.785,
+      "rr": 1.5,
+      "confidence": 2,
+      "notes": "USD/CHF is chopping near 0.78; any fades in the 0.7750–0.7820 region have modest downside toward the mid-0.75s, but mixed signals and overlapping price action argue for low priority."
     },
     {
       "pair": "USDCAD",
       "bias": "TRADE_BEARISH",
       "direction": "Short",
-      "spot": 1.3770,
-      "trigger_low": 1.3850,
-      "trigger_high": 1.3950,
-      "target_low": 1.3600,
-      "target_high": 1.3500,
-      "invalidation": 1.4025,
-      "rr": 2.5,
+      "spot": 1.366,
+      "trigger_low": 1.368,
+      "trigger_high": 1.374,
+      "target_low": 1.356,
+      "target_high": 1.35,
+      "invalidation": 1.38,
+      "rr": 2.0,
       "confidence": 3,
-      "notes": "Fade rallies into 1.3850–1.3950 near the top of the 1.35–1.40 range, looking for a return toward 1.3600–1.3500 as CAD benefits from softer USD and stable oil."
+      "notes": "Within a broad 1.35–1.39 range, prefer selling 1.3680–1.3740 on rallies, looking for a move back toward 1.3560–1.3500 while oil stays supported and 1.3800 capping the topside."
     }
   ]
 }

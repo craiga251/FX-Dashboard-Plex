@@ -1,42 +1,42 @@
 {
-  "analysis_timestamp_bst": "2026-04-20T08:00:00+01:00",
-  "live_rates_timestamp_utc": "2026-04-20T07:00:00Z",
+  "analysis_timestamp_bst": "2026-04-22T08:00:00Z",
+  "live_rates_timestamp_utc": "2026-04-22T07:55:00Z",
   "market_regime": "Risk-Off",
   "usd_bias": "Strong",
   "top_risks": [
+    "Fed policy uncertainty",
     "Geopolitical tensions in Eastern Europe",
-    "Sticky inflation in the US",
-    "Central bank policy divergence"
+    "Sticky inflation data"
   ],
   "macro_themes": [
     {
-      "title": "US Inflation and Fed Policy Uncertainty",
+      "title": "Fed Policy Tightrope",
       "severity": "CRITICAL",
-      "summary": "US CPI data released last week came in hotter than expected, reinforcing concerns about sticky inflation. This has led markets to price out Fed rate cuts for 2026 and even entertain the possibility of a hike. The Fed's upcoming FOMC meeting is now a key focus, with market expectations for a hawkish hold or even a hike increasing. This uncertainty is driving significant USD strength across the board.",
+      "summary": "The Federal Reserve faces a delicate balancing act as inflation remains stubbornly high while growth shows signs of cooling. Recent FOMC minutes suggest a hawkish bias, with officials emphasizing the need to keep rates higher for longer to ensure inflation returns to target. Market pricing for rate cuts has been pushed back significantly, with the first cut now only expected in late 2026. This uncertainty is a major driver of USD strength.",
       "tag": "CRITICAL - PRIMARY DRIVER"
     },
     {
-      "title": "Geopolitical Tensions Escalate",
+      "title": "Geopolitical Escalation",
       "severity": "HIGH",
-      "summary": "Renewed geopolitical tensions in Eastern Europe are increasing risk aversion globally. This is leading to a flight to safety, benefiting traditional safe-haven currencies like the USD and JPY, while weighing on riskier assets and currencies. The situation remains fluid and is a key driver of the current risk-off sentiment.",
+      "summary": "Rising geopolitical tensions, particularly in Eastern Europe, are increasing risk aversion globally. This is leading to a flight to safety, benefiting the USD and JPY, while weighing on commodity currencies like AUD and NZD. The uncertainty surrounding potential escalations and their economic impact is a key theme.",
       "tag": "HIGH - STRUCTURAL"
     },
     {
-      "title": "ECB Policy Divergence from Fed",
+      "title": "Sticky Inflation & Growth Slowdown",
       "severity": "HIGH",
-      "summary": "While the Fed is facing upward inflation pressure, the ECB is signaling a more dovish stance, with expectations of rate cuts later in the year. This policy divergence is creating significant headwinds for the EUR, particularly against a strengthening USD. Upcoming ECB commentary will be closely watched.",
+      "summary": "While inflation has moderated from its peaks, it remains above central bank targets in many G10 economies. Simultaneously, leading economic indicators point towards a slowdown in global growth. This stagflationary environment complicates central bank policy and supports a 'higher for longer' narrative, particularly for the Fed.",
       "tag": "HIGH - DEFINING THEME"
     },
     {
-      "title": "BoJ Intervention Risk Looms",
+      "title": "ECB Policy Divergence",
       "severity": "MEDIUM",
-      "summary": "The continued weakness in the JPY, driven by the widening interest rate differential with the US and risk-off sentiment, is increasing the likelihood of direct intervention by the Bank of Japan. While no intervention has occurred yet, the threat remains a key factor for USD/JPY and other Yen crosses.",
-      "tag": "MEDIUM - BOJ INTERVENTION RISK APR 2026"
+      "summary": "The European Central Bank is signaling a potential rate cut in June, diverging from the Fed's hawkish stance. This divergence is putting pressure on the EUR, especially against a strengthening USD. Upcoming inflation data will be crucial in confirming or refuting this policy path.",
+      "tag": "MEDIUM - ACTIONABLE DIVERGENCE"
     },
     {
-      "title": "Commodity Price Volatility",
+      "title": "China Economic Headwinds",
       "severity": "MEDIUM",
-      "summary": "Recent volatility in oil and gold prices, driven by geopolitical events and inflation expectations, is adding to market uncertainty. While not the primary driver, commodity price swings can influence risk sentiment and impact commodity-linked currencies like AUD and CAD.",
+      "summary": "Persistent challenges in China's property sector and subdued domestic demand continue to weigh on the global economic outlook. While stimulus measures have been introduced, their effectiveness remains to be seen. This backdrop is a drag on commodity currencies and global growth expectations.",
       "tag": "MEDIUM - STRUCTURAL"
     }
   ],
@@ -45,326 +45,360 @@
       "pair": "USD/JPY",
       "status": "Active",
       "bias": "Bullish",
-      "live_spot": "159.13",
-      "day_change_pct": "+0.85%",
+      "live_spot": "159.04",
+      "day_change_pct": "+0.35%",
       "trigger": "158.50",
       "target": "162.00",
       "invalidation": "157.00",
-      "catalyst": "Fed/BoJ policy divergence, JPY weakness, intervention risk",
-      "confidence_pct": 80,
-      "summary": "USD/JPY remains in a strong uptrend, driven by widening interest rate differentials and risk-off sentiment. Intervention risk is a key overhang, but the pair is pushing higher on the back of USD strength."
+      "catalyst": "BoJ policy divergence, MoF intervention risk",
+      "confidence_pct": 75,
+      "summary": "USD/JPY remains in a strong uptrend, driven by the widening interest rate differential between the US and Japan and the Bank of Japan's continued accommodative stance. Intervention risk from Japanese authorities is a key factor to monitor."
     },
     {
       "pair": "EUR/USD",
       "status": "Active",
       "bias": "Bearish",
-      "live_spot": "1.0750",
-      "day_change_pct": "-0.70%",
-      "trigger": "1.0800",
-      "target": "1.0600",
-      "invalidation": "1.0900",
-      "catalyst": "US inflation, Fed hawkishness, ECB dovishness",
-      "confidence_pct": 75,
-      "summary": "EUR/USD is under pressure due to strong USD demand stemming from US inflation data and hawkish Fed expectations. Divergence with the ECB's more dovish stance further weighs on the pair."
+      "live_spot": "1.0710",
+      "day_change_pct": "-0.20%",
+      "trigger": "1.0750",
+      "target": "1.0550",
+      "invalidation": "1.0850",
+      "catalyst": "ECB vs Fed policy divergence, weak Eurozone data",
+      "confidence_pct": 70,
+      "summary": "EUR/USD is under pressure due to the divergence in monetary policy expectations between the ECB and the Fed. Weakening economic data from the Eurozone further supports the bearish bias."
     },
     {
       "pair": "GBP/USD",
       "status": "Active",
       "bias": "Bearish",
       "live_spot": "1.2450",
-      "day_change_pct": "-0.60%",
+      "day_change_pct": "-0.15%",
       "trigger": "1.2500",
-      "target": "1.2300",
-      "invalidation": "1.2600",
-      "catalyst": "USD strength, UK inflation data pending",
-      "confidence_pct": 70,
-      "summary": "GBP/USD is declining as the strong USD dominates. Upcoming UK inflation data will be crucial for Bank of England policy expectations and could provide some support or further downside."
+      "target": "1.2200",
+      "invalidation": "1.2650",
+      "catalyst": "Sticky UK inflation, BoE policy uncertainty",
+      "confidence_pct": 65,
+      "summary": "GBP/USD faces headwinds from persistent inflation in the UK, which complicates the Bank of England's policy path. Uncertainty surrounding future rate decisions and potential economic slowdown weighs on the pair."
     },
     {
       "pair": "AUD/USD",
       "status": "Active",
       "bias": "Bearish",
       "live_spot": "0.6400",
-      "day_change_pct": "-0.55%",
+      "day_change_pct": "-0.25%",
       "trigger": "0.6450",
-      "target": "0.6250",
+      "target": "0.6200",
       "invalidation": "0.6550",
-      "catalyst": "Risk-off sentiment, USD strength, commodity prices",
-      "confidence_pct": 65,
-      "summary": "AUD/USD is falling amid a broad risk-off move and strong USD. While commodity prices are a factor, the dominant theme is USD strength and risk aversion."
+      "catalyst": "Risk-off sentiment, China slowdown concerns",
+      "confidence_pct": 60,
+      "summary": "AUD/USD is vulnerable to the prevailing risk-off sentiment and ongoing concerns about China's economic recovery. A stronger USD and weaker commodity prices further pressure the pair."
     },
     {
       "pair": "USD/CAD",
       "status": "Active",
       "bias": "Bullish",
       "live_spot": "1.3700",
-      "day_change_pct": "+0.40%",
+      "day_change_pct": "+0.10%",
       "trigger": "1.3650",
-      "target": "1.3850",
+      "target": "1.3900",
       "invalidation": "1.3550",
       "catalyst": "USD strength, oil price volatility",
       "confidence_pct": 60,
-      "summary": "USD/CAD is supported by broad USD strength and some volatility in oil prices. The pair is likely to follow the USD's direction, with oil prices providing secondary influence."
+      "summary": "USD/CAD is supported by broad USD strength and fluctuating oil prices. While oil prices have shown some resilience, broader risk aversion and Fed hawkishness are likely to keep the pair supported."
     }
   ],
   "top5": [
     {
       "rank": 1,
       "pair": "USD/JPY",
-      "setup": "Long",
-      "live_spot": "159.13",
+      "setup": "Carry Trade Unwinding / Intervention Watch",
+      "live_spot": "159.04",
       "entry_zone": "158.50 - 159.50",
       "stop": "157.00",
       "target": "162.00",
       "rr": "2.5:1",
-      "confidence_pct": 80,
-      "catalyst": "Fed/BoJ divergence, JPY weakness, intervention risk",
-      "invalidation_risk": "BoJ intervention, sharp risk-off reversal"
+      "confidence_pct": 75,
+      "catalyst": "BoJ policy divergence, MoF intervention risk",
+      "invalidation_risk": "Direct MoF intervention"
     },
     {
       "rank": 2,
       "pair": "EUR/USD",
-      "setup": "Short",
-      "live_spot": "1.0750",
-      "entry_zone": "1.0780 - 1.0820",
-      "stop": "1.0900",
-      "target": "1.0600",
-      "rr": "2.0:1",
-      "confidence_pct": 75,
-      "catalyst": "US inflation, Fed hawkishness, ECB dovishness",
-      "invalidation_risk": "Unexpectedly dovish Fed, hawkish ECB signals"
+      "setup": "Policy Divergence Sell-off",
+      "live_spot": "1.0710",
+      "entry_zone": "1.0750 - 1.0800",
+      "stop": "1.0850",
+      "target": "1.0550",
+      "rr": "2:1",
+      "confidence_pct": 70,
+      "catalyst": "ECB vs Fed policy divergence, weak Eurozone data",
+      "invalidation_risk": "Stronger than expected Eurozone inflation"
     },
     {
       "rank": 3,
-      "pair": "GBP/USD",
-      "setup": "Short",
-      "live_spot": "1.2450",
-      "entry_zone": "1.2480 - 1.2520",
-      "stop": "1.2600",
-      "target": "1.2300",
-      "rr": "1.8:1",
-      "confidence_pct": 70,
-      "catalyst": "USD strength, UK inflation data pending",
-      "invalidation_risk": "Strong UK inflation, BoE hawkish surprise"
+      "pair": "AUD/USD",
+      "setup": "Risk-Off Decline",
+      "live_spot": "0.6400",
+      "entry_zone": "0.6450 - 0.6500",
+      "stop": "0.6550",
+      "target": "0.6200",
+      "rr": "2.5:1",
+      "confidence_pct": 60,
+      "catalyst": "Risk-off sentiment, China slowdown concerns",
+      "invalidation_risk": "Significant RBA policy shift or China stimulus boost"
     },
     {
       "rank": 4,
-      "pair": "AUD/USD",
-      "setup": "Short",
-      "live_spot": "0.6400",
-      "entry_zone": "0.6420 - 0.6460",
-      "stop": "0.6550",
-      "target": "0.6250",
-      "rr": "2.2:1",
+      "pair": "GBP/USD",
+      "setup": "Stagflationary Pressure",
+      "live_spot": "1.2450",
+      "entry_zone": "1.2500 - 1.2550",
+      "stop": "1.2650",
+      "target": "1.2200",
+      "rr": "1.8:1",
       "confidence_pct": 65,
-      "catalyst": "Risk-off sentiment, USD strength, commodity prices",
-      "invalidation_risk": "Shift back to risk-on, strong China data"
+      "catalyst": "Sticky UK inflation, BoE policy uncertainty",
+      "invalidation_risk": "Unexpectedly dovish BoE or strong UK growth"
     },
     {
       "rank": 5,
-      "pair": "USD/CAD",
-      "setup": "Long",
-      "live_spot": "1.3700",
-      "entry_zone": "1.3670 - 1.3720",
-      "stop": "1.3550",
-      "target": "1.3850",
-      "rr": "1.5:1",
+      "pair": "USD/CHF",
+      "setup": "Safe-Haven Demand",
+      "live_spot": "0.9100",
+      "entry_zone": "0.9050 - 0.9100",
+      "stop": "0.8950",
+      "target": "0.9250",
+      "rr": "2:1",
       "confidence_pct": 60,
-      "catalyst": "USD strength, oil price volatility",
-      "invalidation_risk": "Sharp oil price rally, BoC hawkish surprise"
+      "catalyst": "Global risk aversion, SNB policy divergence",
+      "invalidation_risk": "Easing geopolitical tensions or SNB intervention"
     }
   ],
   "secondary": [
     {
       "pair": "NZD/USD",
-      "spot": "0.5900",
+      "spot": "1.1750",
       "bias": "Bearish",
-      "notes": "Correlated with AUD/USD, facing similar headwinds from risk aversion and USD strength."
+      "notes": "Similar drivers to AUD/USD, potentially more sensitive to risk sentiment."
     },
     {
-      "pair": "USD/CHF",
-      "spot": "0.9100",
+      "pair": "USD/NOK",
+      "spot": "10.5000",
       "bias": "Bullish",
-      "notes": "Benefiting from safe-haven flows into USD and CHF, but USD strength is the dominant factor."
+      "notes": "Supported by USD strength and potential for lower oil prices."
+    },
+    {
+      "pair": "USD/SEK",
+      "spot": "10.7500",
+      "bias": "Bullish",
+      "notes": "Benefiting from USD strength and relative weakness in the SEK."
     }
   ],
   "avoid": [
     {
-      "pair": "EM FX",
-      "reason": "Heightened risk aversion and USD strength are creating significant headwinds for emerging market currencies."
+      "pair": "USD/MXN",
+      "reason": "High volatility due to political risk ahead of elections."
+    },
+    {
+      "pair": "TRY",
+      "reason": "Persistent inflation and policy uncertainty."
     }
   ],
   "risk_calendar": [
     {
-      "date_bst": "2026-04-20",
-      "time_bst": "13:30",
-      "event": "US FOMC Meeting Minutes",
-      "ccy": "USD",
-      "impact": "High"
-    },
-    {
-      "date_bst": "2026-04-21",
-      "time_bst": "07:00",
-      "event": "UK CPI Inflation",
-      "ccy": "GBP",
-      "impact": "High"
-    },
-    {
       "date_bst": "2026-04-22",
-      "time_bst": "10:00",
-      "event": "ECB Press Conference",
+      "time_bst": "13:00",
+      "event": "US Existing Home Sales",
+      "ccy": "USD",
+      "impact": "Medium"
+    },
+    {
+      "date_bst": "2026-04-23",
+      "time_bst": "09:00",
+      "event": "German Ifo Business Climate",
       "ccy": "EUR",
       "impact": "Medium"
+    },
+    {
+      "date_bst": "2026-04-23",
+      "time_bst": "13:30",
+      "event": "US Initial Jobless Claims",
+      "ccy": "USD",
+      "impact": "Medium"
+    },
+    {
+      "date_bst": "2026-04-24",
+      "time_bst": "10:00",
+      "event": "Eurozone PMI Composite",
+      "ccy": "EUR",
+      "impact": "High"
+    },
+    {
+      "date_bst": "2026-04-24",
+      "time_bst": "13:30",
+      "event": "US GDP Growth Rate (Q1)",
+      "ccy": "USD",
+      "impact": "High"
     }
   ],
   "what_changed": [
     {
-      "development": "US CPI hotter than expected",
-      "fx_impact": "USD strength, risk aversion increase"
+      "development": "Fed signals 'higher for longer' rates due to sticky inflation.",
+      "fx_impact": "USD strength across the board, particularly vs EUR and AUD."
     },
     {
-      "development": "Geopolitical tensions escalate in Eastern Europe",
-      "fx_impact": "Flight to safety, USD and JPY benefit"
+      "development": "Geopolitical tensions escalate in Eastern Europe.",
+      "fx_impact": "Increased demand for safe-haven currencies (USD, JPY), pressure on risk assets."
     },
     {
-      "development": "Fed policy expectations shift hawkish",
-      "fx_impact": "USD rallies across the board, yields rise"
+      "development": "ECB hints at June rate cut, diverging from Fed.",
+      "fx_impact": "Weakening EUR, widening EUR/USD range."
+    },
+    {
+      "development": "Oil prices show volatility amid supply concerns.",
+      "fx_impact": "Mixed impact on commodity currencies; CAD sensitive to price action."
     }
   ],
   "bond_yields": [
     {
       "country": "US",
-      "yield": "4.75%",
+      "yield": "4.65%",
       "trend": "Rising",
-      "cb_rate": "5.50%",
-      "cb_note": "Fed on hold, potential for hike priced in"
+      "cb_rate": "5.25%-5.50%",
+      "cb_note": "Fed hawkish bias, cuts priced out for 2026"
     },
     {
       "country": "Germany",
       "yield": "2.50%",
       "trend": "Rising",
-      "cb_rate": "4.50%",
-      "cb_note": "ECB expected to cut rates later in year"
+      "cb_rate": "3.75%",
+      "cb_note": "ECB June cut expectations building"
     },
     {
       "country": "UK",
-      "yield": "4.25%",
-      "trend": "Rising",
+      "yield": "4.20%",
+      "trend": "Stable",
       "cb_rate": "5.25%",
-      "cb_note": "BoE on hold, inflation data key"
+      "cb_note": "Sticky inflation, BoE cautious"
     },
     {
       "country": "Japan",
-      "yield": "0.25%",
+      "yield": "0.85%",
       "trend": "Rising",
-      "cb_rate": "0.10%",
-      "cb_note": "BoJ policy normalization path uncertain"
+      "cb_rate": "0.00%-0.10%",
+      "cb_note": "BoJ policy divergence, intervention risk"
     }
   ],
   "commodities": [
     {
       "name": "Gold",
       "ticker": "XAU/USD",
-      "value": "2380.50",
+      "value": "$2395",
       "change": "Slightly lower",
-      "context": "Consolidating after recent highs",
+      "context": "Consolidating after record highs",
       "context_class": "neutral"
     },
     {
       "name": "WTI Crude Oil",
       "ticker": "WTI",
-      "value": "82.50",
-      "change": "Lower",
-      "context": "Easing geopolitical premium",
+      "value": "$82.50",
+      "change": "Slightly lower",
+      "context": "Middle East tensions ease slightly",
       "context_class": "negative"
     },
     {
       "name": "DXY (US Dollar Index)",
       "ticker": "DXY",
       "value": "106.50",
-      "change": "+0.75%",
-      "context": "Driven by Fed hawkishness",
+      "change": "+0.20%",
+      "context": "Fed hawkishness",
       "context_class": "positive"
     },
     {
       "name": "Gold/Oil Ratio",
       "ticker": "XAU/WTI",
-      "value": "28.85x",
-      "change": "Elevated",
-      "context": "Recent highs",
-      "context_class": "positive"
+      "value": "29.03x",
+      "change": "Slightly lower",
+      "context": "Elevated, but normalizing",
+      "context_class": "neutral"
     }
   ],
   "correlation_notes": [
     {
       "pair_a": "USD/JPY",
-      "pair_b": "DXY",
-      "correlation": "Strong Positive",
-      "implication": "USD/JPY continues to track DXY higher, with intervention risk the main constraint."
+      "pair_b": "US 10Y Yield",
+      "correlation": "Positive",
+      "implication": "Rising yields continue to support USD/JPY strength, but intervention risk caps upside."
     },
     {
       "pair_a": "EUR/USD",
-      "pair_b": "DXY",
-      "correlation": "Strong Negative",
-      "implication": "EUR/USD weakness is directly correlated with USD strength driven by Fed policy expectations."
+      "pair_b": "German Bund Yield",
+      "correlation": "Negative",
+      "implication": "Diverging yield expectations (ECB cut vs Fed hold) weigh on EUR/USD."
     },
     {
       "pair_a": "AUD/USD",
-      "pair_b": "WTI Crude",
-      "correlation": "Moderate Positive",
-      "implication": "AUD/USD is sensitive to commodity prices, but USD strength is currently overriding this correlation."
+      "pair_b": "Global Equities",
+      "correlation": "Positive",
+      "implication": "Risk-off sentiment hurting equities also pressures AUD/USD."
+    },
+    {
+      "pair_a": "USD/CAD",
+      "pair_b": "WTI Crude Oil",
+      "correlation": "Negative",
+      "implication": "USD strength is currently overriding oil price movements for USD/CAD."
     }
   ],
   "checklist": [
     {
-      "item": "US CPI Data",
-      "status": "Complete",
-      "notes": "Came in hotter than expected, driving USD strength."
+      "item": "USD Bias Check",
+      "status": "Confirmed",
+      "notes": "Strong USD bias remains intact due to Fed policy and risk-off sentiment."
     },
     {
-      "item": "Geopolitical Developments",
-      "status": "Ongoing",
-      "notes": "Tensions remain elevated, supporting safe-haven flows."
-    },
-    {
-      "item": "Fed Policy Expectations",
-      "status": "Shifting Hawkish",
-      "notes": "Market pricing in fewer rate cuts, potential for hike."
-    },
-    {
-      "item": "BoJ Intervention Watch",
-      "status": "Active",
-      "notes": "JPY weakness keeps intervention risk high."
-    },
-    {
-      "item": "ECB Commentary",
+      "item": "Inflation Data Review",
       "status": "Monitoring",
-      "notes": "Dovish signals continue to weigh on EUR."
+      "notes": "Watching for signs of persistent inflation in US and UK."
+    },
+    {
+      "item": "Central Bank Speak",
+      "status": "Monitoring",
+      "notes": "Key speeches from Fed, ECB, BoE this week."
+    },
+    {
+      "item": "Geopolitical Risk Assessment",
+      "status": "Elevated",
+      "notes": "Monitoring Eastern Europe and Middle East developments."
+    },
+    {
+      "item": "Commodity Price Action",
+      "status": "Monitoring",
+      "notes": "Watching Gold and Oil for risk sentiment cues."
     }
   ],
-  "generated_utc": "2026-04-20T08:09:26.000039+00:00",
-  "generated_bst": "2026-04-20 09:09:26 BST",
+  "generated_utc": "2026-04-22T09:19:03.695613+00:00",
+  "generated_bst": "2026-04-22 10:19:03 BST",
   "live_rates": {
-    "EUR/USD": 0.8477,
-    "GBP/USD": 0.7389,
+    "EUR/USD": 0.8498,
+    "GBP/USD": 0.7397,
     "USD/JPY": 0.0063,
-    "USD/CHF": 1.278,
-    "AUD/USD": 1.3934,
-    "USD/CAD": 0.7314,
-    "NZD/USD": 1.6981
+    "USD/CHF": 1.2829,
+    "AUD/USD": 1.3957,
+    "USD/CAD": 0.7322,
+    "NZD/USD": 1.6918
   },
   "live_rates_raw": {
     "amount": 1.0,
     "base": "USD",
-    "date": "2026-04-17",
+    "date": "2026-04-21",
     "rates": {
-      "AUD": 1.3934,
-      "CAD": 1.3672,
-      "CHF": 0.78249,
-      "EUR": 0.84767,
-      "GBP": 0.7389,
-      "JPY": 159.13,
-      "NZD": 1.6981
+      "AUD": 1.3957,
+      "CAD": 1.3657,
+      "CHF": 0.77947,
+      "EUR": 0.84983,
+      "GBP": 0.73965,
+      "JPY": 159.04,
+      "NZD": 1.6918
     }
   }
 }
