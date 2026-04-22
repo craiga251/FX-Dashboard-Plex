@@ -44,6 +44,11 @@ This project refreshes an FX dashboard in two stages:
 
 `update_dashboard_html.py` now auto-injects short analysis dates (for example `16 Apr 2026`) into dashboard headers/subtitles so no manual date edits are needed.
 
+### Daily brief override file
+
+`update_dashboard_html.py` also checks `daily_dashboard_brief.txt` before rendering.
+If the file contains your pasted daily brief, the renderer parses the mixed prose/table/JSON structure and uses it to override the relevant dashboard sections.
+
 ## Repository File Inventory
 
 ### Source and config files
@@ -52,6 +57,7 @@ This project refreshes an FX dashboard in two stages:
 |---|---|---|
 | `refresh_core_pairs.py` | Source | Fetches live rates, calls Gemini, validates/parses JSON robustly, writes `core_pairs_latest.json`. |
 | `update_dashboard_html.py` | Source | Injects JSON payload into template placeholders and writes `dashboard_generated.html`. |
+| `daily_dashboard_brief.txt` | Manual input | Optional paste-in daily brief override used during HTML rendering. |
 | `fx_orginal_template.html` | Source | Canonical HTML template and client-side live/scoring logic. |
 | `pairs-config.json` | Config | Daily pair setup/score input used by browser scoring engine. |
 | `run_refresh.bat` | Automation | Local Windows runner: sets defaults, validates key, installs deps, runs refresh/build. |
@@ -120,6 +126,7 @@ That command will:
 - install/update Python dependencies
 - fetch live FX data
 - generate fresh JSON analysis with Gemini
+- apply any pasted overrides from `daily_dashboard_brief.txt`
 - rebuild `dashboard_generated.html`
 
 ## How To Run Manually
@@ -162,7 +169,7 @@ http://localhost:8000/dashboard_generated.html
 
 1. `run_refresh.bat` sets defaults, validates key, installs/updates dependencies.
 2. `refresh_core_pairs.py` fetches rates and generates `core_pairs_latest.json`.
-3. `update_dashboard_html.py` injects JSON into `fx_orginal_template.html` and writes `dashboard_generated.html`.
+3. `update_dashboard_html.py` optionally parses `daily_dashboard_brief.txt`, merges those overrides into the payload, injects the final content into `fx_orginal_template.html`, and writes `dashboard_generated.html`.
 4. Browser loads `pairs-config.json` and live-rates feed to recalculate card badges/bias in real time.
 
 ## Scheduling
@@ -202,16 +209,38 @@ Use `.env.example` as baseline.
 | `CORE_JSON` | JSON input path for renderer. |
 | `DASHBOARD_TEMPLATE` | HTML template path. |
 | `DASHBOARD_OUTPUT` | Rendered dashboard output path. |
+| `DAILY_BRIEF_PATH` | Optional path to the pasted daily brief override file (default `daily_dashboard_brief.txt`). |
 | `CORE_PAIRS_TARGET` | Target number of core pair cards rendered. |
 
 ## Daily Files You Edit
 
 | File | What you update |
 |---|---|
+| `daily_dashboard_brief.txt` | Paste the full daily brief before running the refresh when you want the dashboard text, setups, avoid list, calendar, and checklist to come from your manual brief. |
 | `pairs-config.json` | Entry zones, stops, targets, notes, catalysts, and manual score factors for the browser scoring engine. |
 | `refresh_core_pairs.py` prompt rules | Only when you want to change how macro themes, commodities, or other model-generated sections are produced. |
 
-In normal daily use, `pairs-config.json` is the main file you adjust before or after running the refresh.
+In normal daily use, paste the new brief into `daily_dashboard_brief.txt`, keep `pairs-config.json` aligned with any pair-scoring changes you want in the browser engine, and then run the refresh.
+
+## Daily Brief Format
+
+The override parser is built for this section order:
+
+- `1. Global Macro Overview`
+- `2. Core Pairs Table`
+- `3. Top 5 Trade Setups`
+- `4. Avoid / Deprioritize List`
+- `5. Risk & Correlation Notes`
+- `6. Event / Calendar`
+- `7. Trading Checklist`
+- `8. Machine-Readable JSON`
+
+For reliable parsing:
+
+- keep the numbered headings intact
+- keep the core-pairs and calendar sections in table-like rows
+- keep the JSON block valid
+- leave the file empty if you want to fall back to automated model output only
 
 ## Troubleshooting
 

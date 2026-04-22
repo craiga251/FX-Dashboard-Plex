@@ -70,6 +70,9 @@ body{font-family:var(--font-ui);background:var(--bg);color:var(--text);font-size
 .status-label{font-weight:600;color:var(--text-faint);text-transform:uppercase;letter-spacing:.4px;font-size:10px}
 .status-val{font-family:var(--font-data);font-weight:600;color:var(--text)}
 .status-chg{font-family:var(--font-data);font-size:10px;font-weight:600}
+.ticker-item{display:flex;align-items:center;gap:6px;white-space:nowrap;font-size:11px;color:var(--text-muted)}
+.ticker-chg{font-family:var(--font-data);font-size:10px;font-weight:600}
+.chg-up{color:var(--green)}.chg-down{color:var(--red)}.chg-flat{color:var(--text-muted)}
 .up{color:var(--green)}.down{color:var(--red)}.flat{color:var(--text-muted)}
 .status-sep{width:1px;height:14px;background:var(--border-2);flex-shrink:0}
 
@@ -182,22 +185,32 @@ body{font-family:var(--font-ui);background:var(--bg);color:var(--text);font-size
 .setup-row{display:flex;align-items:center;gap:10px;padding:13px 15px;flex-wrap:wrap}
 .setup-rank{font-family:var(--font-data);font-size:22px;font-weight:700;color:var(--text-faint);min-width:26px}
 .setup-pair-name{font-family:var(--font-data);font-size:15px;font-weight:700;color:var(--text);min-width:86px}
-.setup-direction{padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+.setup-direction{padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;white-space:nowrap}
 .dir-buy{background:var(--green-bg);color:var(--green);border:1px solid var(--green-bd)}
 .dir-sell{background:var(--red-bg);color:var(--red);border:1px solid var(--red-bd)}
-.setup-fields{display:flex;gap:16px;flex-wrap:wrap;margin-left:6px}
+.setup-fields{display:flex;gap:16px;flex-wrap:nowrap;order:3;flex:1 1 100%;margin-left:36px;overflow-x:auto;padding-bottom:2px}
 .setup-field{display:flex;flex-direction:column;gap:1px}
 .sf-label{font-size:10px;color:var(--text-faint);font-weight:600;text-transform:uppercase;letter-spacing:.5px}
 .sf-val{font-family:var(--font-data);font-size:12px;color:var(--text);font-weight:600}
+.rr-val{white-space:normal;line-height:1.35}
+.rr-detail{display:inline}
 .setup-body{padding:0 15px 13px;border-top:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:10px}
 @media(max-width:640px){.setup-body{grid-template-columns:1fr}}
 .setup-detail{padding-top:10px}
 .sd-label{font-size:10px;color:var(--text-faint);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
 .sd-val{font-size:12px;color:var(--text-muted);line-height:1.5}
-.conf-indicator{margin-left:auto;display:flex;align-items:center;gap:7px}
+.conf-indicator{margin-left:auto;order:2;display:flex;align-items:center;gap:7px}
 .conf-dots{display:flex;gap:3px}
 .conf-dot{width:7px;height:7px;border-radius:50%;background:var(--border-2)}
 .conf-dot.g{background:var(--green)}.conf-dot.a{background:var(--amber)}.conf-dot.s{background:var(--slate)}
+.trade-alert-badge{font-family:var(--font-data);font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:3px 8px;border-radius:12px;border:1px solid var(--border-2);color:var(--text-faint);background:var(--surface-2)}
+.trade-alert-badge.active{color:var(--green);border-color:var(--green-bd);background:var(--green-bg)}
+.trade-alert-badge.just-activated{animation:tradeAlertPulse .9s ease-out 1}
+@keyframes tradeAlertPulse{
+  0%{transform:scale(1);box-shadow:0 0 0 0 rgba(34,197,94,.45)}
+  45%{transform:scale(1.06);box-shadow:0 0 0 8px rgba(34,197,94,0)}
+  100%{transform:scale(1);box-shadow:0 0 0 0 rgba(34,197,94,0)}
+}
 
 /* SECONDARY */
 .pair-chips{display:flex;flex-wrap:wrap;gap:10px}
@@ -273,6 +286,8 @@ body{font-family:var(--font-ui);background:var(--bg);color:var(--text);font-size
 .check-item.checked .check-box{background:var(--green);border-color:var(--green)}
 .check-label{font-size:12px;color:var(--text);flex:1}
 .check-sub{font-size:11px;color:var(--text-muted);margin-top:2px}
+.check-icon{font-family:var(--font-data);font-size:12px;font-weight:700;text-align:center;width:26px}
+.check-icon.pass{color:var(--green)}.check-icon.fail{color:var(--red)}.check-icon.neutral{color:var(--text-muted)}
 
 /* SOURCES */
 .sources-footer{margin-top:36px;padding:18px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg)}
@@ -342,8 +357,8 @@ section[id]{scroll-margin-top:130px}
 <div class="analysis-stamp">
   <div class="stamp-icon">*</div>
   <div class="stamp-text">
-    <strong>Rates are live</strong> — fetched automatically and refresh every 5 minutes (no credits used).
-    <strong>Analysis last updated: 2026-04-16T08:00:00Z</strong> — macro narrative, setups, and pair notes reflect conditions as of that time.
+    <strong>Rates are live</strong> - fetched automatically and refresh every 5 minutes (no credits used).
+    <strong>Analysis last updated: 2026-04-22T08:00:00Z</strong> - macro narrative, setups, and pair notes reflect conditions as of that time.
     Ask for a full analysis refresh anytime.
   </div>
 </div>
@@ -353,63 +368,54 @@ section[id]{scroll-margin-top:130px}
   <div class="section-header">
     <h2 class="section-title">Macro Overview</h2>
     <span class="section-subtitle">Key themes, yields and commodities</span>
-    <span class="section-badge">Analysis: 16 Apr 2026</span>
+    <span class="section-badge">Analysis: 22 Apr 2026</span>
   </div>
 
   <div class="macro-grid">
-    <div class="macro-card"><div class="macro-card-header"><span style="font-size:13px">!</span><span class="macro-theme-label">THEME 1</span></div><div class="macro-title">US CPI Data Dominance</div><div class="macro-body">Today&#x27;s US CPI release is the paramount focus for FX markets. Expectations are for a slight cooling, but any deviation could trigger significant volatility across G10. A hotter-than-expected print would likely reinforce Fed hawkishness, boosting USD, while a cooler print could open the door for risk-on sentiment and USD weakness. Current market pricing reflects a delicate balance, making the outcome binary.</div><span class="macro-tag tag-critical">CRITICAL - PRIMARY DRIVER</span></div>
-<div class="macro-card"><div class="macro-card-header"><span style="font-size:13px">!</span><span class="macro-theme-label">THEME 2</span></div><div class="macro-title">Fed Policy Uncertainty</div><div class="macro-body">Persistent uncertainty surrounding the Federal Reserve&#x27;s future rate path continues to underpin USD volatility. Recent hawkish commentary from FOMC members clashes with market expectations for potential rate cuts later in the year. The upcoming CPI data is crucial for recalibrating these expectations, with a significant impact on bond yields and risk appetite.</div><span class="macro-tag tag-critical">HIGH - STRUCTURAL</span></div>
-<div class="macro-card"><div class="macro-card-header"><span style="font-size:13px">!</span><span class="macro-theme-label">THEME 3</span></div><div class="macro-title">Geopolitical Tensions</div><div class="macro-body">Elevated geopolitical tensions, particularly in Eastern Europe, are contributing to a risk-off environment. This dynamic supports safe-haven currencies like USD and CHF, while pressuring commodity-linked currencies such as AUD and CAD. Any escalation or de-escalation will have immediate FX implications, driving safe-haven flows.</div><span class="macro-tag tag-critical">HIGH - STRUCTURAL</span></div>
-<div class="macro-card"><div class="macro-card-header"><span style="font-size:13px">!</span><span class="macro-theme-label">THEME 4</span></div><div class="macro-title">ECB Rate Cut Expectations</div><div class="macro-body">Market sentiment suggests the European Central Bank is leaning towards rate cuts sooner than the Fed, potentially in June. This divergence in monetary policy expectations is a key driver for EUR weakness against a broadly neutral USD. However, the immediate focus remains on US data, which could temporarily overshadow the EUR&#x27;s specific drivers.</div><span class="macro-tag tag-high">MEDIUM - STRUCTURAL</span></div>
-<div class="macro-card"><div class="macro-card-header"><span style="font-size:13px">!</span><span class="macro-theme-label">THEME 5</span></div><div class="macro-title">BoJ Intervention Watch</div><div class="macro-body">The Bank of Japan&#x27;s tolerance for further JPY depreciation remains a key theme. With USD/JPY testing fresh highs, the threat of direct intervention looms. While not an immediate driver today, any sign of official action would cause sharp JPY appreciation and impact USD-JPY significantly. Current levels suggest vigilance is warranted.</div><span class="macro-tag tag-high">MEDIUM - STRUCTURAL</span></div>
+    <div class="macro-card"><div class="macro-card-header"><span style="font-size:13px">!</span><span class="macro-theme-label">THEME 1</span></div><div class="macro-title">Risk tone</div><div class="macro-body">Risk tone: Equities in the US and Europe slipped on renewed Middle East worries and higher oil, while Asia held up better with Japan leading gains, leaving overall sentiment in a cautious, slightly risk‑on mode rather than full risk‑off. Volatility is contained with the VIX below 20, and S&amp;P futures are modestly higher as markets price an extended US-Iran ceasefire and reduced immediate escalation risk.</div><span class="macro-tag tag-critical">CRITICAL - PRIMARY DRIVER</span></div>
+<div class="macro-card"><div class="macro-card-header"><span style="font-size:13px">!</span><span class="macro-theme-label">THEME 2</span></div><div class="macro-title">USD  yields</div><div class="macro-body">USD &amp; yields: The US Dollar Index (DXY) is hovering around 98.4 after a modest rally earlier in April, with the broader trend still sideways‑to‑firm as markets balance sticky inflation against growing expectations of 2-3 Fed cuts by year‑end. US Treasury yields spiked recently on higher oil and Fed‑watch headlines but have since eased back, and recent jobless‑claims data showing a jump to around 219k versus a 210k forecast has introduced mild concern about labour‑market momentum.</div><span class="macro-tag tag-high">MEDIUM - ACTIONABLE DIVERGENCE</span></div>
+<div class="macro-card"><div class="macro-card-header"><span style="font-size:13px">!</span><span class="macro-theme-label">THEME 3</span></div><div class="macro-title">Europe  UK</div><div class="macro-body">Europe &amp; UK: The euro area is seeing manufacturing PMIs holding in expansion territory near the low‑50s, supporting the idea of a fragile but improving growth backdrop that helps EUR on dips. In the UK, February CPI was 3.0% y/y with core at 3.2%, and today&#x27;s CPI release is expected around 3.3%, making it the key driver for GBP and Bank of England expectations into the 30 April meeting.</div><span class="macro-tag tag-high">MEDIUM - ACTIONABLE DIVERGENCE</span></div>
+<div class="macro-card"><div class="macro-card-header"><span style="font-size:13px">!</span><span class="macro-theme-label">THEME 4</span></div><div class="macro-title">Antipodeans  commodities</div><div class="macro-body">Antipodeans &amp; commodities: AUD and NZD remain high‑beta risk proxies: AUD/USD is trading in the low‑0.71s after grinding higher within a bullish channel, supported by a relatively hawkish RBA tone and better local data. NZD/USD is near 0.59, underpinned by Q1 inflation at 3.1% y/y versus 2.9% expected, which has markets leaning toward a more hawkish RBNZ path. Oil remains elevated after renewed tensions around the Strait of Hormuz, supporting CAD but also periodically boosting USD via safe‑haven demand.</div><span class="macro-tag tag-high">MEDIUM - ACTIONABLE DIVERGENCE</span></div>
+<div class="macro-card"><div class="macro-card-header"><span style="font-size:13px">!</span><span class="macro-theme-label">THEME 5</span></div><div class="macro-title">JPY  CHF</div><div class="macro-body">JPY &amp; CHF: USD/JPY is near cycle highs around 159-160, with the next BoJ meeting on 27-28 April and recent communication pointing to very gradual normalisation, keeping carry trades attractive but raising medium‑term downside risk if US-Japan rate differentials narrow. CHF remains a defensive play; USD/CHF is trading just below 0.78, with medium‑term forecasts tilted slightly softer for the pair as investors continue to value CHF&#x27;s safe‑haven status while the dollar consolidates below 100 on DXY.</div><span class="macro-tag tag-critical">HIGH - EVENT RISK</span></div>
   </div>
 
   <div class="commodity-strip">
-    <div class="commodity-tile"><div><div class="commodity-name">Gold (XAU/USD)</div><div class="commodity-price">$2385</div></div><div style="text-align:right"><div class="commodity-change neutral">Slightly lower</div><div class="commodity-note">Consolidating after record highs</div></div></div>
-<div class="commodity-tile"><div><div class="commodity-name">WTI Crude Oil (WTI)</div><div class="commodity-price">$85.50</div></div><div style="text-align:right"><div class="commodity-change positive">Higher</div><div class="commodity-note">Geopolitical risk premium</div></div></div>
-<div class="commodity-tile"><div><div class="commodity-name">DXY (DXY)</div><div class="commodity-price">106.10</div></div><div style="text-align:right"><div class="commodity-change positive">+0.15%</div><div class="commodity-note">Risk-off sentiment</div></div></div>
-<div class="commodity-tile"><div><div class="commodity-name">Gold/Oil Ratio (XAU/WTI)</div><div class="commodity-price">27.89x</div></div><div style="text-align:right"><div class="commodity-change negative">Lower</div><div class="commodity-note">Elevated, but falling</div></div></div>
+    <div class="commodity-tile"><div><div class="commodity-name">US Dollar Index (DXY)</div><div class="commodity-price">98.4</div></div><div style="text-align:right"><div class="commodity-change neutral">Brief snapshot</div><div class="commodity-note">Derived from macro overview</div></div></div>
   </div>
 
   <div class="section-header" style="margin-top:18px">
     <h3 class="section-title" style="font-size:13px">10-Year Bond Yields</h3>
-    <span class="section-subtitle">As of 13 Apr 2026 â€” Bloomberg / Trading Economics</span>
+    <span class="section-subtitle">From daily brief (latest run)</span>
   </div>
-  <div class="two-col"><div class="data-table-wrap"><table class="data-table"><thead><tr><th>Country</th><th>Yield</th><th>Trend</th><th>CB Rate</th></tr></thead><tbody><tr><td><strong>US</strong></td><td class="mono">4.31%</td><td class="trend-up">Rising</td><td class="mono">3.50-3.75%</td></tr>
-<tr><td><strong>Germany</strong></td><td class="mono">3.06%</td><td class="trend-up">Rising</td><td class="mono">2.00%</td></tr>
-<tr><td><strong>UK</strong></td><td class="mono">4.81%</td><td class="trend-up">Rising</td><td class="mono">3.75%</td></tr>
-<tr><td><strong>Japan</strong></td><td class="mono">2.49%</td><td class="trend-up">29-yr high</td><td class="mono">0.75%</td></tr></tbody></table></div><div class="data-table-wrap"><table class="data-table"><thead><tr><th>Country</th><th>Yield</th><th>Trend</th><th>CB Rate</th></tr></thead><tbody><tr><td><strong>Australia</strong></td><td class="mono">4.97%</td><td class="trend-up">Rising</td><td class="mono" style="color:var(--red)">4.10% (hiking)</td></tr>
-<tr><td><strong>Canada</strong></td><td class="mono">3.50%</td><td class="trend-up">Rising</td><td class="mono">2.25%</td></tr>
-<tr><td><strong>New Zealand</strong></td><td class="mono">4.73%</td><td class="trend-up">Rising</td><td class="mono" style="color:var(--amber)">2.25% (hike bias)</td></tr>
-<tr><td><strong>Switzerland</strong></td><td class="mono">0.46%</td><td class="trend-up">Rising</td><td class="mono">0.00%</td></tr></tbody></table></div></div>
+  <div class="data-table-wrap"><table class="data-table"><thead><tr><th>Country</th><th>Yield</th><th>Trend</th><th>CB Rate</th></tr></thead><tbody><tr><td colspan="4">No bond-yield snapshot provided in this brief.</td></tr></tbody></table></div>
 </section>
 
 <!-- CORE PAIRS -->
 <section id="core" class="section">
   <div class="section-header">
     <h2 class="section-title">Core Pairs Dashboard</h2>
-    <span class="section-subtitle">Rates live - Analysis: 16 Apr 2026</span>
+    <span class="section-subtitle">Rates live - Analysis: 22 Apr 2026</span>
     <span class="section-badge">1H / 4H Focus</span>
   </div>
 
   <div class="pairs-grid">
 
-    <div class="pair-card neutral-pair" data-pair-card="EURUSD"><div class="pair-header"><span class="pair-name">EUR/USD</span><span class="badge badge-trade" data-role="badge">Trade</span><span class="bias bias-neutral" data-role="bias">Neutral</span></div><div class="pair-spot-row"><span class="pair-spot" data-pair="EURUSD" data-dp="4">—</span><span class="pair-chg" data-pair-chg="EURUSD"></span></div><div class="pair-body"><div class="pair-detail-row"><span class="pair-label">Trigger</span><span class="pair-value mono" data-role="trigger">USD CPI data</span></div><div class="pair-detail-row"><span class="pair-label">Target</span><span class="pair-value mono" data-role="target">1.0950</span></div><div class="pair-detail-row"><span class="pair-label">Invalidation</span><span class="pair-value mono" data-role="invalidation">1.0780</span></div><div class="pair-detail-row"><span class="pair-label">Catalyst</span><span class="pair-value" data-role="catalyst">US CPI release</span></div><div class="pair-detail-row"><span class="pair-label">Confidence</span><div class="conf-bar-wrap"><div class="conf-bar"><div class="conf-fill high" style="width:70%" data-role="confidence-fill"></div></div><span class="conf-pct" data-role="confidence-pct">70%</span></div></div></div><div class="pair-notes" data-role="notes">EUR/USD is highly sensitive to US CPI outcomes. A weaker print could see a move towards the target, while a stronger print would likely push it towards invalidation levels.</div></div>
-<div class="pair-card neutral-pair" data-pair-card="GBPUSD"><div class="pair-header"><span class="pair-name">GBP/USD</span><span class="badge badge-trade" data-role="badge">Trade</span><span class="bias bias-neutral" data-role="bias">Neutral</span></div><div class="pair-spot-row"><span class="pair-spot" data-pair="GBPUSD" data-dp="4">—</span><span class="pair-chg" data-pair-chg="GBPUSD"></span></div><div class="pair-body"><div class="pair-detail-row"><span class="pair-label">Trigger</span><span class="pair-value mono" data-role="trigger">US CPI data</span></div><div class="pair-detail-row"><span class="pair-label">Target</span><span class="pair-value mono" data-role="target">1.2550</span></div><div class="pair-detail-row"><span class="pair-label">Invalidation</span><span class="pair-value mono" data-role="invalidation">1.2380</span></div><div class="pair-detail-row"><span class="pair-label">Catalyst</span><span class="pair-value" data-role="catalyst">US CPI release</span></div><div class="pair-detail-row"><span class="pair-label">Confidence</span><div class="conf-bar-wrap"><div class="conf-bar"><div class="conf-fill med" style="width:65%" data-role="confidence-fill"></div></div><span class="conf-pct" data-role="confidence-pct">65%</span></div></div></div><div class="pair-notes" data-role="notes">Similar to EUR/USD, GBP/USD&#x27;s direction hinges on the US CPI report. Risk-off sentiment is currently capping upside.</div></div>
-<div class="pair-card neutral-pair" data-pair-card="USDJPY"><div class="pair-header"><span class="pair-name">USD/JPY</span><span class="badge badge-watch" data-role="badge">Watch</span><span class="bias bias-neutral" data-role="bias">Neutral</span></div><div class="pair-spot-row"><span class="pair-spot" data-pair="USDJPY" data-dp="2">—</span><span class="pair-chg" data-pair-chg="USDJPY"></span></div><div class="pair-body"><div class="pair-detail-row"><span class="pair-label">Trigger</span><span class="pair-value mono" data-role="trigger">BoJ intervention fears subside</span></div><div class="pair-detail-row"><span class="pair-label">Target</span><span class="pair-value mono" data-role="target">157.50</span></div><div class="pair-detail-row"><span class="pair-label">Invalidation</span><span class="pair-value mono" data-role="invalidation">160.50</span></div><div class="pair-detail-row"><span class="pair-label">Catalyst</span><span class="pair-value" data-role="catalyst">BoJ policy signals, US CPI</span></div><div class="pair-detail-row"><span class="pair-label">Confidence</span><div class="conf-bar-wrap"><div class="conf-bar"><div class="conf-fill med" style="width:60%" data-role="confidence-fill"></div></div><span class="conf-pct" data-role="confidence-pct">60%</span></div></div></div><div class="pair-notes" data-role="notes">USD/JPY remains elevated due to yield differentials. Intervention risk is the primary constraint, with US CPI data also influencing direction.</div></div>
-<div class="pair-card neutral-pair" data-pair-card="USDCHF"><div class="pair-header"><span class="pair-name">USD/CHF</span><span class="badge badge-trade" data-role="badge">Trade</span><span class="bias bias-neutral" data-role="bias">Neutral</span></div><div class="pair-spot-row"><span class="pair-spot" data-pair="USDCHF" data-dp="4">—</span><span class="pair-chg" data-pair-chg="USDCHF"></span></div><div class="pair-body"><div class="pair-detail-row"><span class="pair-label">Trigger</span><span class="pair-value mono" data-role="trigger">Risk-off sentiment persists</span></div><div class="pair-detail-row"><span class="pair-label">Target</span><span class="pair-value mono" data-role="target">0.9000</span></div><div class="pair-detail-row"><span class="pair-label">Invalidation</span><span class="pair-value mono" data-role="invalidation">0.9180</span></div><div class="pair-detail-row"><span class="pair-label">Catalyst</span><span class="pair-value" data-role="catalyst">Geopolitical risks, US CPI</span></div><div class="pair-detail-row"><span class="pair-label">Confidence</span><div class="conf-bar-wrap"><div class="conf-bar"><div class="conf-fill high" style="width:75%" data-role="confidence-fill"></div></div><span class="conf-pct" data-role="confidence-pct">75%</span></div></div></div><div class="pair-notes" data-role="notes">USD/CHF benefits from safe-haven demand. A sustained risk-off mood supports this pair, but a dovish CPI surprise could challenge the upside.</div></div>
-<div class="pair-card neutral-pair" data-pair-card="AUDUSD"><div class="pair-header"><span class="pair-name">AUD/USD</span><span class="badge badge-watch" data-role="badge">Watch</span><span class="bias bias-neutral" data-role="bias">Neutral</span></div><div class="pair-spot-row"><span class="pair-spot" data-pair="AUDUSD" data-dp="4">—</span><span class="pair-chg" data-pair-chg="AUDUSD"></span></div><div class="pair-body"><div class="pair-detail-row"><span class="pair-label">Trigger</span><span class="pair-value mono" data-role="trigger">Risk-on sentiment</span></div><div class="pair-detail-row"><span class="pair-label">Target</span><span class="pair-value mono" data-role="target">0.6650</span></div><div class="pair-detail-row"><span class="pair-label">Invalidation</span><span class="pair-value mono" data-role="invalidation">0.6480</span></div><div class="pair-detail-row"><span class="pair-label">Catalyst</span><span class="pair-value" data-role="catalyst">US CPI data, commodity prices</span></div><div class="pair-detail-row"><span class="pair-label">Confidence</span><div class="conf-bar-wrap"><div class="conf-bar"><div class="conf-fill med" style="width:60%" data-role="confidence-fill"></div></div><span class="conf-pct" data-role="confidence-pct">60%</span></div></div></div><div class="pair-notes" data-role="notes">AUD/USD is vulnerable to risk sentiment. A positive CPI surprise would likely lead to further downside, while a cooler print could spark a recovery.</div></div>
-<div class="pair-card neutral-pair" data-pair-card="USDCAD"><div class="pair-header"><span class="pair-name">USD/CAD</span><span class="badge badge-watch" data-role="badge">Watch</span><span class="bias bias-neutral" data-role="bias">Neutral</span></div><div class="pair-spot-row"><span class="pair-spot" data-pair="USDCAD" data-dp="4">—</span><span class="pair-chg" data-pair-chg="USDCAD"></span></div><div class="pair-body"><div class="pair-detail-row"><span class="pair-label">Trigger</span><span class="pair-value mono" data-role="trigger">Oil price weakness</span></div><div class="pair-detail-row"><span class="pair-label">Target</span><span class="pair-value mono" data-role="target">1.3650</span></div><div class="pair-detail-row"><span class="pair-label">Invalidation</span><span class="pair-value mono" data-role="invalidation">1.3800</span></div><div class="pair-detail-row"><span class="pair-label">Catalyst</span><span class="pair-value" data-role="catalyst">Oil prices, US CPI</span></div><div class="pair-detail-row"><span class="pair-label">Confidence</span><div class="conf-bar-wrap"><div class="conf-bar"><div class="conf-fill med" style="width:55%" data-role="confidence-fill"></div></div><span class="conf-pct" data-role="confidence-pct">55%</span></div></div></div><div class="pair-notes" data-role="notes">USD/CAD is influenced by oil prices and USD strength. A risk-off environment and weaker oil prices are supportive of USD/CAD.</div></div>
-<div class="pair-card watch-pair" data-pair-card="NZDUSD"><div class="pair-header"><span class="pair-name">NZD/USD</span><span class="badge badge-watch" data-role="badge">Watch</span><span class="bias bias-neutral" data-role="bias">Neutral</span></div><div class="pair-spot-row"><span class="pair-spot" data-pair="NZDUSD" data-dp="4">—</span><span class="pair-chg" data-pair-chg="NZDUSD"></span></div><div class="pair-body"><div class="pair-detail-row"><span class="pair-label">Trigger</span><span class="pair-value mono" data-role="trigger">Watch key levels</span></div><div class="pair-detail-row"><span class="pair-label">Target</span><span class="pair-value mono" data-role="target">Directional follow-through</span></div><div class="pair-detail-row"><span class="pair-label">Invalidation</span><span class="pair-value mono" data-role="invalidation">No momentum confirmation</span></div><div class="pair-detail-row"><span class="pair-label">Catalyst</span><span class="pair-value" data-role="catalyst">Highly correlated with AUD/USD, sensitive to risk sentiment and US CPI.</span></div><div class="pair-detail-row"><span class="pair-label">Confidence</span><div class="conf-bar-wrap"><div class="conf-bar"><div class="conf-fill med" style="width:45%" data-role="confidence-fill"></div></div><span class="conf-pct" data-role="confidence-pct">45%</span></div></div></div><div class="pair-notes" data-role="notes">Highly correlated with AUD/USD, sensitive to risk sentiment and US CPI.</div></div>
+    <div class="pair-card bull" data-pair-card="EURUSD" data-origin-spot="1.1760"><div class="pair-header"><span class="pair-name">EUR/USD</span><span class="badge badge-trade" data-role="badge">Trade</span><span class="bias bias-bull" data-role="bias">Bullish</span></div><div class="pair-spot-row"><span class="pair-spot" data-pair="EURUSD" data-dp="4">-</span><span class="pair-chg" data-pair-chg="EURUSD"></span></div><div class="pair-body"><div class="pair-detail-row"><span class="pair-label">Trigger</span><span class="pair-value mono" data-role="trigger">1.174-1.178</span></div><div class="pair-detail-row"><span class="pair-label">Target</span><span class="pair-value mono" data-role="target">1.186-1.194</span></div><div class="pair-detail-row"><span class="pair-label">Invalidation</span><span class="pair-value mono" data-role="invalidation">1.17</span></div><div class="pair-detail-row"><span class="pair-label">Catalyst</span><span class="pair-value" data-role="catalyst">ECB President Lagarde&#x27;s remarks later today, Eurozone flash PMIs on Thursday, and US data/yields shaping the USD leg.</span></div><div class="pair-detail-row"><span class="pair-label">Confidence</span><div class="conf-bar-wrap"><div class="conf-bar"><div class="conf-fill high" style="width:80%" data-role="confidence-fill"></div></div><span class="conf-pct" data-role="confidence-pct">80%</span></div></div></div><div class="pair-notes" data-role="notes">Buy dips within the 1.1740-1.1780 support band in a still-upward-sloping channel, targeting a move toward the high-1.18s/low-1.19s while the 1.1700 trend support holds.</div></div>
+<div class="pair-card watch-pair" data-pair-card="GBPUSD" data-origin-spot="1.3500"><div class="pair-header"><span class="pair-name">GBP/USD</span><span class="badge badge-watch" data-role="badge">Watch</span><span class="bias bias-bull" data-role="bias">Bullish</span></div><div class="pair-spot-row"><span class="pair-spot" data-pair="GBPUSD" data-dp="4">-</span><span class="pair-chg" data-pair-chg="GBPUSD"></span></div><div class="pair-body"><div class="pair-detail-row"><span class="pair-label">Trigger</span><span class="pair-value mono" data-role="trigger">1.3435-1.3505</span></div><div class="pair-detail-row"><span class="pair-label">Target</span><span class="pair-value mono" data-role="target">1.366-1.376</span></div><div class="pair-detail-row"><span class="pair-label">Invalidation</span><span class="pair-value mono" data-role="invalidation">1.3365</span></div><div class="pair-detail-row"><span class="pair-label">Catalyst</span><span class="pair-value" data-role="catalyst">Bullish channel remains intact, but heavy UK data risk means better to wait for post-CPI stabilisation before buying 1.3435-1.3505 for a move toward the mid-1.36s-1.37s.</span></div><div class="pair-detail-row"><span class="pair-label">Confidence</span><div class="conf-bar-wrap"><div class="conf-bar"><div class="conf-fill med" style="width:65%" data-role="confidence-fill"></div></div><span class="conf-pct" data-role="confidence-pct">65%</span></div></div></div><div class="pair-notes" data-role="notes">Bullish channel remains intact, but heavy UK data risk means better to wait for post-CPI stabilisation before buying 1.3435-1.3505 for a move toward the mid-1.36s-1.37s.</div></div>
+<div class="pair-card bull" data-pair-card="AUDUSD" data-origin-spot="0.7160"><div class="pair-header"><span class="pair-name">AUD/USD</span><span class="badge badge-trade" data-role="badge">Trade</span><span class="bias bias-bull" data-role="bias">Bullish</span></div><div class="pair-spot-row"><span class="pair-spot" data-pair="AUDUSD" data-dp="4">-</span><span class="pair-chg" data-pair-chg="AUDUSD"></span></div><div class="pair-body"><div class="pair-detail-row"><span class="pair-label">Trigger</span><span class="pair-value mono" data-role="trigger">0.713-0.717</span></div><div class="pair-detail-row"><span class="pair-label">Target</span><span class="pair-value mono" data-role="target">0.724-0.73</span></div><div class="pair-detail-row"><span class="pair-label">Invalidation</span><span class="pair-value mono" data-role="invalidation">0.709</span></div><div class="pair-detail-row"><span class="pair-label">Catalyst</span><span class="pair-value" data-role="catalyst">Australian and China data, global risk sentiment, and USD moves around Thursday&#x27;s PMIs and jobless‑claims data.</span></div><div class="pair-detail-row"><span class="pair-label">Confidence</span><div class="conf-bar-wrap"><div class="conf-bar"><div class="conf-fill med" style="width:65%" data-role="confidence-fill"></div></div><span class="conf-pct" data-role="confidence-pct">65%</span></div></div></div><div class="pair-notes" data-role="notes">Use 0.7130-0.7170 as a dip-buy zone within a bullish channel, aiming for 0.7240-0.7300 while global risk stays constructive and 0.7090 support holds on a 4H basis.</div></div>
+<div class="pair-card bull" data-pair-card="NZDUSD" data-origin-spot="0.5890"><div class="pair-header"><span class="pair-name">NZD/USD</span><span class="badge badge-trade" data-role="badge">Trade</span><span class="bias bias-bull" data-role="bias">Bullish</span></div><div class="pair-spot-row"><span class="pair-spot" data-pair="NZDUSD" data-dp="4">-</span><span class="pair-chg" data-pair-chg="NZDUSD"></span></div><div class="pair-body"><div class="pair-detail-row"><span class="pair-label">Trigger</span><span class="pair-value mono" data-role="trigger">0.586-0.59</span></div><div class="pair-detail-row"><span class="pair-label">Target</span><span class="pair-value mono" data-role="target">0.596-0.602</span></div><div class="pair-detail-row"><span class="pair-label">Invalidation</span><span class="pair-value mono" data-role="invalidation">0.5835</span></div><div class="pair-detail-row"><span class="pair-label">Catalyst</span><span class="pair-value" data-role="catalyst">Follow‑through on the NZ CPI surprise, global risk tone (equities/commodities), and USD leg driven by US data and yields over the next two days.</span></div><div class="pair-detail-row"><span class="pair-label">Confidence</span><div class="conf-bar-wrap"><div class="conf-bar"><div class="conf-fill high" style="width:80%" data-role="confidence-fill"></div></div><span class="conf-pct" data-role="confidence-pct">80%</span></div></div></div><div class="pair-notes" data-role="notes">Strong NZ inflation and a supportive channel favour buying 0.5860-0.5900 for a push into 0.5960-0.6020, with the bullish structure negated only below 0.5835.</div></div>
+<div class="pair-card bear" data-pair-card="USDJPY" data-origin-spot="159.40"><div class="pair-header"><span class="pair-name">USD/JPY</span><span class="badge badge-trade" data-role="badge">Trade</span><span class="bias bias-bear" data-role="bias">Bearish</span></div><div class="pair-spot-row"><span class="pair-spot" data-pair="USDJPY" data-dp="2">-</span><span class="pair-chg" data-pair-chg="USDJPY"></span></div><div class="pair-body"><div class="pair-detail-row"><span class="pair-label">Trigger</span><span class="pair-value mono" data-role="trigger">159.3-160.0</span></div><div class="pair-detail-row"><span class="pair-label">Target</span><span class="pair-value mono" data-role="target">156.5-157.3</span></div><div class="pair-detail-row"><span class="pair-label">Invalidation</span><span class="pair-value mono" data-role="invalidation">160.5</span></div><div class="pair-detail-row"><span class="pair-label">Catalyst</span><span class="pair-value" data-role="catalyst">Moves in US front‑end yields, global risk sentiment (equities/credit), and positioning into next week&#x27;s BoJ policy decision.</span></div><div class="pair-detail-row"><span class="pair-label">Confidence</span><div class="conf-bar-wrap"><div class="conf-bar"><div class="conf-fill med" style="width:65%" data-role="confidence-fill"></div></div><span class="conf-pct" data-role="confidence-pct">65%</span></div></div></div><div class="pair-notes" data-role="notes">Fade spikes into 159.30-160.00 near cycle highs, targeting a corrective drop into 156.50-157.30 ahead of the BoJ meeting, but abandon shorts on a daily close above 160.50.</div></div>
+<div class="pair-card watch-pair" data-pair-card="USDCHF" data-origin-spot="0.7780"><div class="pair-header"><span class="pair-name">USD/CHF</span><span class="badge badge-watch" data-role="badge">Watch</span><span class="bias bias-neutral" data-role="bias">Neutral</span></div><div class="pair-spot-row"><span class="pair-spot" data-pair="USDCHF" data-dp="4">-</span><span class="pair-chg" data-pair-chg="USDCHF"></span></div><div class="pair-body"><div class="pair-detail-row"><span class="pair-label">Trigger</span><span class="pair-value mono" data-role="trigger">0.775-0.782</span></div><div class="pair-detail-row"><span class="pair-label">Target</span><span class="pair-value mono" data-role="target">0.762-0.755</span></div><div class="pair-detail-row"><span class="pair-label">Invalidation</span><span class="pair-value mono" data-role="invalidation">0.785</span></div><div class="pair-detail-row"><span class="pair-label">Catalyst</span><span class="pair-value" data-role="catalyst">USD/CHF is chopping near 0.78; any fades in the 0.7750-0.7820 region have modest downside toward the mid-0.75s, but mixed signals and overlapping price action argue for low priority.</span></div><div class="pair-detail-row"><span class="pair-label">Confidence</span><div class="conf-bar-wrap"><div class="conf-bar"><div class="conf-fill med" style="width:50%" data-role="confidence-fill"></div></div><span class="conf-pct" data-role="confidence-pct">50%</span></div></div></div><div class="pair-notes" data-role="notes">USD/CHF is chopping near 0.78; any fades in the 0.7750-0.7820 region have modest downside toward the mid-0.75s, but mixed signals and overlapping price action argue for low priority.</div></div>
+<div class="pair-card bear" data-pair-card="USDCAD" data-origin-spot="1.3660"><div class="pair-header"><span class="pair-name">USD/CAD</span><span class="badge badge-trade" data-role="badge">Trade</span><span class="bias bias-bear" data-role="bias">Bearish</span></div><div class="pair-spot-row"><span class="pair-spot" data-pair="USDCAD" data-dp="4">-</span><span class="pair-chg" data-pair-chg="USDCAD"></span></div><div class="pair-body"><div class="pair-detail-row"><span class="pair-label">Trigger</span><span class="pair-value mono" data-role="trigger">1.368-1.374</span></div><div class="pair-detail-row"><span class="pair-label">Target</span><span class="pair-value mono" data-role="target">1.356-1.35</span></div><div class="pair-detail-row"><span class="pair-label">Invalidation</span><span class="pair-value mono" data-role="invalidation">1.38</span></div><div class="pair-detail-row"><span class="pair-label">Catalyst</span><span class="pair-value" data-role="catalyst">Oil headlines linked to Middle East developments, Canadian data and BoC expectations, and US labour and PMI data that drive the USD leg.</span></div><div class="pair-detail-row"><span class="pair-label">Confidence</span><div class="conf-bar-wrap"><div class="conf-bar"><div class="conf-fill med" style="width:65%" data-role="confidence-fill"></div></div><span class="conf-pct" data-role="confidence-pct">65%</span></div></div></div><div class="pair-notes" data-role="notes">Within a broad 1.35-1.39 range, prefer selling 1.3680-1.3740 on rallies, looking for a move back toward 1.3560-1.3500 while oil stays supported and 1.3800 capping the topside.</div></div>
 
   </div>
 
   <div class="corr-box">
     <div class="corr-title">Correlated Exposure Warning</div>
     <div class="corr-list">
-      <div class="corr-item">AUD/USD + NZD/USD are both risk-on Antipodean longs. Hormuz blockade risk-off hits both simultaneously. Max 1.5% combined risk until geopolitical picture clears.</div>
-      <div class="corr-item">USD/JPY sell + AUD/USD buy = partial natural hedge (USD legs offset), but BOJ Apr 28 is uncorrelated with RBA cycle â€” size both independently.</div>
-      <div class="corr-item">USD/CAD is currently a crossfire pair (USD risk-off bid vs. CAD oil-export tailwind). Avoid until cleaner directional signal emerges. Do not add this as a third position.</div>
+      <div class="corr-item">AUD/USD + NZD/USD: AUD/USD and NZD/USD are highly correlated, both behaving as high‑beta, China‑ and risk‑sensitive G10 commodities currencies; taking both NZD long and AUD long is effectively a leveraged bet on the same macro theme. EUR/USD and GBP/USD are both heavily driven by European data and ECB/BoE expectations this week, so joint exposure behaves like one &quot;Europe vs USD&quot; trade around PMIs and UK CPI.</div>
+<div class="corr-item">NZD/USD + AUD/USD: For a max 3% total portfolio risk, if you run both NZD/USD and AUD/USD longs, consider capping combined risk to 1.5-2.0% (e.g., 1.0% NZD, 0.5-1.0% AUD) rather than 1% each, to reflect their high correlation. For USD/JPY shorts plus EUR/USD longs (both partly &quot;short USD&quot; expressions), aim for a combined 2% risk cap unless their triggers are staggered and macro drivers diverge meaningfully.</div>
+<div class="corr-item">USD/CAD + USD/CAD: CAD exposure via USD/CAD is tightly linked to oil and Middle East headlines; a large USD/CAD short combined with AUD/NZD longs produces a sizeable &quot;pro‑risk and pro‑commodities&quot; tilt that should be sized accordingly. JPY shorts (or lack of JPY longs) leave the portfolio more vulnerable to a sudden risk‑off shock, so pairing USD/JPY shorts with at least one risk‑on G10 long (e.g., NZD/USD) can help balance the overall macro profile.</div>
     </div>
   </div>
 </section>
@@ -418,15 +424,15 @@ section[id]{scroll-margin-top:130px}
 <section id="correlation" class="section">
   <div class="section-header">
     <h2 class="section-title">14-Day Correlation Matrix</h2>
-    <span class="section-subtitle">Pearson r from ECB daily closes â€” Active pairs</span>
+    <span class="section-subtitle">Pearson r from ECB daily closes - Active pairs</span>
   </div>
   <div class="corr-matrix-wrap">
     <div class="corr-matrix-header">
       <div class="corr-legend">
         <div class="corr-legend-item"><div class="corr-legend-swatch" style="background:#22c55e"></div> &gt; 0.70</div>
-        <div class="corr-legend-item"><div class="corr-legend-swatch" style="background:#f59e0b"></div> 0.40â€“0.70</div>
-        <div class="corr-legend-item"><div class="corr-legend-swatch" style="background:#64748b"></div> Â±0.40</div>
-        <div class="corr-legend-item"><div class="corr-legend-swatch" style="background:#60a5fa"></div> -0.40â€“-0.70</div>
+        <div class="corr-legend-item"><div class="corr-legend-swatch" style="background:#f59e0b"></div> 0.40-0.70</div>
+        <div class="corr-legend-item"><div class="corr-legend-swatch" style="background:#64748b"></div> +/-0.40</div>
+        <div class="corr-legend-item"><div class="corr-legend-swatch" style="background:#60a5fa"></div> -0.40--0.70</div>
         <div class="corr-legend-item"><div class="corr-legend-swatch" style="background:#ef4444"></div> &lt; -0.70</div>
       </div>
     </div>
@@ -442,15 +448,15 @@ section[id]{scroll-margin-top:130px}
 <section id="top5" class="section">
   <div class="section-header">
     <h2 class="section-title">Top 5 Setups</h2>
-    <span class="section-subtitle">Ranked by conviction â€” Min 2:1 R/R â€” 1H/4H</span>
+    <span class="section-subtitle">Ranked by conviction - Min 2:1 R/R - 1H/4H</span>
   </div>
   <div class="setup-list">
 
-    <div class="setup-card rank-1"><div class="setup-row"><span class="setup-rank">1</span><span class="setup-pair-name">EUR/USD</span><span class="setup-direction dir-sell">SHORT</span><div class="setup-fields"><div class="setup-field"><span class="sf-label">Live Spot</span><span class="sf-val" data-pair="EURUSD" data-dp="4">—</span></div><div class="setup-field"><span class="sf-label">Entry Zone</span><span class="sf-val">1.0860-1.0875</span></div><div class="setup-field"><span class="sf-label">Stop</span><span class="sf-val" style="color:var(--red)">1.0900</span></div><div class="setup-field"><span class="sf-label">Target</span><span class="sf-val" style="color:var(--green)">1.0780</span></div><div class="setup-field"><span class="sf-label">R/R</span><span class="sf-val" style="color:var(--green)">1.5:1</span></div></div><div class="conf-indicator"><span style="font-size:12px;color:var(--green);font-weight:700">70%</span></div></div><div class="setup-body"><div class="setup-detail"><div class="sd-label">Catalyst</div><div class="sd-val">Hotter-than-expected US CPI</div></div><div class="setup-detail"><div class="sd-label">Invalidation / Risk</div><div class="sd-val">Cooler-than-expected US CPI</div></div></div></div>
-<div class="setup-card rank-2"><div class="setup-row"><span class="setup-rank">2</span><span class="setup-pair-name">USD/JPY</span><span class="setup-direction dir-buy">LONG</span><div class="setup-fields"><div class="setup-field"><span class="sf-label">Live Spot</span><span class="sf-val" data-pair="USDJPY" data-dp="2">—</span></div><div class="setup-field"><span class="sf-label">Entry Zone</span><span class="sf-val">158.50-158.80</span></div><div class="setup-field"><span class="sf-label">Stop</span><span class="sf-val" style="color:var(--red)">157.50</span></div><div class="setup-field"><span class="sf-label">Target</span><span class="sf-val" style="color:var(--green)">160.50</span></div><div class="setup-field"><span class="sf-label">R/R</span><span class="sf-val" style="color:var(--green)">1.2:1</span></div></div><div class="conf-indicator"><span style="font-size:12px;color:var(--green);font-weight:700">60%</span></div></div><div class="setup-body"><div class="setup-detail"><div class="sd-label">Catalyst</div><div class="sd-val">Continued yield differential, lack of BoJ intervention</div></div><div class="setup-detail"><div class="sd-label">Invalidation / Risk</div><div class="sd-val">Direct BoJ intervention</div></div></div></div>
-<div class="setup-card rank-3"><div class="setup-row"><span class="setup-rank">3</span><span class="setup-pair-name">GBP/USD</span><span class="setup-direction dir-sell">SHORT</span><div class="setup-fields"><div class="setup-field"><span class="sf-label">Live Spot</span><span class="sf-val" data-pair="GBPUSD" data-dp="4">—</span></div><div class="setup-field"><span class="sf-label">Entry Zone</span><span class="sf-val">1.2465-1.2480</span></div><div class="setup-field"><span class="sf-label">Stop</span><span class="sf-val" style="color:var(--red)">1.2500</span></div><div class="setup-field"><span class="sf-label">Target</span><span class="sf-val" style="color:var(--green)">1.2380</span></div><div class="setup-field"><span class="sf-label">R/R</span><span class="sf-val" style="color:var(--green)">1.6:1</span></div></div><div class="conf-indicator"><span style="font-size:12px;color:var(--green);font-weight:700">65%</span></div></div><div class="setup-body"><div class="setup-detail"><div class="sd-label">Catalyst</div><div class="sd-val">Hotter-than-expected US CPI</div></div><div class="setup-detail"><div class="sd-label">Invalidation / Risk</div><div class="sd-val">Cooler-than-expected US CPI</div></div></div></div>
-<div class="setup-card rank-4"><div class="setup-row"><span class="setup-rank">4</span><span class="setup-pair-name">AUD/USD</span><span class="setup-direction dir-sell">SHORT</span><div class="setup-fields"><div class="setup-field"><span class="sf-label">Live Spot</span><span class="sf-val" data-pair="AUDUSD" data-dp="4">—</span></div><div class="setup-field"><span class="sf-label">Entry Zone</span><span class="sf-val">0.6565-0.6580</span></div><div class="setup-field"><span class="sf-label">Stop</span><span class="sf-val" style="color:var(--red)">0.6600</span></div><div class="setup-field"><span class="sf-label">Target</span><span class="sf-val" style="color:var(--green)">0.6480</span></div><div class="setup-field"><span class="sf-label">R/R</span><span class="sf-val" style="color:var(--green)">1.8:1</span></div></div><div class="conf-indicator"><span style="font-size:12px;color:var(--green);font-weight:700">60%</span></div></div><div class="setup-body"><div class="setup-detail"><div class="sd-label">Catalyst</div><div class="sd-val">Risk-off sentiment, hotter US CPI</div></div><div class="setup-detail"><div class="sd-label">Invalidation / Risk</div><div class="sd-val">Risk-on sentiment, cooler US CPI</div></div></div></div>
-<div class="setup-card rank-5"><div class="setup-row"><span class="setup-rank">5</span><span class="setup-pair-name">USD/CHF</span><span class="setup-direction dir-buy">LONG</span><div class="setup-fields"><div class="setup-field"><span class="sf-label">Live Spot</span><span class="sf-val" data-pair="USDCHF" data-dp="4">—</span></div><div class="setup-field"><span class="sf-label">Entry Zone</span><span class="sf-val">0.9080-0.9095</span></div><div class="setup-field"><span class="sf-label">Stop</span><span class="sf-val" style="color:var(--red)">0.9150</span></div><div class="setup-field"><span class="sf-label">Target</span><span class="sf-val" style="color:var(--green)">0.9000</span></div><div class="setup-field"><span class="sf-label">R/R</span><span class="sf-val" style="color:var(--green)">1.3:1</span></div></div><div class="conf-indicator"><span style="font-size:12px;color:var(--green);font-weight:700">75%</span></div></div><div class="setup-body"><div class="setup-detail"><div class="sd-label">Catalyst</div><div class="sd-val">Geopolitical tensions, risk aversion</div></div><div class="setup-detail"><div class="sd-label">Invalidation / Risk</div><div class="sd-val">De-escalation of geopolitical risks</div></div></div></div>
+    <div class="setup-card rank-1" data-entry-zone="0.5860-0.5900"><div class="setup-row"><span class="setup-rank">1</span><span class="setup-pair-name">NZD/USD</span><span class="setup-direction dir-buy">LONG - BUY DIP INTO POST‑CPI SUPPORT</span><div class="setup-fields"><div class="setup-field"><span class="sf-label">Live Spot</span><span class="sf-val" data-pair="NZDUSD" data-dp="4">-</span></div><div class="setup-field"><span class="sf-label">Entry Zone</span><span class="sf-val">0.5860-0.5900</span></div><div class="setup-field"><span class="sf-label">Stop</span><span class="sf-val" style="color:var(--red)">0.5835</span></div><div class="setup-field"><span class="sf-label">Target</span><span class="sf-val" style="color:var(--green)">0.5960-0.6020</span></div><div class="setup-field"><span class="sf-label">R/R</span><span class="sf-val rr-val" style="color:var(--green)">~2.4:1 <span class="rr-detail">(mid-trigger 0.5880 -&gt; mid-target 0.5990 = 110 pips; stop 0.5835 = 45 pips).</span></span></div></div><div class="conf-indicator"><span class="trade-alert-badge" data-role="trade-alert">WAITING</span><span style="font-size:12px;color:var(--green);font-weight:700">80%</span></div></div><div class="setup-body"><div class="setup-detail"><div class="sd-label">Catalyst</div><div class="sd-val">Follow‑through on the NZ CPI surprise, global risk tone (equities/commodities), and USD leg driven by US data and yields over the next two days.</div></div><div class="setup-detail"><div class="sd-label">Invalidation / Risk</div><div class="sd-val">Daily close below 0.5835, which corresponds to the level that would break the bullish channel and invalidate the immediate upside scenario.</div></div></div></div>
+<div class="setup-card rank-2" data-entry-zone="1.3680-1.3740"><div class="setup-row"><span class="setup-rank">2</span><span class="setup-pair-name">USD/CAD</span><span class="setup-direction dir-sell">SHORT - SELL RALLIES TOWARD RANGE HIGHS</span><div class="setup-fields"><div class="setup-field"><span class="sf-label">Live Spot</span><span class="sf-val" data-pair="USDCAD" data-dp="4">-</span></div><div class="setup-field"><span class="sf-label">Entry Zone</span><span class="sf-val">1.3680-1.3740</span></div><div class="setup-field"><span class="sf-label">Stop</span><span class="sf-val" style="color:var(--red)">1.3800</span></div><div class="setup-field"><span class="sf-label">Target</span><span class="sf-val" style="color:var(--green)">1.356-1.35</span></div><div class="setup-field"><span class="sf-label">R/R</span><span class="sf-val rr-val" style="color:var(--green)">~2.0:1 <span class="rr-detail">(mid-entry 1.3710 -&gt; mid-target 1.3530 = 180 pips; stop 1.3800 = 90 pips).</span></span></div></div><div class="conf-indicator"><span class="trade-alert-badge" data-role="trade-alert">WAITING</span><span style="font-size:12px;color:var(--green);font-weight:700">65%</span></div></div><div class="setup-body"><div class="setup-detail"><div class="sd-label">Catalyst</div><div class="sd-val">Oil headlines linked to Middle East developments, Canadian data and BoC expectations, and US labour and PMI data that drive the USD leg.</div></div><div class="setup-detail"><div class="sd-label">Invalidation / Risk</div><div class="sd-val">4H close above 1.3800, which would put the 1.39-1.40 range highs back in play and negate the immediate short‑bias.</div></div></div></div>
+<div class="setup-card rank-3" data-entry-zone="1.1740-1.1780"><div class="setup-row"><span class="setup-rank">3</span><span class="setup-pair-name">EUR/USD</span><span class="setup-direction dir-buy">LONG - BUY DIP IN UPWARD‑SLOPING RANGE</span><div class="setup-fields"><div class="setup-field"><span class="sf-label">Live Spot</span><span class="sf-val" data-pair="EURUSD" data-dp="4">-</span></div><div class="setup-field"><span class="sf-label">Entry Zone</span><span class="sf-val">1.1740-1.1780</span></div><div class="setup-field"><span class="sf-label">Stop</span><span class="sf-val" style="color:var(--red)">1.1700</span></div><div class="setup-field"><span class="sf-label">Target</span><span class="sf-val" style="color:var(--green)">1.1860-1.1940</span></div><div class="setup-field"><span class="sf-label">R/R</span><span class="sf-val rr-val" style="color:var(--green)">~2.3:1 <span class="rr-detail">(mid-trigger 1.1760 -&gt; mid-target 1.1900 = 140 pips; stop 1.1700 = 60 pips).</span></span></div></div><div class="conf-indicator"><span class="trade-alert-badge" data-role="trade-alert">WAITING</span><span style="font-size:12px;color:var(--green);font-weight:700">80%</span></div></div><div class="setup-body"><div class="setup-detail"><div class="sd-label">Catalyst</div><div class="sd-val">ECB President Lagarde&#x27;s remarks later today, Eurozone flash PMIs on Thursday, and US data/yields shaping the USD leg.</div></div><div class="setup-detail"><div class="sd-label">Invalidation / Risk</div><div class="sd-val">4H close below 1.1700, which would break short‑term trend support and suggest a deeper correction back toward mid‑1.16s.</div></div></div></div>
+<div class="setup-card rank-4" data-entry-zone="159.30-160.00"><div class="setup-row"><span class="setup-rank">4</span><span class="setup-pair-name">USD/JPY</span><span class="setup-direction dir-sell">SHORT - FADE HIGH‑160S WITH CARRY CAUTION</span><div class="setup-fields"><div class="setup-field"><span class="sf-label">Live Spot</span><span class="sf-val" data-pair="USDJPY" data-dp="2">-</span></div><div class="setup-field"><span class="sf-label">Entry Zone</span><span class="sf-val">159.30-160.00</span></div><div class="setup-field"><span class="sf-label">Stop</span><span class="sf-val" style="color:var(--red)">160.50</span></div><div class="setup-field"><span class="sf-label">Target</span><span class="sf-val" style="color:var(--green)">156.5-157.3</span></div><div class="setup-field"><span class="sf-label">R/R</span><span class="sf-val rr-val" style="color:var(--green)">~2.8:1 <span class="rr-detail">(mid-entry 159.65 -&gt; mid-target 156.90 = 275 pips; stop 160.50 = 85 pips).</span></span></div></div><div class="conf-indicator"><span class="trade-alert-badge" data-role="trade-alert">WAITING</span><span style="font-size:12px;color:var(--green);font-weight:700">65%</span></div></div><div class="setup-body"><div class="setup-detail"><div class="sd-label">Catalyst</div><div class="sd-val">Moves in US front‑end yields, global risk sentiment (equities/credit), and positioning into next week&#x27;s BoJ policy decision.</div></div><div class="setup-detail"><div class="sd-label">Invalidation / Risk</div><div class="sd-val">Daily close above 160.50, indicating a fresh breakout and raising the risk of a squeeze into new highs.</div></div></div></div>
+<div class="setup-card rank-5" data-entry-zone="0.7130-0.7170"><div class="setup-row"><span class="setup-rank">5</span><span class="setup-pair-name">AUD/USD</span><span class="setup-direction dir-buy">LONG - BUY DIP, TRADE DATA‑DRIVEN BOUNCES</span><div class="setup-fields"><div class="setup-field"><span class="sf-label">Live Spot</span><span class="sf-val" data-pair="AUDUSD" data-dp="4">-</span></div><div class="setup-field"><span class="sf-label">Entry Zone</span><span class="sf-val">0.7130-0.7170</span></div><div class="setup-field"><span class="sf-label">Stop</span><span class="sf-val" style="color:var(--red)">0.7090</span></div><div class="setup-field"><span class="sf-label">Target</span><span class="sf-val" style="color:var(--green)">0.7240-0.7300</span></div><div class="setup-field"><span class="sf-label">R/R</span><span class="sf-val rr-val" style="color:var(--green)">~1.9:1 <span class="rr-detail">(mid-trigger 0.7150 -&gt; mid-target 0.7270 = 120 pips; stop 0.7090 = 60 pips).</span></span></div></div><div class="conf-indicator"><span class="trade-alert-badge" data-role="trade-alert">WAITING</span><span style="font-size:12px;color:var(--green);font-weight:700">65%</span></div></div><div class="setup-body"><div class="setup-detail"><div class="sd-label">Catalyst</div><div class="sd-val">Australian and China data, global risk sentiment, and USD moves around Thursday&#x27;s PMIs and jobless‑claims data.</div></div><div class="setup-detail"><div class="sd-label">Invalidation / Risk</div><div class="sd-val">4H close below 0.7090, which would break the near‑term trendline and increase the odds of a deeper correction toward the high‑0.69s.</div></div></div></div>
 
   </div>
 </section>
@@ -459,13 +465,13 @@ section[id]{scroll-margin-top:130px}
 <section id="secondary" class="section">
   <div class="section-header">
     <h2 class="section-title">Secondary Opportunities</h2>
-    <span class="section-subtitle">Only where stronger than core pairs — Analysis: 2026-04-16T08:00:00Z</span>
+    <span class="section-subtitle">Only where stronger than core pairs - Analysis: 2026-04-22T08:00:00Z</span>
   </div>
   <div class="data-table-wrap">
     <table class="data-table">
       <thead><tr><th>Pair</th><th>Spot (Live)</th><th>Bias</th><th>Setup / Notes</th></tr></thead>
-      <tbody><tr><td><strong>NZD/USD</strong></td><td class="mono">0.5910</td><td>Neutral</td><td>Highly correlated with AUD/USD, sensitive to risk sentiment and US CPI.</td></tr>
-<tr><td><strong>USD/CAD</strong></td><td class="mono">1.3728</td><td>Neutral</td><td>Influenced by oil prices and USD strength. Risk-off environment supports USD/CAD.</td></tr></tbody>
+      <tbody><tr><td><strong>GBP/USD</strong></td><td class="mono">1.3500</td><td>Bullish</td><td>Bullish channel remains intact, but heavy UK data risk means better to wait for post-CPI stabilisation before buying 1.3435-1.3505 for a move toward the mid-1.36s-1.37s.</td></tr>
+<tr><td><strong>USD/CHF</strong></td><td class="mono">0.7780</td><td>Neutral</td><td>USD/CHF is chopping near 0.78; any fades in the 0.7750-0.7820 region have modest downside toward the mid-0.75s, but mixed signals and overlapping price action argue for low priority.</td></tr></tbody>
     </table>
   </div>
 </section>
@@ -474,11 +480,11 @@ section[id]{scroll-margin-top:130px}
 <section id="avoid" class="section">
   <div class="section-header">
     <h2 class="section-title">Pairs to Avoid</h2>
-    <span class="section-subtitle">Low conviction, poor R/R, or excessive noise â€” Analysis: 16 Apr 2026</span>
+    <span class="section-subtitle">Low conviction, poor R/R, or excessive noise - Analysis: 22 Apr 2026</span>
   </div>
   <div class="avoid-grid">
-    <div class="avoid-card"><span class="avoid-pair">USD/MXN</span><span class="avoid-reason">High volatility and sensitivity to US domestic politics, difficult to trade reliably without clear directional signals.</span></div>
-<div class="avoid-card"><span class="avoid-pair">EM FX crosses</span><span class="avoid-reason">General risk-off sentiment makes EM assets vulnerable; requires specific catalyst for directional conviction.</span></div>
+    <div class="avoid-card"><span class="avoid-pair">GBP/USD</span><span class="avoid-reason">The pair trades near 1.35 within a bullish channel, but today&#x27;s UK CPI at 06:00, followed by PMIs and retail sales later this week, creates a cluster of binary data risk that can easily produce whipsaws around technical levels. Treat full‑size directional trades as lower priority until post‑CPI price action settles and the market has digested the BoE implications.</span></div>
+<div class="avoid-card"><span class="avoid-pair">USD/CHF</span><span class="avoid-reason">USD/CHF is stuck near 0.78 with medium‑term forecasts only mildly softer and weekly technicals pointing to overlapping corrective price action between roughly 0.775 and 0.80. With CHF mainly reacting to risk‑off episodes and the USD leg being driven by broader DXY dynamics, risk‑reward is less compelling than in cleaner trending pairs like USD/JPY, NZD/USD, or USD/CAD.</span></div>
   </div>
 </section>
 
@@ -486,18 +492,21 @@ section[id]{scroll-margin-top:130px}
 <section id="calendar" class="section">
   <div class="section-header">
     <h2 class="section-title">Risk Calendar</h2>
-    <span class="section-subtitle">Week view — All times BST</span>
+    <span class="section-subtitle">Week view - All times BST</span>
   </div>
   <div class="data-table-wrap">
     <table class="data-table">
       <thead><tr><th>Date</th><th>Time</th><th>Event</th><th>CCY</th><th>Impact</th></tr></thead>
-      <tbody><tr><td><strong>16 Apr 2026</strong></td><td class="mono">13:30</td><td>US CPI (Core, MoM)</td><td>USD</td><td><span class="badge badge-avoid" style="font-size:10px">High</span></td></tr>
-<tr><td><strong>16 Apr 2026</strong></td><td class="mono">13:30</td><td>US CPI (YoY)</td><td>USD</td><td><span class="badge badge-avoid" style="font-size:10px">High</span></td></tr>
-<tr><td><strong>16 Apr 2026</strong></td><td class="mono">13:30</td><td>US CPI (MoM)</td><td>USD</td><td><span class="badge badge-avoid" style="font-size:10px">High</span></td></tr>
-<tr><td><strong>16 Apr 2026</strong></td><td class="mono">15:00</td><td>US FOMC Meeting Minutes</td><td>USD</td><td><span class="badge badge-watch" style="font-size:10px">Medium</span></td></tr></tbody>
+      <tbody><tr><td><strong>Wed 22 Apr</strong></td><td class="mono">06:00</td><td>UK CPI &amp; Core CPI (Mar) (Headline ~3.3% vs 3.0% prior; core 3.2% vs 3.2% prior (market chatter/ONS last print))</td><td>GBP</td><td><span class="badge badge-avoid" style="font-size:10px">High</span></td></tr>
+<tr><td><strong>Wed 22 Apr</strong></td><td class="mono">17:30</td><td>ECB President Lagarde speech (No numeric forecast; follows strong recent PMIs)</td><td>EUR</td><td><span class="badge badge-watch" style="font-size:10px">Medium</span></td></tr>
+<tr><td><strong>Thu 23 Apr</strong></td><td class="mono">09:00</td><td>Eurozone Flash Manufacturing PMI (Apr) (Forecast 50.7 vs 51.6 prior, still in expansion)</td><td>EUR</td><td><span class="badge badge-watch" style="font-size:10px">Medium</span></td></tr>
+<tr><td><strong>Thu 23 Apr</strong></td><td class="mono">08:30</td><td>UK Flash PMIs (Manufacturing, Services, Composite) (Consensus not clearly published; prior composite ~50.3, manufacturing near low‑50s, services near low‑50s)</td><td>GBP</td><td><span class="badge badge-watch" style="font-size:10px">Medium</span></td></tr>
+<tr><td><strong>Thu 23 Apr</strong></td><td class="mono">13:30</td><td>US Initial Jobless Claims (Prior ~219k vs 210k expected; latest consensus for this week not clearly stated)</td><td>DXY</td><td><span class="badge badge-watch" style="font-size:10px">Medium</span></td></tr>
+<tr><td><strong>Fri 24 Apr</strong></td><td class="mono">07:00</td><td>UK Retail Sales (Mar) (Trading Economics expects around +0.2% m/m vs ‑0.4% prior)</td><td>GBP</td><td><span class="badge badge-avoid" style="font-size:10px">High</span></td></tr>
+<tr><td><strong>Fri 24 Apr</strong></td><td class="mono">00:50</td><td>Japan Services Producer Price Index (Mar) (No clear consensus; follows steady prior prints)</td><td>USD</td><td><span class="badge badge-avoid" style="font-size:10px">High</span></td></tr></tbody>
     </table>
   </div>
-  <div style="margin-top:10px;font-size:11px;color:var(--text-faint)">Upcoming: BOJ Apr 28 | Fed FOMC Apr 28â€“29 | BOC Apr 29 | ECB Apr 30 | BOE Apr 30 | RBA May 5 | RBNZ May 27</div>
+  <div style="margin-top:10px;font-size:11px;color:var(--text-faint)">Upcoming: BOJ Apr 28 | Fed FOMC Apr 28-29 | BOC Apr 29 | ECB Apr 30 | BOE Apr 30 | RBA May 5 | RBNZ May 27</div>
 </section><!-- CHANGED -->
 <section id="changed" class="section">
   <div class="section-header">
@@ -507,9 +516,10 @@ section[id]{scroll-margin-top:130px}
   <div class="data-table-wrap">
     <table class="data-table">
       <thead><tr><th>Development</th><th>FX Impact</th></tr></thead>
-      <tbody><tr><td>Increased geopolitical tensions in Eastern Europe.</td><td>Strengthened safe-haven demand for USD and CHF, pressured commodity currencies.</td></tr>
-<tr><td>Hawkish rhetoric from some Fed officials.</td><td>Supported USD against currencies with more dovish central bank outlooks, but capped by CPI anticipation.</td></tr>
-<tr><td>Slight cooling in some European inflation data.</td><td>Reinforced expectations for ECB rate cuts, contributing to EUR weakness.</td></tr></tbody>
+      <tbody><tr><td>Risk tone</td><td>Risk tone: Equities in the US and Europe slipped on renewed Middle East worries and higher oil, while Asia held up better with Japan leading gains, leaving overall sentiment in a cautious, slightly risk‑on mode rather than full risk‑off. Volatility is contained with the VIX below 20, and S&amp;P futures are modestly higher as markets price an extended US-Iran ceasefire and reduced immediate escalation risk.</td></tr>
+<tr><td>USD  yields</td><td>USD &amp; yields: The US Dollar Index (DXY) is hovering around 98.4 after a modest rally earlier in April, with the broader trend still sideways‑to‑firm as markets balance sticky inflation against growing expectations of 2-3 Fed cuts by year‑end. US Treasury yields spiked recently on higher oil and Fed‑watch headlines but have since eased back, and recent jobless‑claims data showing a jump to around 219k versus a 210k forecast has introduced mild concern about labour‑market momentum.</td></tr>
+<tr><td>Europe  UK</td><td>Europe &amp; UK: The euro area is seeing manufacturing PMIs holding in expansion territory near the low‑50s, supporting the idea of a fragile but improving growth backdrop that helps EUR on dips. In the UK, February CPI was 3.0% y/y with core at 3.2%, and today&#x27;s CPI release is expected around 3.3%, making it the key driver for GBP and Bank of England expectations into the 30 April meeting.</td></tr>
+<tr><td>Antipodeans  commodities</td><td>Antipodeans &amp; commodities: AUD and NZD remain high‑beta risk proxies: AUD/USD is trading in the low‑0.71s after grinding higher within a bullish channel, supported by a relatively hawkish RBA tone and better local data. NZD/USD is near 0.59, underpinned by Q1 inflation at 3.1% y/y versus 2.9% expected, which has markets leaning toward a more hawkish RBNZ path. Oil remains elevated after renewed tensions around the Strait of Hormuz, supporting CAD but also periodically boosting USD via safe‑haven demand.</td></tr></tbody>
     </table>
   </div>
 </section>
@@ -523,17 +533,18 @@ section[id]{scroll-margin-top:130px}
   <div class="data-table-wrap">
     <table class="data-table">
       <thead><tr><th>Status</th><th>Item</th><th>Notes</th></tr></thead>
-      <tbody><tr><td class="check-icon neutral">-</td><td>US CPI Data Release</td><td>Critical input for Fed policy expectations and market direction.</td></tr>
-<tr><td class="check-icon neutral">-</td><td>FOMC Meeting Minutes</td><td>May offer further clues on Fed&#x27;s forward guidance.</td></tr>
-<tr><td class="check-icon neutral">-</td><td>Geopolitical Developments</td><td>Any escalation could trigger significant risk aversion.</td></tr>
-<tr><td class="check-icon neutral">-</td><td>BoJ Intervention Watch</td><td>Elevated USD/JPY levels keep intervention risk alive.</td></tr></tbody>
+      <tbody><tr><td class="check-icon neutral">[ ]</td><td>Only engage with the Top 5 setups if price is trading inside or very near the defined trigger zones; avoid chasing moves that have already reached target areas.</td><td></td></tr>
+<tr><td class="check-icon neutral">[ ]</td><td>Respect invalidation levels strictly: if an invalidation price or daily/4H close condition is met, treat the idea as dead rather than re‑entering immediately in the same direction.</td><td></td></tr>
+<tr><td class="check-icon neutral">[ ]</td><td>Stay especially disciplined around UK CPI (06:00 BST) and Lagarde&#x27;s speech, flattening or materially reducing GBP‑ and EUR‑sensitive exposure ahead of the releases unless trades are already well in profit.</td><td></td></tr>
+<tr><td class="check-icon neutral">[ ]</td><td>For highly correlated positions (e.g., NZD/USD long plus AUD/USD long), size each trade so combined risk in that bucket does not exceed your intended single‑trade max (1% in this framework).</td><td></td></tr>
+<tr><td class="check-icon neutral">[ ]</td><td>Use smaller initial size in USD/JPY shorts given strong carry; consider scaling in only if price action confirms a reversal (failed high or clear 4H rejection).</td><td></td></tr>
+<tr><td class="check-icon neutral">[ ]</td><td>Check that total open risk across all trades does not exceed the 3% portfolio cap, especially when multiple USD‑legs are active around US data.</td><td></td></tr>
+<tr><td class="check-icon neutral">[ ]</td><td>Review cross‑asset tone (equities, oil, credit spreads) at the start of your session; if markets flip sharply risk‑off or risk‑on, reassess whether your directional biases in high‑beta FX (AUD, NZD, CAD) still make sense.</td><td></td></tr></tbody>
     </table>
   </div>
 </section>
 
 </div><!-- end page-wrap -->
-
-<div class="loading-overlay" id="loadingOverlay"></div>
 
 <script>
 /* ===== RATE DATA STATE ===== */
@@ -561,12 +572,99 @@ function cross(r, pair) {
   }
 }
 
-function fmt(v, dp) { return v != null ? v.toFixed(dp) : 'â€”'; }
+function fmt(v, dp) { return v != null ? v.toFixed(dp) : '-'; }
 function pct(v) { return v != null ? (v > 0 ? '+' : '') + v.toFixed(2) + '%' : ''; }
 function dir(v) {
   if (v > 0) return 'up';
   if (v < 0) return 'down';
   return 'flat';
+}
+
+function parseSpotValue(v) {
+  const n = Number(String(v == null ? '' : v).replace(/,/g, '').trim());
+  return Number.isFinite(n) && n > 0 ? n : null;
+}
+
+function parseRangeFromText(text) {
+  const matches = String(text == null ? '' : text).match(/\d+(?:\.\d+)?/g) || [];
+  if (matches.length < 2) return null;
+  const a = Number(matches[0]);
+  const b = Number(matches[1]);
+  if (!Number.isFinite(a) || !Number.isFinite(b)) return null;
+  return { low: Math.min(a, b), high: Math.max(a, b) };
+}
+
+function updateTop5TradeAlerts() {
+  document.querySelectorAll('.setup-card[data-entry-zone]').forEach(card => {
+    const alertEl = card.querySelector('[data-role="trade-alert"]');
+    const spotEl = card.querySelector('.setup-field .sf-val[data-pair]');
+    if (!alertEl || !spotEl) return;
+
+    const range = parseRangeFromText(card.getAttribute('data-entry-zone') || '');
+    const liveSpot = parseSpotValue(spotEl.textContent);
+    if (!range || liveSpot == null) {
+      alertEl.textContent = 'WAITING';
+      alertEl.classList.remove('active');
+      alertEl.classList.remove('just-activated');
+      alertEl.setAttribute('data-alert-state', 'waiting');
+      return;
+    }
+
+    const wasActive = alertEl.getAttribute('data-alert-state') === 'active';
+    const inZone = liveSpot >= range.low && liveSpot <= range.high;
+    if (inZone) {
+      alertEl.textContent = 'TRADE ALERT';
+      alertEl.classList.add('active');
+      if (!wasActive) {
+        alertEl.classList.remove('just-activated');
+        void alertEl.offsetWidth;
+        alertEl.classList.add('just-activated');
+      }
+      alertEl.setAttribute('data-alert-state', 'active');
+    } else {
+      alertEl.textContent = 'WAITING';
+      alertEl.classList.remove('active');
+      alertEl.classList.remove('just-activated');
+      alertEl.setAttribute('data-alert-state', 'waiting');
+    }
+  });
+}
+
+function scalePriceText(text, ratio, dp) {
+  return String(text == null ? '' : text).replace(/\d+(?:\.\d+)?/g, (m) => {
+    const n = Number(m);
+    if (!Number.isFinite(n) || n <= 0) return m;
+    const scaled = n * ratio;
+    if (!Number.isFinite(scaled)) return m;
+    return scaled.toFixed(dp);
+  });
+}
+
+function alignCardLevelsToLiveSpot() {
+  if (!todayRates) return;
+
+  document.querySelectorAll('[data-pair-card]').forEach(card => {
+    const code = String(card.getAttribute('data-pair-card') || '').toUpperCase();
+    if (!code) return;
+
+    const liveSpot = cross(todayRates, code);
+    const originalSpot = parseSpotValue(card.getAttribute('data-origin-spot'));
+    if (!Number.isFinite(liveSpot) || originalSpot == null) return;
+
+    const ratio = liveSpot / originalSpot;
+    if (!Number.isFinite(ratio) || ratio <= 0) return;
+    if (ratio > 0.90 && ratio < 1.10) return;
+
+    const dp = code.endsWith('JPY') ? 2 : 4;
+    ['trigger', 'target', 'invalidation'].forEach(role => {
+      const el = card.querySelector('[data-role="' + role + '"]');
+      if (!el) return;
+      const attr = 'data-orig-' + role;
+      const originalText = card.getAttribute(attr) || String(el.textContent || '');
+      if (!card.hasAttribute(attr)) card.setAttribute(attr, originalText);
+      el.textContent = scalePriceText(originalText, ratio, dp);
+    });
+  });
 }
 
 function prevBusinessDay(dateStr) {
@@ -631,15 +729,17 @@ function updateDOM(liveTs) {
   if (liveTs) {
     const timeStr = liveTs.toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit', timeZoneName:'short' });
     const dateStr = liveTs.toLocaleDateString('en-GB', { day:'numeric', month:'short' });
-    ts.textContent = 'Live Â· ' + dateStr + ' ' + timeStr;
+    ts.textContent = 'Live | ' + dateStr + ' ' + timeStr;
   } else if (ecbDate) {
-    ts.textContent = 'Rate data Â· ' + ecbDate;
+    ts.textContent = 'Rate data | ' + ecbDate;
   }
   const pill = document.getElementById('livePill');
   const pillTxt = document.getElementById('livePillText');
   if (pill) pill.classList.remove('offline');
   if (pillTxt) pillTxt.textContent = 'Rates: Live';
 
+  alignCardLevelsToLiveSpot();
+  updateTop5TradeAlerts();
   scorePairs();
 }
 
@@ -661,7 +761,7 @@ async function proxyFetch(directUrl) {
     const r = await fetch(directUrl, { signal: ctrl.signal, cache: 'no-store' });
     clearTimeout(tid);
     if (r.ok) { transport = 'direct'; return r.json(); }
-  } catch(e) { /* blocked or timed out â€” fall through */ }
+  } catch(e) { /* blocked or timed out - fall through */ }
 
   const r = await fetch(proxyUrl);
   if (!r.ok) throw new Error('proxy ' + r.status);
@@ -669,9 +769,9 @@ async function proxyFetch(directUrl) {
   return r.json();
 }
 
-// Live intraday rates â€” fxratesapi.com (EUR base, updates ~every hour during market hours)
+// Live intraday rates - fxratesapi.com (EUR base, updates ~every hour during market hours)
 const LIVE_BASE = 'https://api.fxratesapi.com/latest?base=EUR&currencies=USD,GBP,JPY,CHF,AUD,CAD,NZD';
-// Historical daily rates â€” Frankfurter/ECB (for day-over-day change and 14-day correlation)
+// Historical daily rates - Frankfurter/ECB (for day-over-day change and 14-day correlation)
 const HIST_BASE = 'https://api.frankfurter.app';
 
 async function fxFetch(frankfurterPath) {
@@ -704,11 +804,11 @@ async function loadRates(manual) {
     if (pill) pill.classList.add('offline');
     if (pillTxt) pillTxt.textContent = 'Offline';
     const ts = document.getElementById('rateTimestamp');
-    if (ts && !todayRates) ts.textContent = 'Rates unavailable â€” retrying...';
+    if (ts && !todayRates) ts.textContent = 'Rates unavailable - retrying...';
     else if (ts && todayRates) ts.textContent = (ecbDate || '') + ' (reconnecting...)';
     if (!todayRates) {
       const bar = document.getElementById('tickerBar');
-      if (bar) bar.innerHTML = '<span style="font-size:11px;color:var(--text-muted)">Loading ratesâ€¦</span>';
+      if (bar) bar.innerHTML = '<span style="font-size:11px;color:var(--text-muted)">Loading rates...</span>';
     }
   } finally {
     overlay.classList.remove('visible');
@@ -726,13 +826,13 @@ function asNum(v) {
 
 function fmtLevel(v, dp) {
   const n = asNum(v);
-  return n == null ? '—' : n.toFixed(dp);
+  return n == null ? '-' : n.toFixed(dp);
 }
 
 function fmtRange(low, high, dp) {
   const a = fmtLevel(low, dp);
   const b = fmtLevel(high, dp);
-  if (a === '—' && b === '—') return '—';
+  if (a === '-' && b === '-') return '-';
   if (a === b) return a;
   return a + ' - ' + b;
 }
@@ -858,7 +958,7 @@ function scorePairs() {
     const invalidationEl = card.querySelector('[data-role="invalidation"]');
     if (invalidationEl) {
       const invText = String(cfg.invalidation || '').trim();
-      invalidationEl.textContent = invText || (stop == null ? '—' : (direction === 'bull' ? 'Below ' : 'Above ') + fmtLevel(stop, dp));
+      invalidationEl.textContent = invText || (stop == null ? '-' : (direction === 'bull' ? 'Below ' : 'Above ') + fmtLevel(stop, dp));
     }
     const catalystEl = card.querySelector('[data-role="catalyst"]');
     if (catalystEl) {
@@ -975,7 +1075,7 @@ async function loadCorrelation() {
         if (row === col) {
           html += '<td class="self">1.00</td>';
         } else if (r === null) {
-          html += '<td style="color:var(--text-faint)">â€”</td>';
+          html += '<td style="color:var(--text-faint)">-</td>';
         } else {
           const bg = corrColor(r);
           const tc = corrTextColor(r);
@@ -998,16 +1098,16 @@ async function loadCorrelation() {
         const r = matrix[a][b];
         if (r === null) return;
         if (r > 0.80) {
-          alerts.push('<div class="corr-alert"><div class="ca-icon">!</div><div><strong style="color:var(--green)">' + CORR_LABELS[a] + ' + ' + CORR_LABELS[b] + ' (r = ' + r.toFixed(2) + ')</strong> â€” High positive correlation. Cap combined risk at 1.5%.</div></div>');
+          alerts.push('<div class="corr-alert"><div class="ca-icon">!</div><div><strong style="color:var(--green)">' + CORR_LABELS[a] + ' + ' + CORR_LABELS[b] + ' (r = ' + r.toFixed(2) + ')</strong> - High positive correlation. Cap combined risk at 1.5%.</div></div>');
         } else if (r < -0.80) {
-          alerts.push('<div class="corr-alert"><div class="ca-icon">â†”</div><div><strong style="color:var(--red)">' + CORR_LABELS[a] + ' + ' + CORR_LABELS[b] + ' (r = ' + r.toFixed(2) + ')</strong> â€” Strong inverse correlation. Natural hedge or contradictory positioning.</div></div>');
+          alerts.push('<div class="corr-alert"><div class="ca-icon"><-></div><div><strong style="color:var(--red)">' + CORR_LABELS[a] + ' + ' + CORR_LABELS[b] + ' (r = ' + r.toFixed(2) + ')</strong> - Strong inverse correlation. Natural hedge or contradictory positioning.</div></div>');
         } else if (Math.abs(r) < 0.15) {
           const expectHigh = (
             (a === 'AUDUSD' && b === 'NZDUSD') || (a === 'NZDUSD' && b === 'AUDUSD') ||
             (a === 'EURUSD' && b === 'GBPUSD') || (a === 'GBPUSD' && b === 'EURUSD')
           );
           if (expectHigh) {
-            alerts.push('<div class="corr-alert"><div class="ca-icon" style="border-color:var(--amber);color:var(--amber)">âš </div><div><strong style="color:var(--amber)">' + CORR_LABELS[a] + ' vs ' + CORR_LABELS[b] + ' correlation breakdown (r = ' + r.toFixed(2) + ')</strong> â€” Normally highly correlated. Signals divergent fundamentals.</div></div>');
+            alerts.push('<div class="corr-alert"><div class="ca-icon" style="border-color:var(--amber);color:var(--amber)">!</div><div><strong style="color:var(--amber)">' + CORR_LABELS[a] + ' vs ' + CORR_LABELS[b] + ' correlation breakdown (r = ' + r.toFixed(2) + ')</strong> - Normally highly correlated. Signals divergent fundamentals.</div></div>');
           }
         }
       });
@@ -1024,10 +1124,10 @@ async function loadCorrelation() {
     const nDays = useDates.length;
     const from = useDates[0];
     const to = useDates[useDates.length - 1];
-    status.textContent = 'Based on ' + nDays + ' ECB business days (' + from + ' to ' + to + ') Â· Daily log returns Â· Updated on page load';
+    status.textContent = 'Based on ' + nDays + ' ECB business days (' + from + ' to ' + to + ') | Daily log returns | Updated on page load';
 
   } catch(e) {
-    container.innerHTML = '<div style="text-align:center;padding:24px;color:var(--red);font-size:12px">Correlation data unavailable â€” refresh to retry</div>';
+    container.innerHTML = '<div style="text-align:center;padding:24px;color:var(--red);font-size:12px">Correlation data unavailable - refresh to retry</div>';
     status.textContent = '';
     breakdown.innerHTML = '';
     breakdown.classList.remove('visible');
